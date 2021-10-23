@@ -638,7 +638,8 @@
     <Compile Include="Games\CTF\CtfGame.cs" />
     <Compile Include="Levels\BlockQueue.cs" />
     <Compile Include="Levels\Level.cs" />
-    <Compile Include="Server\Authenticator.cs" />
+    <Compile Include="Server\Authentication\Authenticator.cs" />
+    <Compile Include="Server\Authentication\AuthService.cs" />
     <Compile Include="Server\FileLogger.cs" />
     <Compile Include="Server\Logger.cs" />
     <Compile Include="Player\Player.cs" />
@@ -726,7 +727,31 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Commands\Maintenance" />
+    <Folder Include="Config\Permissions" />
+    <Folder Include="Database\Stats" />
+    <Folder Include="Games\Weapons" />
+    <Folder Include="Games\RoundsGame" />
+    <Folder Include="Generator\LibNoise" />
+    <Folder Include="Generator\Classic" />
+    <Folder Include="Generator\Realistic" />
+    <Folder Include="Modules\Awards" />
+    <Folder Include="Modules\Moderation" />
+    <Folder Include="Modules\Moderation\Notes" />
+    <Folder Include="Modules\Security" />
+    <Folder Include="Modules\Relay\Discord" />
+    <Folder Include="Modules\Relay" />
+    <Folder Include="Network\Heartbeat" />
+    <Folder Include="Modules\Relay\IRC" />
+    <Folder Include="Network\Utils" />
+    <Folder Include="Network\Packets" />
+    <Folder Include="Entity" />
+    <Folder Include="Modules" />
+    <Folder Include="Server\Maintenance" />
+    <Folder Include="util\Formatting" />
+    <Folder Include="util\Threading" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
