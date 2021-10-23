@@ -122,8 +122,15 @@ namespace MCGalaxy.Gui {
             Command.Find("Help").Use(p, toHelp);
             Popup.Message(Colors.StripUsed(p.Messages), "Help for /" + toHelp);
         }
+
+        #if DEBUG
+        private void General_ForceServerReset_Click(object sender, EventArgs e)
+        {
+            Server.Reset(); 
+        }
+        #endif
     }
-    
+
     sealed class ConsoleHelpPlayer : Player {
         public string Messages = "";
             

@@ -185,5 +185,12 @@ namespace MCGalaxy {
             if (found) File.WriteAllText(list.file, sb.ToString());
             return found;
         }
+
+        public static void ClearAllBans()
+        {
+            //todo: requiredfiles
+            File.Delete("text/bans.txt");
+            File.Delete("text/unbans.txt");
+        }
     }
 }

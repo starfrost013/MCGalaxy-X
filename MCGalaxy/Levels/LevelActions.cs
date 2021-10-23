@@ -142,20 +142,22 @@ namespace MCGalaxy {
         }*/
         
         
-        /// <summary> Deletes a level and its associated metadata. </summary>
-        public static bool Delete(Player p, string map) {
+        /// <summary> Deletes a level and its associated metadata. Optionally can delete the main level if <paramref name="DeleteMain"/> is true.</summary>
+        public static bool Delete(Player p, string map, bool AllowDeleteMain = false) {
             Level lvl = LevelInfo.FindExact(map);
-            if (lvl == Server.mainLevel) {
-                p.Message("Cannot delete the main level."); return false;
+            if (lvl == Server.mainLevel && !AllowDeleteMain) {
+                if (p != null) p.Message("Cannot delete the main level.");
+                return false; // temp hack to allow passing null as ap player -- TODO: REPLACE WITH SYSTEM MESSAGES OR SOME OTHER SOLUTON
             }
             
             if (lvl != null && !lvl.Unload()) {
-                p.Message("Unable to delete the level, because it could not be unloaded. " +
+                if (p != null) p.Message("Unable to delete the level, because it could not be unloaded. " +
                           "A game may currently be running on it.");
                 return false;
             }
-            
-            p.Message("Created backup.");
+
+            if (p != null) p.Message("Created backup.");
+
             if (!Directory.Exists("levels/deleted"))
                 Directory.CreateDirectory("levels/deleted");
             

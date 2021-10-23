@@ -117,6 +117,9 @@
     <Compile Include="Window\Window.Main.cs" />
     <Compile Include="Window\Window.Map.cs" />
     <Compile Include="Window\Window.Players.cs" />
+    <EmbeddedResource Include="PropertyWindow\PropertyWindow.resx">
+      <DependentUpon>PropertyWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Window\Window.resx">
       <DependentUpon>Window.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -135,12 +138,7 @@
   <ItemGroup>
     <Content Include="Galaxy.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls" />
-    <Folder Include="Popups" />
-    <Folder Include="PropertyWindow" />
-    <Folder Include="Window" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

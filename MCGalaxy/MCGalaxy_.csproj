@@ -503,6 +503,7 @@
     <Compile Include="Games\TntWars\TWGame.Round.cs" />
     <Compile Include="Games\TntWars\TWGame.cs" />
     <Compile Include="Games\TntWars\TWConfig.cs" />
+    <Compile Include="Games\TownyCC\TownyCC.cs" />
     <Compile Include="Games\Weapons\Missile.cs" />
     <Compile Include="Games\Weapons\Weapon.cs" />
     <Compile Include="Games\Weapons\Guns.cs" />
@@ -655,6 +656,7 @@
     <Compile Include="Server\Tasks\ModerationTasks.cs" />
     <Compile Include="Server\Tasks\ServerTasks.cs" />
     <Compile Include="Server\Tasks\UpgradeTasks.cs" />
+    <Compile Include="util\Extensions\FileExts.cs" />
     <Compile Include="util\Extensions\DateExts.cs" />
     <Compile Include="util\Extensions\Extensions.cs" />
     <Compile Include="util\Extensions\StringExts.cs" />
@@ -724,31 +726,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\Maintenance" />
-    <Folder Include="Config\Permissions" />
-    <Folder Include="Database\Stats" />
-    <Folder Include="Games\Weapons" />
-    <Folder Include="Games\RoundsGame" />
-    <Folder Include="Generator\LibNoise" />
-    <Folder Include="Generator\Classic" />
-    <Folder Include="Generator\Realistic" />
-    <Folder Include="Modules\Awards" />
-    <Folder Include="Modules\Moderation" />
-    <Folder Include="Modules\Moderation\Notes" />
-    <Folder Include="Modules\Security" />
-    <Folder Include="Modules\Relay\Discord" />
-    <Folder Include="Modules\Relay" />
-    <Folder Include="Network\Heartbeat" />
-    <Folder Include="Modules\Relay\IRC" />
-    <Folder Include="Network\Utils" />
-    <Folder Include="Network\Packets" />
-    <Folder Include="Entity" />
-    <Folder Include="Modules" />
-    <Folder Include="Server\Maintenance" />
-    <Folder Include="util\Formatting" />
-    <Folder Include="util\Threading" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

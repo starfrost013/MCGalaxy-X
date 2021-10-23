@@ -129,7 +129,7 @@ namespace MCGalaxy {
             Physicsint = 0;
             try {
                 // Wake up physics thread from Thread.Sleep
-                physThread.Interrupt();
+                physThread.Interrupt(); // slightly annoying when attached to a debugger, as the exception is usually silently caught - change this code?
                 // Wait up to 1 second for physics thread to finish
                 physThread.Join(1000);
             } catch {
@@ -146,8 +146,8 @@ namespace MCGalaxy {
             return can && Unload(true);
         }
         
-        public bool Unload(bool silent = false, bool save = true) {
-            if (Server.mainLevel == this) return false;
+        public bool Unload(bool silent = false, bool save = true, bool AllowUnloadingMain = false) {
+            if (Server.mainLevel == this && !AllowUnloadingMain) return false;
             // Still cleanup resources, even if this is not a true level
             if (IsMuseum) { Cleanup(); return true; }
             
@@ -157,12 +157,13 @@ namespace MCGalaxy {
                 Logger.Log(LogType.SystemActivity, "Unload canceled by Plugin! (Map: {0})", name);
                 return false;
             }
-            MovePlayersToMain();
+
+            if (!AllowUnloadingMain && Server.mainLevel != this) MovePlayersToMain();
 
             if (save && SaveChanges && Changed) Save();
             if (save && SaveChanges) SaveBlockDBChanges();
-            
-            MovePlayersToMain();
+
+            if (!AllowUnloadingMain && Server.mainLevel != this) MovePlayersToMain();
             LevelInfo.Remove(this);
             
             try {

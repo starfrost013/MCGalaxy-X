@@ -46,6 +46,7 @@ namespace MCGalaxy.Gui
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PropertyWindow));
             this.pageChat = new System.Windows.Forms.TabPage();
             this.chat_grpTab = new System.Windows.Forms.GroupBox();
             this.chat_cbTabRank = new System.Windows.Forms.CheckBox();
@@ -116,19 +117,28 @@ namespace MCGalaxy.Gui
             this.rank_numDraw = new System.Windows.Forms.NumericUpDown();
             this.rank_numGen = new System.Windows.Forms.NumericUpDown();
             this.rank_numCopy = new System.Windows.Forms.NumericUpDown();
+            this.adv_chkCPE = new System.Windows.Forms.CheckBox();
+            this.eco_cmbItemRank = new System.Windows.Forms.ComboBox();
+            this.rank_numUndo = new MCGalaxy.Gui.TimespanUpDown();
+            this.dis_txtOpChannel = new System.Windows.Forms.TextBox();
+            this.dis_chkEnabled = new System.Windows.Forms.CheckBox();
+            this.dis_txtToken = new System.Windows.Forms.TextBox();
+            this.zs_txtModel = new System.Windows.Forms.TextBox();
+            this.zs_txtName = new System.Windows.Forms.TextBox();
+            this.zs_numReviveEff = new System.Windows.Forms.NumericUpDown();
+            this.zs_numReviveLimit = new System.Windows.Forms.NumericUpDown();
+            this.zs_numInvZombieDur = new System.Windows.Forms.NumericUpDown();
+            this.zs_numInvHumanDur = new System.Windows.Forms.NumericUpDown();
+            this.zs_numInvZombieMax = new System.Windows.Forms.NumericUpDown();
+            this.zs_numInvHumanMax = new System.Windows.Forms.NumericUpDown();
+            this.tw_cmbDiff = new System.Windows.Forms.ComboBox();
             this.dis_grp = new System.Windows.Forms.GroupBox();
+            this.dis_linkHelp = new System.Windows.Forms.LinkLabel();
             this.dis_lblToken = new System.Windows.Forms.Label();
             this.dis_lblChannel = new System.Windows.Forms.Label();
             this.dis_txtChannel = new System.Windows.Forms.TextBox();
             this.dis_lblOpChannel = new System.Windows.Forms.Label();
-            this.dis_chkEnabled = new System.Windows.Forms.CheckBox();
             this.dis_chkNicks = new System.Windows.Forms.CheckBox();
-            this.dis_txtToken = new System.Windows.Forms.TextBox();
-            this.dis_txtOpChannel = new System.Windows.Forms.TextBox();
-            this.dis_linkHelp = new System.Windows.Forms.LinkLabel();
-            this.adv_chkCPE = new System.Windows.Forms.CheckBox();
-            this.eco_cmbItemRank = new System.Windows.Forms.ComboBox();
-            this.rank_numUndo = new MCGalaxy.Gui.TimespanUpDown();
             this.chkPhysRestart = new System.Windows.Forms.CheckBox();
             this.ls_numMax = new System.Windows.Forms.NumericUpDown();
             this.ls_numKiller = new System.Windows.Forms.NumericUpDown();
@@ -211,17 +221,6 @@ namespace MCGalaxy.Gui
             this.bak_lblLocation = new System.Windows.Forms.Label();
             this.bak_txtLocation = new System.Windows.Forms.TextBox();
             this.bak_lblTime = new System.Windows.Forms.Label();
-            this.pageRelay = new System.Windows.Forms.TabPage();
-            this.gb_ircSettings = new System.Windows.Forms.GroupBox();
-            this.irc_txtPrefix = new System.Windows.Forms.TextBox();
-            this.irc_lblPrefix = new System.Windows.Forms.Label();
-            this.irc_cmbVerify = new System.Windows.Forms.ComboBox();
-            this.irc_lblVerify = new System.Windows.Forms.Label();
-            this.irc_cmbRank = new System.Windows.Forms.ComboBox();
-            this.irc_lblRank = new System.Windows.Forms.Label();
-            this.irc_cbAFK = new System.Windows.Forms.CheckBox();
-            this.irc_cbWorldChanges = new System.Windows.Forms.CheckBox();
-            this.irc_cbTitles = new System.Windows.Forms.CheckBox();
             this.sql_grp = new System.Windows.Forms.GroupBox();
             this.sql_linkDownload = new System.Windows.Forms.LinkLabel();
             this.sql_lblUser = new System.Windows.Forms.Label();
@@ -234,6 +233,17 @@ namespace MCGalaxy.Gui
             this.sql_txtHost = new System.Windows.Forms.TextBox();
             this.sql_lblPort = new System.Windows.Forms.Label();
             this.sql_txtPort = new System.Windows.Forms.TextBox();
+            this.pageRelay = new System.Windows.Forms.TabPage();
+            this.gb_ircSettings = new System.Windows.Forms.GroupBox();
+            this.irc_txtPrefix = new System.Windows.Forms.TextBox();
+            this.irc_lblPrefix = new System.Windows.Forms.Label();
+            this.irc_cmbVerify = new System.Windows.Forms.ComboBox();
+            this.irc_lblVerify = new System.Windows.Forms.Label();
+            this.irc_cmbRank = new System.Windows.Forms.ComboBox();
+            this.irc_lblRank = new System.Windows.Forms.Label();
+            this.irc_cbAFK = new System.Windows.Forms.CheckBox();
+            this.irc_cbWorldChanges = new System.Windows.Forms.CheckBox();
+            this.irc_cbTitles = new System.Windows.Forms.CheckBox();
             this.irc_grp = new System.Windows.Forms.GroupBox();
             this.irc_lblServer = new System.Windows.Forms.Label();
             this.irc_lblPort = new System.Windows.Forms.Label();
@@ -248,6 +258,9 @@ namespace MCGalaxy.Gui
             this.adv_grp = new System.Windows.Forms.GroupBox();
             this.adv_btnEditTexts = new System.Windows.Forms.Button();
             this.srv_grp = new System.Windows.Forms.GroupBox();
+            #if DEBUG
+            this.General_ForceServerReset = new System.Windows.Forms.Button();
+            #endif
             this.srv_lblName = new System.Windows.Forms.Label();
             this.srv_lblMotd = new System.Windows.Forms.Label();
             this.srv_lblPort = new System.Windows.Forms.Label();
@@ -341,26 +354,18 @@ namespace MCGalaxy.Gui
             this.label3 = new System.Windows.Forms.Label();
             this.zs_grpSettings = new System.Windows.Forms.GroupBox();
             this.zs_grpZombie = new System.Windows.Forms.GroupBox();
-            this.zs_txtModel = new System.Windows.Forms.TextBox();
-            this.zs_txtName = new System.Windows.Forms.TextBox();
             this.zs_lblModel = new System.Windows.Forms.Label();
             this.zs_lblName = new System.Windows.Forms.Label();
             this.zs_grpRevive = new System.Windows.Forms.GroupBox();
             this.zs_lblReviveEff = new System.Windows.Forms.Label();
-            this.zs_numReviveEff = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.zs_lblReviveLimitFtr = new System.Windows.Forms.Label();
             this.zs_lblReviveLimitHdr = new System.Windows.Forms.Label();
-            this.zs_numReviveLimit = new System.Windows.Forms.NumericUpDown();
             this.zs_numReviveMax = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.zs_cbMain = new System.Windows.Forms.CheckBox();
             this.zs_cbMap = new System.Windows.Forms.CheckBox();
             this.zs_grpInv = new System.Windows.Forms.GroupBox();
-            this.zs_numInvZombieDur = new System.Windows.Forms.NumericUpDown();
-            this.zs_numInvHumanDur = new System.Windows.Forms.NumericUpDown();
-            this.zs_numInvZombieMax = new System.Windows.Forms.NumericUpDown();
-            this.zs_numInvHumanMax = new System.Windows.Forms.NumericUpDown();
             this.zs_lblInvZombieDur = new System.Windows.Forms.Label();
             this.zs_lblInvZombieMax = new System.Windows.Forms.Label();
             this.zs_lblInvHumanDur = new System.Windows.Forms.Label();
@@ -416,7 +421,6 @@ namespace MCGalaxy.Gui
             this.tw_numScoreLimit = new System.Windows.Forms.NumericUpDown();
             this.tw_grpSettings = new System.Windows.Forms.GroupBox();
             this.tw_cmbMode = new System.Windows.Forms.ComboBox();
-            this.tw_cmbDiff = new System.Windows.Forms.ComboBox();
             this.tw_lblMode = new System.Windows.Forms.Label();
             this.tw_lblDiff = new System.Windows.Forms.Label();
             this.tw_cbMain = new System.Windows.Forms.CheckBox();
@@ -502,6 +506,13 @@ namespace MCGalaxy.Gui
             ((System.ComponentModel.ISupportInitialize)(this.rank_numGen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rank_numCopy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rank_numUndo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zs_numReviveEff)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zs_numReviveLimit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvZombieDur)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvHumanDur)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvZombieMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvHumanMax)).BeginInit();
+            this.dis_grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ls_numMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ls_numKiller)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ls_numFast)).BeginInit();
@@ -529,10 +540,11 @@ namespace MCGalaxy.Gui
             ((System.ComponentModel.ISupportInitialize)(this.afk_numTimer)).BeginInit();
             this.bak_grp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bak_numTime)).BeginInit();
+            this.sql_grp.SuspendLayout();
             this.pageRelay.SuspendLayout();
             this.gb_ircSettings.SuspendLayout();
-            this.sql_grp.SuspendLayout();
             this.irc_grp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.irc_numPort)).BeginInit();
             this.pageServer.SuspendLayout();
             this.lvl_grp.SuspendLayout();
             this.adv_grp.SuspendLayout();
@@ -573,14 +585,8 @@ namespace MCGalaxy.Gui
             this.zs_grpSettings.SuspendLayout();
             this.zs_grpZombie.SuspendLayout();
             this.zs_grpRevive.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.zs_numReviveEff)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zs_numReviveLimit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.zs_numReviveMax)).BeginInit();
             this.zs_grpInv.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvZombieDur)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvHumanDur)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvZombieMax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvHumanMax)).BeginInit();
             this.zs_grpMaps.SuspendLayout();
             this.tabZS_old.SuspendLayout();
             this.tabCTF.SuspendLayout();
@@ -880,7 +886,7 @@ namespace MCGalaxy.Gui
             this.chat_btnDefault.Size = new System.Drawing.Size(95, 23);
             this.chat_btnDefault.TabIndex = 10;
             this.toolTip.SetToolTip(this.chat_btnDefault, "The default color of server messages (excluding player chat).\nFor example, when y" +
-                        "ou are asked to select two corners in a cuboid.");
+        "ou are asked to select two corners in a cuboid.");
             this.chat_btnDefault.Click += new System.EventHandler(this.chat_cmbDefault_Click);
             // 
             // chat_lblIRC
@@ -1074,7 +1080,7 @@ namespace MCGalaxy.Gui
             this.sec_cbWhitelist.TabIndex = 23;
             this.sec_cbWhitelist.Text = "Use whitelist";
             this.toolTip.SetToolTip(this.sec_cbWhitelist, "If enabled, only players who have been whitelisted with /whitelist are allowed to" +
-                        " join");
+        " join");
             this.sec_cbWhitelist.UseVisualStyleBackColor = true;
             // 
             // sql_chkUseSQL
@@ -1086,7 +1092,7 @@ namespace MCGalaxy.Gui
             this.sql_chkUseSQL.TabIndex = 28;
             this.sql_chkUseSQL.Text = "Use MySQL";
             this.toolTip.SetToolTip(this.sql_chkUseSQL, "Whether to use MySQL instead of SQLite for database storage. You will need to hav" +
-                        "e installed it for this to work.");
+        "e installed it for this to work.");
             this.sql_chkUseSQL.UseVisualStyleBackColor = true;
             this.sql_chkUseSQL.CheckedChanged += new System.EventHandler(this.sql_chkUseSQL_CheckedChanged);
             // 
@@ -1099,7 +1105,7 @@ namespace MCGalaxy.Gui
             this.irc_chkEnabled.TabIndex = 22;
             this.irc_chkEnabled.Text = "Use IRC";
             this.toolTip.SetToolTip(this.irc_chkEnabled, "Whether to use the IRC bot or not.\nIRC stands for Internet Relay Chat and allows " +
-                        "for communication with the server while outside Minecraft.");
+        "for communication with the server while outside Minecraft.");
             this.irc_chkEnabled.UseVisualStyleBackColor = true;
             this.irc_chkEnabled.CheckedChanged += new System.EventHandler(this.irc_chkEnabled_CheckedChanged);
             // 
@@ -1159,7 +1165,7 @@ namespace MCGalaxy.Gui
             this.lvl_chkWorld.TabIndex = 4;
             this.lvl_chkWorld.Text = "Server-wide chat";
             this.toolTip.SetToolTip(this.lvl_chkWorld, "If disabled, every map has isolated chat.\nIf enabled, every map is able to commun" +
-                        "icate without special letters.");
+        "icate without special letters.");
             this.lvl_chkWorld.UseVisualStyleBackColor = true;
             // 
             // adv_chkVerify
@@ -1193,27 +1199,27 @@ namespace MCGalaxy.Gui
             this.srv_txtMOTD.Size = new System.Drawing.Size(387, 21);
             this.srv_txtMOTD.TabIndex = 1;
             this.toolTip.SetToolTip(this.srv_txtMOTD, "The MOTD of the server.\nUse \"+hax\" to allow any WoM hack, \"-hax\" to disallow any " +
-                        "hacks at all and use \"-fly\" and whatnot to disallow other things.");
+        "hacks at all and use \"-fly\" and whatnot to disallow other things.");
             // 
             // srv_numPort
             // 
             this.srv_numPort.BackColor = System.Drawing.SystemColors.Window;
             this.srv_numPort.Location = new System.Drawing.Point(83, 73);
             this.srv_numPort.Maximum = new decimal(new int[] {
-                                    65535,
-                                    0,
-                                    0,
-                                    0});
+            65535,
+            0,
+            0,
+            0});
             this.srv_numPort.Name = "srv_numPort";
             this.srv_numPort.Size = new System.Drawing.Size(60, 21);
             this.srv_numPort.TabIndex = 2;
             this.toolTip.SetToolTip(this.srv_numPort, "The port that the server will output on.\nDefault = 25565\n\nChanging will reset you" +
-                        "r ExternalURL.");
+        "r ExternalURL.");
             this.srv_numPort.Value = new decimal(new int[] {
-                                    25565,
-                                    0,
-                                    0,
-                                    0});
+            25565,
+            0,
+            0,
+            0});
             // 
             // srv_chkPublic
             // 
@@ -1255,7 +1261,7 @@ namespace MCGalaxy.Gui
             this.rank_txtMOTD.Size = new System.Drawing.Size(255, 21);
             this.rank_txtMOTD.TabIndex = 17;
             this.toolTip.SetToolTip(this.rank_txtMOTD, "MOTD shown to players of this rank.\r\nIf left blank, the server MOTD is shown to t" +
-                        "hem.");
+        "hem.");
             this.rank_txtMOTD.TextChanged += new System.EventHandler(this.rank_txtMOTD_TextChanged);
             // 
             // rank_numPerm
@@ -1263,15 +1269,15 @@ namespace MCGalaxy.Gui
             this.rank_numPerm.BackColor = System.Drawing.SystemColors.Window;
             this.rank_numPerm.Location = new System.Drawing.Point(259, 20);
             this.rank_numPerm.Maximum = new decimal(new int[] {
-                                    120,
-                                    0,
-                                    0,
-                                    0});
+            120,
+            0,
+            0,
+            0});
             this.rank_numPerm.Minimum = new decimal(new int[] {
-                                    20,
-                                    0,
-                                    0,
-                                    -2147483648});
+            20,
+            0,
+            0,
+            -2147483648});
             this.rank_numPerm.Name = "rank_numPerm";
             this.rank_numPerm.Size = new System.Drawing.Size(81, 21);
             this.rank_numPerm.TabIndex = 6;
@@ -1334,10 +1340,10 @@ namespace MCGalaxy.Gui
             this.rank_numMaps.BackColor = System.Drawing.SystemColors.Window;
             this.rank_numMaps.Location = new System.Drawing.Point(259, 20);
             this.rank_numMaps.Maximum = new decimal(new int[] {
-                                    2147483647,
-                                    0,
-                                    0,
-                                    0});
+            2147483647,
+            0,
+            0,
+            0});
             this.rank_numMaps.Name = "rank_numMaps";
             this.rank_numMaps.Size = new System.Drawing.Size(81, 21);
             this.rank_numMaps.TabIndex = 19;
@@ -1349,10 +1355,10 @@ namespace MCGalaxy.Gui
             this.rank_numDraw.BackColor = System.Drawing.SystemColors.Window;
             this.rank_numDraw.Location = new System.Drawing.Point(85, 20);
             this.rank_numDraw.Maximum = new decimal(new int[] {
-                                    2147483647,
-                                    0,
-                                    0,
-                                    0});
+            2147483647,
+            0,
+            0,
+            0});
             this.rank_numDraw.Name = "rank_numDraw";
             this.rank_numDraw.Size = new System.Drawing.Size(81, 21);
             this.rank_numDraw.TabIndex = 4;
@@ -1364,10 +1370,10 @@ namespace MCGalaxy.Gui
             this.rank_numGen.BackColor = System.Drawing.SystemColors.Window;
             this.rank_numGen.Location = new System.Drawing.Point(259, 47);
             this.rank_numGen.Maximum = new decimal(new int[] {
-                                    2147483647,
-                                    0,
-                                    0,
-                                    0});
+            2147483647,
+            0,
+            0,
+            0});
             this.rank_numGen.Name = "rank_numGen";
             this.rank_numGen.Size = new System.Drawing.Size(81, 21);
             this.rank_numGen.TabIndex = 21;
@@ -1379,24 +1385,24 @@ namespace MCGalaxy.Gui
             this.rank_numCopy.BackColor = System.Drawing.SystemColors.Window;
             this.rank_numCopy.Location = new System.Drawing.Point(85, 74);
             this.rank_numCopy.Maximum = new decimal(new int[] {
-                                    255,
-                                    0,
-                                    0,
-                                    0});
+            255,
+            0,
+            0,
+            0});
             this.rank_numCopy.Minimum = new decimal(new int[] {
-                                    1,
-                                    0,
-                                    0,
-                                    0});
+            1,
+            0,
+            0,
+            0});
             this.rank_numCopy.Name = "rank_numCopy";
             this.rank_numCopy.Size = new System.Drawing.Size(81, 21);
             this.rank_numCopy.TabIndex = 23;
             this.toolTip.SetToolTip(this.rank_numCopy, "Maximum number of copies player can select in /copyslot");
             this.rank_numCopy.Value = new decimal(new int[] {
-                                    1,
-                                    0,
-                                    0,
-                                    0});
+            1,
+            0,
+            0,
+            0});
             this.rank_numCopy.ValueChanged += new System.EventHandler(this.rank_numCopy_ValueChanged);
             // 
             // adv_chkCPE
@@ -1435,6 +1441,222 @@ namespace MCGalaxy.Gui
             this.rank_numUndo.Value = System.TimeSpan.Parse("00:00:00");
             this.rank_numUndo.ValueChanged += new System.EventHandler(this.rank_numUndo_ValueChanged);
             // 
+            // dis_txtOpChannel
+            // 
+            this.dis_txtOpChannel.BackColor = System.Drawing.SystemColors.Window;
+            this.dis_txtOpChannel.Location = new System.Drawing.Point(82, 101);
+            this.dis_txtOpChannel.Name = "dis_txtOpChannel";
+            this.dis_txtOpChannel.Size = new System.Drawing.Size(152, 21);
+            this.dis_txtOpChannel.TabIndex = 16;
+            this.toolTip.SetToolTip(this.dis_txtOpChannel, "The ID of the channel that staff only chat is sent to and read from. Can be left " +
+        "blank.\n\nTo get the ID of a channel on Discord, right click it and then click Cop" +
+        "y ID on the dropdown menu");
+            // 
+            // dis_chkEnabled
+            // 
+            this.dis_chkEnabled.AutoSize = true;
+            this.dis_chkEnabled.Location = new System.Drawing.Point(9, 20);
+            this.dis_chkEnabled.Name = "dis_chkEnabled";
+            this.dis_chkEnabled.Size = new System.Drawing.Size(150, 17);
+            this.dis_chkEnabled.TabIndex = 22;
+            this.dis_chkEnabled.Text = "Enable Discord integration";
+            this.toolTip.SetToolTip(this.dis_chkEnabled, "Enables sending chat to and reading chat from Discord channel(s) using a bot acco" +
+        "unt");
+            this.dis_chkEnabled.UseVisualStyleBackColor = true;
+            this.dis_chkEnabled.CheckedChanged += new System.EventHandler(this.dis_chkEnabled_CheckedChanged);
+            // 
+            // dis_txtToken
+            // 
+            this.dis_txtToken.BackColor = System.Drawing.SystemColors.Window;
+            this.dis_txtToken.Location = new System.Drawing.Point(82, 47);
+            this.dis_txtToken.Name = "dis_txtToken";
+            this.dis_txtToken.PasswordChar = '*';
+            this.dis_txtToken.Size = new System.Drawing.Size(152, 21);
+            this.dis_txtToken.TabIndex = 15;
+            this.toolTip.SetToolTip(this.dis_txtToken, resources.GetString("dis_txtToken.ToolTip"));
+            // 
+            // zs_txtModel
+            // 
+            this.zs_txtModel.BackColor = System.Drawing.SystemColors.Window;
+            this.zs_txtModel.Location = new System.Drawing.Point(200, 17);
+            this.zs_txtModel.Name = "zs_txtModel";
+            this.zs_txtModel.Size = new System.Drawing.Size(76, 21);
+            this.zs_txtModel.TabIndex = 39;
+            this.toolTip.SetToolTip(this.zs_txtModel, "Model to use for infected players.\nIf left blank, then \'zombie\' model is used.");
+            // 
+            // zs_txtName
+            // 
+            this.zs_txtName.BackColor = System.Drawing.SystemColors.Window;
+            this.zs_txtName.Location = new System.Drawing.Point(49, 17);
+            this.zs_txtName.Name = "zs_txtName";
+            this.zs_txtName.Size = new System.Drawing.Size(80, 21);
+            this.zs_txtName.TabIndex = 38;
+            this.toolTip.SetToolTip(this.zs_txtName, "Name to show above head of infected players.\nIf left blank, then the player\'s nam" +
+        "e is shown instead.");
+            // 
+            // zs_numReviveEff
+            // 
+            this.zs_numReviveEff.BackColor = System.Drawing.SystemColors.Window;
+            this.zs_numReviveEff.Location = new System.Drawing.Point(150, 16);
+            this.zs_numReviveEff.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.zs_numReviveEff.Name = "zs_numReviveEff";
+            this.zs_numReviveEff.Size = new System.Drawing.Size(52, 21);
+            this.zs_numReviveEff.TabIndex = 39;
+            this.toolTip.SetToolTip(this.zs_numReviveEff, "Likelihood that /buy revive will disinfect a zombie");
+            this.zs_numReviveEff.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // zs_numReviveLimit
+            // 
+            this.zs_numReviveLimit.BackColor = System.Drawing.SystemColors.Window;
+            this.zs_numReviveLimit.Location = new System.Drawing.Point(112, 45);
+            this.zs_numReviveLimit.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.zs_numReviveLimit.Name = "zs_numReviveLimit";
+            this.zs_numReviveLimit.Size = new System.Drawing.Size(52, 21);
+            this.zs_numReviveLimit.TabIndex = 35;
+            this.toolTip.SetToolTip(this.zs_numReviveLimit, "The time limit after a human is infected that /buy revive must be used within");
+            this.zs_numReviveLimit.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // zs_numInvZombieDur
+            // 
+            this.zs_numInvZombieDur.BackColor = System.Drawing.SystemColors.Window;
+            this.zs_numInvZombieDur.Location = new System.Drawing.Point(227, 45);
+            this.zs_numInvZombieDur.Name = "zs_numInvZombieDur";
+            this.zs_numInvZombieDur.Size = new System.Drawing.Size(52, 21);
+            this.zs_numInvZombieDur.TabIndex = 33;
+            this.toolTip.SetToolTip(this.zs_numInvZombieDur, "How many seconds a zombie is invisible for after using /buy invisibility");
+            // 
+            // zs_numInvHumanDur
+            // 
+            this.zs_numInvHumanDur.BackColor = System.Drawing.SystemColors.Window;
+            this.zs_numInvHumanDur.Location = new System.Drawing.Point(227, 20);
+            this.zs_numInvHumanDur.Name = "zs_numInvHumanDur";
+            this.zs_numInvHumanDur.Size = new System.Drawing.Size(52, 21);
+            this.zs_numInvHumanDur.TabIndex = 32;
+            this.toolTip.SetToolTip(this.zs_numInvHumanDur, "How many seconds a human is invisible for after using /buy invisibility");
+            // 
+            // zs_numInvZombieMax
+            // 
+            this.zs_numInvZombieMax.BackColor = System.Drawing.SystemColors.Window;
+            this.zs_numInvZombieMax.Location = new System.Drawing.Point(77, 45);
+            this.zs_numInvZombieMax.Name = "zs_numInvZombieMax";
+            this.zs_numInvZombieMax.Size = new System.Drawing.Size(52, 21);
+            this.zs_numInvZombieMax.TabIndex = 31;
+            this.toolTip.SetToolTip(this.zs_numInvZombieMax, "Maximum number of times a zombie can use /buy invisibility in a round");
+            // 
+            // zs_numInvHumanMax
+            // 
+            this.zs_numInvHumanMax.BackColor = System.Drawing.SystemColors.Window;
+            this.zs_numInvHumanMax.Location = new System.Drawing.Point(78, 20);
+            this.zs_numInvHumanMax.Name = "zs_numInvHumanMax";
+            this.zs_numInvHumanMax.Size = new System.Drawing.Size(52, 21);
+            this.zs_numInvHumanMax.TabIndex = 27;
+            this.toolTip.SetToolTip(this.zs_numInvHumanMax, "Maximum number of times a human can use /buy invisibility in a round");
+            // 
+            // tw_cmbDiff
+            // 
+            this.tw_cmbDiff.BackColor = System.Drawing.SystemColors.Window;
+            this.tw_cmbDiff.FormattingEnabled = true;
+            this.tw_cmbDiff.Items.AddRange(new object[] {
+            "Easy",
+            "Normal",
+            "Hard",
+            "Extreme"});
+            this.tw_cmbDiff.Location = new System.Drawing.Point(74, 89);
+            this.tw_cmbDiff.Name = "tw_cmbDiff";
+            this.tw_cmbDiff.Size = new System.Drawing.Size(76, 21);
+            this.tw_cmbDiff.TabIndex = 28;
+            this.toolTip.SetToolTip(this.tw_cmbDiff, resources.GetString("tw_cmbDiff.ToolTip"));
+            // 
+            // dis_grp
+            // 
+            this.dis_grp.Controls.Add(this.dis_linkHelp);
+            this.dis_grp.Controls.Add(this.dis_chkEnabled);
+            this.dis_grp.Controls.Add(this.dis_lblToken);
+            this.dis_grp.Controls.Add(this.dis_txtToken);
+            this.dis_grp.Controls.Add(this.dis_lblChannel);
+            this.dis_grp.Controls.Add(this.dis_txtChannel);
+            this.dis_grp.Controls.Add(this.dis_lblOpChannel);
+            this.dis_grp.Controls.Add(this.dis_txtOpChannel);
+            this.dis_grp.Controls.Add(this.dis_chkNicks);
+            this.dis_grp.Location = new System.Drawing.Point(241, 3);
+            this.dis_grp.Name = "dis_grp";
+            this.dis_grp.Size = new System.Drawing.Size(250, 158);
+            this.dis_grp.TabIndex = 34;
+            this.dis_grp.TabStop = false;
+            this.dis_grp.Text = "Discord";
+            // 
+            // dis_linkHelp
+            // 
+            this.dis_linkHelp.AutoSize = true;
+            this.dis_linkHelp.Location = new System.Drawing.Point(207, 21);
+            this.dis_linkHelp.Name = "dis_linkHelp";
+            this.dis_linkHelp.Size = new System.Drawing.Size(29, 13);
+            this.dis_linkHelp.TabIndex = 33;
+            this.dis_linkHelp.TabStop = true;
+            this.dis_linkHelp.Text = "Help";
+            this.dis_linkHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.dis_lnkHelp_LinkClicked);
+            // 
+            // dis_lblToken
+            // 
+            this.dis_lblToken.AutoSize = true;
+            this.dis_lblToken.Location = new System.Drawing.Point(6, 50);
+            this.dis_lblToken.Name = "dis_lblToken";
+            this.dis_lblToken.Size = new System.Drawing.Size(55, 13);
+            this.dis_lblToken.TabIndex = 19;
+            this.dis_lblToken.Text = "Bot token:";
+            // 
+            // dis_lblChannel
+            // 
+            this.dis_lblChannel.AutoSize = true;
+            this.dis_lblChannel.Location = new System.Drawing.Point(6, 77);
+            this.dis_lblChannel.Name = "dis_lblChannel";
+            this.dis_lblChannel.Size = new System.Drawing.Size(61, 13);
+            this.dis_lblChannel.TabIndex = 30;
+            this.dis_lblChannel.Text = "Channel ID:";
+            // 
+            // dis_txtChannel
+            // 
+            this.dis_txtChannel.BackColor = System.Drawing.SystemColors.Window;
+            this.dis_txtChannel.Location = new System.Drawing.Point(82, 74);
+            this.dis_txtChannel.Name = "dis_txtChannel";
+            this.dis_txtChannel.Size = new System.Drawing.Size(152, 21);
+            this.dis_txtChannel.TabIndex = 31;
+            // 
+            // dis_lblOpChannel
+            // 
+            this.dis_lblOpChannel.AutoSize = true;
+            this.dis_lblOpChannel.Location = new System.Drawing.Point(6, 104);
+            this.dis_lblOpChannel.Name = "dis_lblOpChannel";
+            this.dis_lblOpChannel.Size = new System.Drawing.Size(74, 13);
+            this.dis_lblOpChannel.TabIndex = 20;
+            this.dis_lblOpChannel.Text = "OpChannel ID:";
+            // 
+            // dis_chkNicks
+            // 
+            this.dis_chkNicks.AutoSize = true;
+            this.dis_chkNicks.Location = new System.Drawing.Point(9, 131);
+            this.dis_chkNicks.Name = "dis_chkNicks";
+            this.dis_chkNicks.Size = new System.Drawing.Size(175, 17);
+            this.dis_chkNicks.TabIndex = 32;
+            this.dis_chkNicks.Text = "Prefer nicknames to usernames";
+            this.dis_chkNicks.UseVisualStyleBackColor = true;
+            // 
             // chkPhysRestart
             // 
             this.chkPhysRestart.AutoSize = true;
@@ -1450,18 +1672,18 @@ namespace MCGalaxy.Gui
             this.ls_numMax.BackColor = System.Drawing.SystemColors.Window;
             this.ls_numMax.Location = new System.Drawing.Point(71, 89);
             this.ls_numMax.Maximum = new decimal(new int[] {
-                                    1000000,
-                                    0,
-                                    0,
-                                    0});
+            1000000,
+            0,
+            0,
+            0});
             this.ls_numMax.Name = "ls_numMax";
             this.ls_numMax.Size = new System.Drawing.Size(52, 21);
             this.ls_numMax.TabIndex = 25;
             this.ls_numMax.Value = new decimal(new int[] {
-                                    3,
-                                    0,
-                                    0,
-                                    0});
+            3,
+            0,
+            0,
+            0});
             // 
             // ls_numKiller
             // 
@@ -1471,10 +1693,10 @@ namespace MCGalaxy.Gui
             this.ls_numKiller.Size = new System.Drawing.Size(52, 21);
             this.ls_numKiller.TabIndex = 27;
             this.ls_numKiller.Value = new decimal(new int[] {
-                                    100,
-                                    0,
-                                    0,
-                                    0});
+            100,
+            0,
+            0,
+            0});
             // 
             // ls_numFast
             // 
@@ -1513,36 +1735,36 @@ namespace MCGalaxy.Gui
             this.ls_numCount.BackColor = System.Drawing.SystemColors.Window;
             this.ls_numCount.Location = new System.Drawing.Point(7, 44);
             this.ls_numCount.Maximum = new decimal(new int[] {
-                                    1000000,
-                                    0,
-                                    0,
-                                    0});
+            1000000,
+            0,
+            0,
+            0});
             this.ls_numCount.Name = "ls_numCount";
             this.ls_numCount.Size = new System.Drawing.Size(52, 21);
             this.ls_numCount.TabIndex = 35;
             this.ls_numCount.Value = new decimal(new int[] {
-                                    10,
-                                    0,
-                                    0,
-                                    0});
+            10,
+            0,
+            0,
+            0});
             // 
             // ls_numHeight
             // 
             this.ls_numHeight.BackColor = System.Drawing.SystemColors.Window;
             this.ls_numHeight.Location = new System.Drawing.Point(128, 44);
             this.ls_numHeight.Maximum = new decimal(new int[] {
-                                    1000000,
-                                    0,
-                                    0,
-                                    0});
+            1000000,
+            0,
+            0,
+            0});
             this.ls_numHeight.Name = "ls_numHeight";
             this.ls_numHeight.Size = new System.Drawing.Size(52, 21);
             this.ls_numHeight.TabIndex = 37;
             this.ls_numHeight.Value = new decimal(new int[] {
-                                    3,
-                                    0,
-                                    0,
-                                    0});
+            3,
+            0,
+            0,
+            0});
             // 
             // ls_cbMain
             // 
@@ -2110,6 +2332,7 @@ namespace MCGalaxy.Gui
             this.pageMisc.Controls.Add(this.grpPhysics);
             this.pageMisc.Controls.Add(this.afk_grp);
             this.pageMisc.Controls.Add(this.bak_grp);
+            this.pageMisc.Controls.Add(this.sql_grp);
             this.pageMisc.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pageMisc.Location = new System.Drawing.Point(4, 22);
             this.pageMisc.Name = "pageMisc";
@@ -2342,231 +2565,6 @@ namespace MCGalaxy.Gui
             this.bak_lblTime.TabIndex = 7;
             this.bak_lblTime.Text = "Backup time:";
             // 
-            // pageRelay
-            // 
-            this.pageRelay.BackColor = System.Drawing.SystemColors.Control;
-            this.pageRelay.Controls.Add(this.dis_grp);
-            this.pageRelay.Controls.Add(this.gb_ircSettings);
-            this.pageMisc.Controls.Add(this.sql_grp);
-            this.pageRelay.Controls.Add(this.irc_grp);
-            this.pageRelay.Location = new System.Drawing.Point(4, 22);
-            this.pageRelay.Name = "pageRelay";
-            this.pageRelay.Size = new System.Drawing.Size(498, 521);
-            this.pageRelay.TabIndex = 6;
-            this.pageRelay.Text = "IRC";
-            // 
-            // gb_ircSettings
-            // 
-            this.gb_ircSettings.Controls.Add(this.irc_txtPrefix);
-            this.gb_ircSettings.Controls.Add(this.irc_lblPrefix);
-            this.gb_ircSettings.Controls.Add(this.irc_cmbVerify);
-            this.gb_ircSettings.Controls.Add(this.irc_lblVerify);
-            this.gb_ircSettings.Controls.Add(this.irc_cmbRank);
-            this.gb_ircSettings.Controls.Add(this.irc_lblRank);
-            this.gb_ircSettings.Controls.Add(this.irc_cbAFK);
-            this.gb_ircSettings.Controls.Add(this.irc_cbWorldChanges);
-            this.gb_ircSettings.Controls.Add(this.irc_cbTitles);
-            this.gb_ircSettings.Location = new System.Drawing.Point(8, 223);
-            this.gb_ircSettings.Name = "gb_ircSettings";
-            this.gb_ircSettings.Size = new System.Drawing.Size(483, 95);
-            this.gb_ircSettings.TabIndex = 33;
-            this.gb_ircSettings.TabStop = false;
-            this.gb_ircSettings.Text = "IRC settings";
-            // 
-            // irc_txtPrefix
-            // 
-            this.irc_txtPrefix.BackColor = System.Drawing.SystemColors.Window;
-            this.irc_txtPrefix.Location = new System.Drawing.Point(367, 68);
-            this.irc_txtPrefix.Name = "irc_txtPrefix";
-            this.irc_txtPrefix.Size = new System.Drawing.Size(100, 21);
-            this.irc_txtPrefix.TabIndex = 32;
-            // 
-            // irc_lblPrefix
-            // 
-            this.irc_lblPrefix.AutoSize = true;
-            this.irc_lblPrefix.Location = new System.Drawing.Point(265, 70);
-            this.irc_lblPrefix.Name = "irc_lblPrefix";
-            this.irc_lblPrefix.Size = new System.Drawing.Size(87, 13);
-            this.irc_lblPrefix.TabIndex = 39;
-            this.irc_lblPrefix.Text = "Command prefix:";
-            // 
-            // irc_cmbVerify
-            // 
-            this.irc_cmbVerify.BackColor = System.Drawing.SystemColors.Window;
-            this.irc_cmbVerify.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.irc_cmbVerify.FormattingEnabled = true;
-            this.irc_cmbVerify.Location = new System.Drawing.Point(387, 42);
-            this.irc_cmbVerify.Name = "irc_cmbVerify";
-            this.irc_cmbVerify.Size = new System.Drawing.Size(80, 21);
-            this.irc_cmbVerify.TabIndex = 38;
-            // 
-            // irc_lblVerify
-            // 
-            this.irc_lblVerify.AutoSize = true;
-            this.irc_lblVerify.Location = new System.Drawing.Point(284, 45);
-            this.irc_lblVerify.Name = "irc_lblVerify";
-            this.irc_lblVerify.Size = new System.Drawing.Size(99, 13);
-            this.irc_lblVerify.TabIndex = 37;
-            this.irc_lblVerify.Text = "Verification method:";
-            // 
-            // irc_cmbRank
-            // 
-            this.irc_cmbRank.BackColor = System.Drawing.SystemColors.Window;
-            this.irc_cmbRank.FormattingEnabled = true;
-            this.irc_cmbRank.Location = new System.Drawing.Point(367, 17);
-            this.irc_cmbRank.Name = "irc_cmbRank";
-            this.irc_cmbRank.Size = new System.Drawing.Size(100, 21);
-            this.irc_cmbRank.TabIndex = 36;
-            // 
-            // irc_lblRank
-            // 
-            this.irc_lblRank.AutoSize = true;
-            this.irc_lblRank.Location = new System.Drawing.Point(265, 21);
-            this.irc_lblRank.Name = "irc_lblRank";
-            this.irc_lblRank.Size = new System.Drawing.Size(97, 13);
-            this.irc_lblRank.TabIndex = 35;
-            this.irc_lblRank.Text = "IRC controller rank:";
-            // 
-            // irc_cbAFK
-            // 
-            this.irc_cbAFK.AutoSize = true;
-            this.irc_cbAFK.Location = new System.Drawing.Point(6, 70);
-            this.irc_cbAFK.Name = "irc_cbAFK";
-            this.irc_cbAFK.Size = new System.Drawing.Size(176, 17);
-            this.irc_cbAFK.TabIndex = 34;
-            this.irc_cbAFK.Text = "Announce when player goes AFK";
-            this.irc_cbAFK.UseVisualStyleBackColor = true;
-            // 
-            // irc_cbWorldChanges
-            // 
-            this.irc_cbWorldChanges.AutoSize = true;
-            this.irc_cbWorldChanges.Location = new System.Drawing.Point(6, 45);
-            this.irc_cbWorldChanges.Name = "irc_cbWorldChanges";
-            this.irc_cbWorldChanges.Size = new System.Drawing.Size(199, 17);
-            this.irc_cbWorldChanges.TabIndex = 33;
-            this.irc_cbWorldChanges.Text = "Announce when player changes level";
-            this.irc_cbWorldChanges.UseVisualStyleBackColor = true;
-            // 
-            // irc_cbTitles
-            // 
-            this.irc_cbTitles.AutoSize = true;
-            this.irc_cbTitles.Location = new System.Drawing.Point(6, 20);
-            this.irc_cbTitles.Name = "irc_cbTitles";
-            this.irc_cbTitles.Size = new System.Drawing.Size(171, 17);
-            this.irc_cbTitles.TabIndex = 32;
-            this.irc_cbTitles.Text = "Show player\'s title in messages";
-            this.irc_cbTitles.UseVisualStyleBackColor = true;
-            // 
-            // dis_grp
-            // 
-            this.dis_grp.Controls.Add(this.dis_linkHelp);
-            this.dis_grp.Controls.Add(this.dis_chkEnabled);
-            this.dis_grp.Controls.Add(this.dis_lblToken);
-            this.dis_grp.Controls.Add(this.dis_txtToken);
-            this.dis_grp.Controls.Add(this.dis_lblChannel);
-            this.dis_grp.Controls.Add(this.dis_txtChannel);
-            this.dis_grp.Controls.Add(this.dis_lblOpChannel);
-            this.dis_grp.Controls.Add(this.dis_txtOpChannel);
-            this.dis_grp.Controls.Add(this.dis_chkNicks);
-            this.dis_grp.Location = new System.Drawing.Point(241, 3);
-            this.dis_grp.Name = "dis_grp";
-            this.dis_grp.Size = new System.Drawing.Size(250, 158);
-            this.dis_grp.TabIndex = 34;
-            this.dis_grp.TabStop = false;
-            this.dis_grp.Text = "Discord";
-            // 
-            // dis_lblToken
-            // 
-            this.dis_lblToken.AutoSize = true;
-            this.dis_lblToken.Location = new System.Drawing.Point(6, 50);
-            this.dis_lblToken.Name = "dis_lblToken";
-            this.dis_lblToken.Size = new System.Drawing.Size(55, 13);
-            this.dis_lblToken.TabIndex = 19;
-            this.dis_lblToken.Text = "Bot token:";
-            // 
-            // dis_lblChannel
-            // 
-            this.dis_lblChannel.AutoSize = true;
-            this.dis_lblChannel.Location = new System.Drawing.Point(6, 77);
-            this.dis_lblChannel.Name = "dis_lblChannel";
-            this.dis_lblChannel.Size = new System.Drawing.Size(61, 13);
-            this.dis_lblChannel.TabIndex = 30;
-            this.dis_lblChannel.Text = "Channel ID:";
-            // 
-            // dis_txtChannel
-            // 
-            this.dis_txtChannel.BackColor = System.Drawing.SystemColors.Window;
-            this.dis_txtChannel.Location = new System.Drawing.Point(82, 74);
-            this.dis_txtChannel.Name = "dis_txtChannel";
-            this.dis_txtChannel.Size = new System.Drawing.Size(152, 21);
-            this.dis_txtChannel.TabIndex = 31;
-            this.toolTip.SetToolTip(this.dis_txtOpChannel, "The ID of the channel that chat is sent to and read from.\n\n" +
-                                    "To get the ID of a channel on Discord, right click it and then click Copy ID on the dropdown menu");
-            // 
-            // dis_lblOpChannel
-            // 
-            this.dis_lblOpChannel.AutoSize = true;
-            this.dis_lblOpChannel.Location = new System.Drawing.Point(6, 104);
-            this.dis_lblOpChannel.Name = "dis_lblOpChannel";
-            this.dis_lblOpChannel.Size = new System.Drawing.Size(67, 13);
-            this.dis_lblOpChannel.TabIndex = 20;
-            this.dis_lblOpChannel.Text = "OpChannel ID:";
-            // 
-            // dis_chkEnabled
-            // 
-            this.dis_chkEnabled.AutoSize = true;
-            this.dis_chkEnabled.Location = new System.Drawing.Point(9, 20);
-            this.dis_chkEnabled.Name = "dis_chkEnabled";
-            this.dis_chkEnabled.Size = new System.Drawing.Size(96, 17);
-            this.dis_chkEnabled.TabIndex = 22;
-            this.dis_chkEnabled.Text = "Enable Discord integration";
-            this.toolTip.SetToolTip(this.dis_chkEnabled, "Enables sending chat to and reading chat from Discord channel(s) using a bot account");
-            this.dis_chkEnabled.UseVisualStyleBackColor = true;
-            this.dis_chkEnabled.CheckedChanged += new System.EventHandler(this.dis_chkEnabled_CheckedChanged);
-            // 
-            // dis_txtToken
-            // 
-            this.dis_txtToken.BackColor = System.Drawing.SystemColors.Window;
-            this.dis_txtToken.Location = new System.Drawing.Point(82, 47);
-            this.dis_txtToken.Name = "dis_txtToken";
-            this.dis_txtToken.PasswordChar = '*';
-            this.dis_txtToken.Size = new System.Drawing.Size(152, 21);
-            this.dis_txtToken.TabIndex = 15;
-            this.toolTip.SetToolTip(this.dis_txtToken, "The token for the bot account. To find this token:\n" +
-                                    "Go to Developer portal -> go to the bot application -> Settings -> Bot -> click Copy under TOKEN\n\n" +
-                                    "Note: This token allows full access to the bot - NEVER SHARE THIS TOKEN WITH ANYONE ELSE");
-            // 
-            // dis_txtOpChannel
-            // 
-            this.dis_txtOpChannel.BackColor = System.Drawing.SystemColors.Window;
-            this.dis_txtOpChannel.Location = new System.Drawing.Point(82, 101);
-            this.dis_txtOpChannel.Name = "dis_txtOpChannel";
-            this.dis_txtOpChannel.Size = new System.Drawing.Size(152, 21);
-            this.dis_txtOpChannel.TabIndex = 16;
-            this.toolTip.SetToolTip(this.dis_txtOpChannel, "The ID of the channel that staff only chat is sent to and read from. Can be left blank.\n\n" +
-                                    "To get the ID of a channel on Discord, right click it and then click Copy ID on the dropdown menu");
-            // 
-            // dis_chkNicks
-            // 
-            this.dis_chkNicks.AutoSize = true;
-            this.dis_chkNicks.Location = new System.Drawing.Point(9, 131);
-            this.dis_chkNicks.Name = "dis_chkNicks";
-            this.dis_chkNicks.Size = new System.Drawing.Size(171, 17);
-            this.dis_chkNicks.TabIndex = 32;
-            this.dis_chkNicks.Text = "Prefer nicknames to usernames";
-            this.dis_chkNicks.UseVisualStyleBackColor = true;
-            // 
-            // dis_linkHelp
-            // 
-            this.dis_linkHelp.AutoSize = true;
-            this.dis_linkHelp.Location = new System.Drawing.Point(207, 21);
-            this.dis_linkHelp.Name = "dis_linkHelp";
-            this.dis_linkHelp.Size = new System.Drawing.Size(28, 13);
-            this.dis_linkHelp.TabIndex = 33;
-            this.dis_linkHelp.TabStop = true;
-            this.dis_linkHelp.Text = "Help";
-            this.dis_linkHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.dis_lnkHelp_LinkClicked);
-            // 
             // sql_grp
             // 
             this.sql_grp.Controls.Add(this.sql_chkUseSQL);
@@ -2690,6 +2688,120 @@ namespace MCGalaxy.Gui
             this.sql_txtPort.Size = new System.Drawing.Size(100, 21);
             this.sql_txtPort.TabIndex = 32;
             // 
+            // pageRelay
+            // 
+            this.pageRelay.BackColor = System.Drawing.SystemColors.Control;
+            this.pageRelay.Controls.Add(this.dis_grp);
+            this.pageRelay.Controls.Add(this.gb_ircSettings);
+            this.pageRelay.Controls.Add(this.irc_grp);
+            this.pageRelay.Location = new System.Drawing.Point(4, 22);
+            this.pageRelay.Name = "pageRelay";
+            this.pageRelay.Size = new System.Drawing.Size(498, 521);
+            this.pageRelay.TabIndex = 6;
+            this.pageRelay.Text = "IRC";
+            // 
+            // gb_ircSettings
+            // 
+            this.gb_ircSettings.Controls.Add(this.irc_txtPrefix);
+            this.gb_ircSettings.Controls.Add(this.irc_lblPrefix);
+            this.gb_ircSettings.Controls.Add(this.irc_cmbVerify);
+            this.gb_ircSettings.Controls.Add(this.irc_lblVerify);
+            this.gb_ircSettings.Controls.Add(this.irc_cmbRank);
+            this.gb_ircSettings.Controls.Add(this.irc_lblRank);
+            this.gb_ircSettings.Controls.Add(this.irc_cbAFK);
+            this.gb_ircSettings.Controls.Add(this.irc_cbWorldChanges);
+            this.gb_ircSettings.Controls.Add(this.irc_cbTitles);
+            this.gb_ircSettings.Location = new System.Drawing.Point(8, 223);
+            this.gb_ircSettings.Name = "gb_ircSettings";
+            this.gb_ircSettings.Size = new System.Drawing.Size(483, 95);
+            this.gb_ircSettings.TabIndex = 33;
+            this.gb_ircSettings.TabStop = false;
+            this.gb_ircSettings.Text = "IRC settings";
+            // 
+            // irc_txtPrefix
+            // 
+            this.irc_txtPrefix.BackColor = System.Drawing.SystemColors.Window;
+            this.irc_txtPrefix.Location = new System.Drawing.Point(367, 68);
+            this.irc_txtPrefix.Name = "irc_txtPrefix";
+            this.irc_txtPrefix.Size = new System.Drawing.Size(100, 21);
+            this.irc_txtPrefix.TabIndex = 32;
+            // 
+            // irc_lblPrefix
+            // 
+            this.irc_lblPrefix.AutoSize = true;
+            this.irc_lblPrefix.Location = new System.Drawing.Point(265, 70);
+            this.irc_lblPrefix.Name = "irc_lblPrefix";
+            this.irc_lblPrefix.Size = new System.Drawing.Size(87, 13);
+            this.irc_lblPrefix.TabIndex = 39;
+            this.irc_lblPrefix.Text = "Command prefix:";
+            // 
+            // irc_cmbVerify
+            // 
+            this.irc_cmbVerify.BackColor = System.Drawing.SystemColors.Window;
+            this.irc_cmbVerify.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.irc_cmbVerify.FormattingEnabled = true;
+            this.irc_cmbVerify.Location = new System.Drawing.Point(387, 42);
+            this.irc_cmbVerify.Name = "irc_cmbVerify";
+            this.irc_cmbVerify.Size = new System.Drawing.Size(80, 21);
+            this.irc_cmbVerify.TabIndex = 38;
+            // 
+            // irc_lblVerify
+            // 
+            this.irc_lblVerify.AutoSize = true;
+            this.irc_lblVerify.Location = new System.Drawing.Point(284, 45);
+            this.irc_lblVerify.Name = "irc_lblVerify";
+            this.irc_lblVerify.Size = new System.Drawing.Size(102, 13);
+            this.irc_lblVerify.TabIndex = 37;
+            this.irc_lblVerify.Text = "Verification method:";
+            // 
+            // irc_cmbRank
+            // 
+            this.irc_cmbRank.BackColor = System.Drawing.SystemColors.Window;
+            this.irc_cmbRank.FormattingEnabled = true;
+            this.irc_cmbRank.Location = new System.Drawing.Point(367, 17);
+            this.irc_cmbRank.Name = "irc_cmbRank";
+            this.irc_cmbRank.Size = new System.Drawing.Size(100, 21);
+            this.irc_cmbRank.TabIndex = 36;
+            // 
+            // irc_lblRank
+            // 
+            this.irc_lblRank.AutoSize = true;
+            this.irc_lblRank.Location = new System.Drawing.Point(265, 21);
+            this.irc_lblRank.Name = "irc_lblRank";
+            this.irc_lblRank.Size = new System.Drawing.Size(97, 13);
+            this.irc_lblRank.TabIndex = 35;
+            this.irc_lblRank.Text = "IRC controller rank:";
+            // 
+            // irc_cbAFK
+            // 
+            this.irc_cbAFK.AutoSize = true;
+            this.irc_cbAFK.Location = new System.Drawing.Point(6, 70);
+            this.irc_cbAFK.Name = "irc_cbAFK";
+            this.irc_cbAFK.Size = new System.Drawing.Size(176, 17);
+            this.irc_cbAFK.TabIndex = 34;
+            this.irc_cbAFK.Text = "Announce when player goes AFK";
+            this.irc_cbAFK.UseVisualStyleBackColor = true;
+            // 
+            // irc_cbWorldChanges
+            // 
+            this.irc_cbWorldChanges.AutoSize = true;
+            this.irc_cbWorldChanges.Location = new System.Drawing.Point(6, 45);
+            this.irc_cbWorldChanges.Name = "irc_cbWorldChanges";
+            this.irc_cbWorldChanges.Size = new System.Drawing.Size(199, 17);
+            this.irc_cbWorldChanges.TabIndex = 33;
+            this.irc_cbWorldChanges.Text = "Announce when player changes level";
+            this.irc_cbWorldChanges.UseVisualStyleBackColor = true;
+            // 
+            // irc_cbTitles
+            // 
+            this.irc_cbTitles.AutoSize = true;
+            this.irc_cbTitles.Location = new System.Drawing.Point(6, 20);
+            this.irc_cbTitles.Name = "irc_cbTitles";
+            this.irc_cbTitles.Size = new System.Drawing.Size(171, 17);
+            this.irc_cbTitles.TabIndex = 32;
+            this.irc_cbTitles.Text = "Show player\'s title in messages";
+            this.irc_cbTitles.UseVisualStyleBackColor = true;
+            // 
             // irc_grp
             // 
             this.irc_grp.Controls.Add(this.irc_chkEnabled);
@@ -2734,19 +2846,19 @@ namespace MCGalaxy.Gui
             // 
             this.irc_numPort.BackColor = System.Drawing.SystemColors.Window;
             this.irc_numPort.Location = new System.Drawing.Point(82, 74);
+            this.irc_numPort.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
             this.irc_numPort.Name = "irc_numPort";
             this.irc_numPort.Size = new System.Drawing.Size(63, 21);
             this.irc_numPort.TabIndex = 31;
-            this.irc_numPort.Maximum = new decimal(new int[] {
-                                    65535,
-                                    0,
-                                    0,
-                                    0});
             this.irc_numPort.Value = new decimal(new int[] {
-                                    6667,
-                                    0,
-                                    0,
-                                    0});
+            6667,
+            0,
+            0,
+            0});
             // 
             // irc_lblNick
             // 
@@ -2850,6 +2962,9 @@ namespace MCGalaxy.Gui
             // srv_grp
             // 
             this.srv_grp.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            #if DEBUG
+            this.srv_grp.Controls.Add(this.General_ForceServerReset);
+            #endif
             this.srv_grp.Controls.Add(this.srv_lblName);
             this.srv_grp.Controls.Add(this.srv_txtName);
             this.srv_grp.Controls.Add(this.srv_lblMotd);
@@ -2866,6 +2981,20 @@ namespace MCGalaxy.Gui
             this.srv_grp.TabIndex = 41;
             this.srv_grp.TabStop = false;
             this.srv_grp.Text = "General Configuration";
+
+            #if DEBUG
+            // 
+            // General_ForceServerReset
+            // 
+            this.General_ForceServerReset.Location = new System.Drawing.Point(328, 119);
+            this.General_ForceServerReset.Name = "General_ForceServerReset";
+            this.General_ForceServerReset.Size = new System.Drawing.Size(142, 23);
+            this.General_ForceServerReset.TabIndex = 7;
+            this.General_ForceServerReset.Text = "Force Server Reset [DEBUG]";
+            this.General_ForceServerReset.UseVisualStyleBackColor = true;
+            this.General_ForceServerReset.Click += new System.EventHandler(this.General_ForceServerReset_Click);
+
+            #endif
             // 
             // srv_lblName
             // 
@@ -2986,18 +3115,18 @@ namespace MCGalaxy.Gui
             this.srv_numPlayers.BackColor = System.Drawing.SystemColors.Window;
             this.srv_numPlayers.Location = new System.Drawing.Point(83, 20);
             this.srv_numPlayers.Maximum = new decimal(new int[] {
-                                    128,
-                                    0,
-                                    0,
-                                    0});
+            128,
+            0,
+            0,
+            0});
             this.srv_numPlayers.Name = "srv_numPlayers";
             this.srv_numPlayers.Size = new System.Drawing.Size(60, 21);
             this.srv_numPlayers.TabIndex = 29;
             this.srv_numPlayers.Value = new decimal(new int[] {
-                                    12,
-                                    0,
-                                    0,
-                                    0});
+            12,
+            0,
+            0,
+            0});
             this.srv_numPlayers.ValueChanged += new System.EventHandler(this.numPlayers_ValueChanged);
             // 
             // srv_cbMustAgree
@@ -3025,23 +3154,23 @@ namespace MCGalaxy.Gui
             this.srv_numGuests.BackColor = System.Drawing.SystemColors.Window;
             this.srv_numGuests.Location = new System.Drawing.Point(83, 47);
             this.srv_numGuests.Maximum = new decimal(new int[] {
-                                    128,
-                                    0,
-                                    0,
-                                    0});
+            128,
+            0,
+            0,
+            0});
             this.srv_numGuests.Name = "srv_numGuests";
             this.srv_numGuests.Size = new System.Drawing.Size(60, 21);
             this.srv_numGuests.TabIndex = 28;
             this.srv_numGuests.Value = new decimal(new int[] {
-                                    10,
-                                    0,
-                                    0,
-                                    0});
+            10,
+            0,
+            0,
+            0});
             // 
             // tabControl
             // 
             this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this.pageServer);
             this.tabControl.Controls.Add(this.pageChat);
             this.tabControl.Controls.Add(this.pageRelay);
@@ -3093,8 +3222,8 @@ namespace MCGalaxy.Gui
             this.eco_dgvRanks.AllowUserToResizeRows = false;
             this.eco_dgvRanks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.eco_dgvRanks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-                                    this.eco_colRankName,
-                                    this.eco_colRankPrice});
+            this.eco_colRankName,
+            this.eco_colRankPrice});
             this.eco_dgvRanks.Location = new System.Drawing.Point(6, 38);
             this.eco_dgvRanks.Margin = new System.Windows.Forms.Padding(2);
             this.eco_dgvRanks.MultiSelect = false;
@@ -3155,12 +3284,12 @@ namespace MCGalaxy.Gui
             this.eco_dgvMaps.AllowUserToResizeRows = false;
             this.eco_dgvMaps.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.eco_dgvMaps.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-                                    this.eco_colLvlName,
-                                    this.eco_colLvlPrice,
-                                    this.eco_colLvlX,
-                                    this.eco_colLvlY,
-                                    this.eco_colLvlZ,
-                                    this.eco_colLvlTheme});
+            this.eco_colLvlName,
+            this.eco_colLvlPrice,
+            this.eco_colLvlX,
+            this.eco_colLvlY,
+            this.eco_colLvlZ,
+            this.eco_colLvlTheme});
             this.eco_dgvMaps.Location = new System.Drawing.Point(6, 39);
             this.eco_dgvMaps.Margin = new System.Windows.Forms.Padding(2);
             this.eco_dgvMaps.MultiSelect = false;
@@ -3277,18 +3406,18 @@ namespace MCGalaxy.Gui
             this.eco_numItemPrice.Location = new System.Drawing.Point(76, 43);
             this.eco_numItemPrice.Margin = new System.Windows.Forms.Padding(2);
             this.eco_numItemPrice.Maximum = new decimal(new int[] {
-                                    16777215,
-                                    0,
-                                    0,
-                                    0});
+            16777215,
+            0,
+            0,
+            0});
             this.eco_numItemPrice.Name = "eco_numItemPrice";
             this.eco_numItemPrice.Size = new System.Drawing.Size(78, 21);
             this.eco_numItemPrice.TabIndex = 6;
             this.eco_numItemPrice.Value = new decimal(new int[] {
-                                    100,
-                                    0,
-                                    0,
-                                    0});
+            100,
+            0,
+            0,
+            0});
             this.eco_numItemPrice.ValueChanged += new System.EventHandler(this.eco_numItemPrice_ValueChanged);
             // 
             // eco_lblItemPrice
@@ -3905,24 +4034,6 @@ namespace MCGalaxy.Gui
             this.zs_grpZombie.TabStop = false;
             this.zs_grpZombie.Text = "Zombie settings";
             // 
-            // zs_txtModel
-            // 
-            this.zs_txtModel.BackColor = System.Drawing.SystemColors.Window;
-            this.zs_txtModel.Location = new System.Drawing.Point(200, 17);
-            this.zs_txtModel.Name = "zs_txtModel";
-            this.zs_txtModel.Size = new System.Drawing.Size(76, 21);
-            this.zs_txtModel.TabIndex = 39;
-            this.toolTip.SetToolTip(this.zs_txtModel, "Model to use for infected players.\nIf left blank, then 'zombie' model is used.");
-            // 
-            // zs_txtName
-            // 
-            this.zs_txtName.BackColor = System.Drawing.SystemColors.Window;
-            this.zs_txtName.Location = new System.Drawing.Point(49, 17);
-            this.zs_txtName.Name = "zs_txtName";
-            this.zs_txtName.Size = new System.Drawing.Size(80, 21);
-            this.zs_txtName.TabIndex = 38;
-            this.toolTip.SetToolTip(this.zs_txtName, "Name to show above head of infected players.\nIf left blank, then the player's name is shown instead.");
-            // 
             // zs_lblModel
             // 
             this.zs_lblModel.AutoSize = true;
@@ -3967,25 +4078,6 @@ namespace MCGalaxy.Gui
             this.zs_lblReviveEff.TabIndex = 40;
             this.zs_lblReviveEff.Text = "% effectiveness";
             // 
-            // zs_numReviveEff
-            // 
-            this.zs_numReviveEff.BackColor = System.Drawing.SystemColors.Window;
-            this.zs_numReviveEff.Location = new System.Drawing.Point(150, 16);
-            this.zs_numReviveEff.Maximum = new decimal(new int[] {
-                                    1000000,
-                                    0,
-                                    0,
-                                    0});
-            this.zs_numReviveEff.Name = "zs_numReviveEff";
-            this.zs_numReviveEff.Size = new System.Drawing.Size(52, 21);
-            this.zs_numReviveEff.TabIndex = 39;
-            this.zs_numReviveEff.Value = new decimal(new int[] {
-                                    3,
-                                    0,
-                                    0,
-                                    0});
-            this.toolTip.SetToolTip(this.zs_numReviveEff, "Likelihood that /buy revive will disinfect a zombie");
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -4012,25 +4104,6 @@ namespace MCGalaxy.Gui
             this.zs_lblReviveLimitHdr.Size = new System.Drawing.Size(102, 13);
             this.zs_lblReviveLimitHdr.TabIndex = 36;
             this.zs_lblReviveLimitHdr.Text = "Must be used within";
-            // 
-            // zs_numReviveLimit
-            // 
-            this.zs_numReviveLimit.BackColor = System.Drawing.SystemColors.Window;
-            this.zs_numReviveLimit.Location = new System.Drawing.Point(112, 45);
-            this.zs_numReviveLimit.Maximum = new decimal(new int[] {
-                                    1000000,
-                                    0,
-                                    0,
-                                    0});
-            this.zs_numReviveLimit.Name = "zs_numReviveLimit";
-            this.zs_numReviveLimit.Size = new System.Drawing.Size(52, 21);
-            this.zs_numReviveLimit.TabIndex = 35;
-            this.zs_numReviveLimit.Value = new decimal(new int[] {
-                                    10,
-                                    0,
-                                    0,
-                                    0});
-            this.toolTip.SetToolTip(this.zs_numReviveLimit, "The time limit after a human is infected that /buy revive must be used within");
             // 
             // zs_numReviveMax
             // 
@@ -4086,48 +4159,12 @@ namespace MCGalaxy.Gui
             this.zs_grpInv.TabStop = false;
             this.zs_grpInv.Text = "Invisibility settings";
             // 
-            // zs_numInvZombieDur
-            // 
-            this.zs_numInvZombieDur.BackColor = System.Drawing.SystemColors.Window;
-            this.zs_numInvZombieDur.Location = new System.Drawing.Point(227, 45);
-            this.zs_numInvZombieDur.Name = "zs_numInvZombieDur";
-            this.zs_numInvZombieDur.Size = new System.Drawing.Size(52, 21);
-            this.zs_numInvZombieDur.TabIndex = 33;
-            this.toolTip.SetToolTip(this.zs_numInvZombieDur, "How many seconds a zombie is invisible for after using /buy invisibility");
-            // 
-            // zs_numInvHumanDur
-            // 
-            this.zs_numInvHumanDur.BackColor = System.Drawing.SystemColors.Window;
-            this.zs_numInvHumanDur.Location = new System.Drawing.Point(227, 20);
-            this.zs_numInvHumanDur.Name = "zs_numInvHumanDur";
-            this.zs_numInvHumanDur.Size = new System.Drawing.Size(52, 21);
-            this.zs_numInvHumanDur.TabIndex = 32;            
-            this.toolTip.SetToolTip(this.zs_numInvHumanDur, "How many seconds a human is invisible for after using /buy invisibility");
-            // 
-            // zs_numInvZombieMax
-            // 
-            this.zs_numInvZombieMax.BackColor = System.Drawing.SystemColors.Window;
-            this.zs_numInvZombieMax.Location = new System.Drawing.Point(77, 45);
-            this.zs_numInvZombieMax.Name = "zs_numInvZombieMax";
-            this.zs_numInvZombieMax.Size = new System.Drawing.Size(52, 21);
-            this.zs_numInvZombieMax.TabIndex = 31;
-            this.toolTip.SetToolTip(this.zs_numInvZombieMax, "Maximum number of times a zombie can use /buy invisibility in a round");
-            // 
-            // zs_numInvHumanMax
-            // 
-            this.zs_numInvHumanMax.BackColor = System.Drawing.SystemColors.Window;
-            this.zs_numInvHumanMax.Location = new System.Drawing.Point(78, 20);
-            this.zs_numInvHumanMax.Name = "zs_numInvHumanMax";
-            this.zs_numInvHumanMax.Size = new System.Drawing.Size(52, 21);
-            this.zs_numInvHumanMax.TabIndex = 27;
-            this.toolTip.SetToolTip(this.zs_numInvHumanMax, "Maximum number of times a human can use /buy invisibility in a round");
-            // 
             // zs_lblInvZombieDur
             // 
             this.zs_lblInvZombieDur.AutoSize = true;
             this.zs_lblInvZombieDur.Location = new System.Drawing.Point(129, 48);
             this.zs_lblInvZombieDur.Name = "zs_lblInvZombieDur";
-            this.zs_lblInvZombieDur.Size = new System.Drawing.Size(100, 13);
+            this.zs_lblInvZombieDur.Size = new System.Drawing.Size(101, 13);
             this.zs_lblInvZombieDur.TabIndex = 30;
             this.zs_lblInvZombieDur.Text = "times, which last for";
             // 
@@ -4613,36 +4650,36 @@ namespace MCGalaxy.Gui
             this.tw_numMultiKills.BackColor = System.Drawing.SystemColors.Window;
             this.tw_numMultiKills.Location = new System.Drawing.Point(240, 44);
             this.tw_numMultiKills.Maximum = new decimal(new int[] {
-                                    100000,
-                                    0,
-                                    0,
-                                    0});
+            100000,
+            0,
+            0,
+            0});
             this.tw_numMultiKills.Name = "tw_numMultiKills";
             this.tw_numMultiKills.Size = new System.Drawing.Size(38, 21);
             this.tw_numMultiKills.TabIndex = 7;
             this.tw_numMultiKills.Value = new decimal(new int[] {
-                                    5,
-                                    0,
-                                    0,
-                                    0});
+            5,
+            0,
+            0,
+            0});
             // 
             // tw_numScoreAssists
             // 
             this.tw_numScoreAssists.BackColor = System.Drawing.SystemColors.Window;
             this.tw_numScoreAssists.Location = new System.Drawing.Point(240, 17);
             this.tw_numScoreAssists.Maximum = new decimal(new int[] {
-                                    100000,
-                                    0,
-                                    0,
-                                    0});
+            100000,
+            0,
+            0,
+            0});
             this.tw_numScoreAssists.Name = "tw_numScoreAssists";
             this.tw_numScoreAssists.Size = new System.Drawing.Size(38, 21);
             this.tw_numScoreAssists.TabIndex = 4;
             this.tw_numScoreAssists.Value = new decimal(new int[] {
-                                    5,
-                                    0,
-                                    0,
-                                    0});
+            5,
+            0,
+            0,
+            0});
             // 
             // tw_lblScorePerKill
             // 
@@ -4658,18 +4695,18 @@ namespace MCGalaxy.Gui
             this.tw_numScorePerKill.BackColor = System.Drawing.SystemColors.Window;
             this.tw_numScorePerKill.Location = new System.Drawing.Point(82, 44);
             this.tw_numScorePerKill.Maximum = new decimal(new int[] {
-                                    100000,
-                                    0,
-                                    0,
-                                    0});
+            100000,
+            0,
+            0,
+            0});
             this.tw_numScorePerKill.Name = "tw_numScorePerKill";
             this.tw_numScorePerKill.Size = new System.Drawing.Size(50, 21);
             this.tw_numScorePerKill.TabIndex = 2;
             this.tw_numScorePerKill.Value = new decimal(new int[] {
-                                    10,
-                                    0,
-                                    0,
-                                    0});
+            10,
+            0,
+            0,
+            0});
             // 
             // tw_lblScoreLimit
             // 
@@ -4685,18 +4722,18 @@ namespace MCGalaxy.Gui
             this.tw_numScoreLimit.BackColor = System.Drawing.SystemColors.Window;
             this.tw_numScoreLimit.Location = new System.Drawing.Point(82, 17);
             this.tw_numScoreLimit.Maximum = new decimal(new int[] {
-                                    100000,
-                                    0,
-                                    0,
-                                    0});
+            100000,
+            0,
+            0,
+            0});
             this.tw_numScoreLimit.Name = "tw_numScoreLimit";
             this.tw_numScoreLimit.Size = new System.Drawing.Size(50, 21);
             this.tw_numScoreLimit.TabIndex = 0;
             this.tw_numScoreLimit.Value = new decimal(new int[] {
-                                    150,
-                                    0,
-                                    0,
-                                    0});
+            150,
+            0,
+            0,
+            0});
             // 
             // tw_grpSettings
             // 
@@ -4719,28 +4756,12 @@ namespace MCGalaxy.Gui
             this.tw_cmbMode.BackColor = System.Drawing.SystemColors.Window;
             this.tw_cmbMode.FormattingEnabled = true;
             this.tw_cmbMode.Items.AddRange(new object[] {
-                                    "FFA",
-                                    "TDM"});
+            "FFA",
+            "TDM"});
             this.tw_cmbMode.Location = new System.Drawing.Point(74, 116);
             this.tw_cmbMode.Name = "tw_cmbMode";
             this.tw_cmbMode.Size = new System.Drawing.Size(76, 21);
             this.tw_cmbMode.TabIndex = 29;
-            // 
-            // tw_cmbDiff
-            // 
-            this.tw_cmbDiff.BackColor = System.Drawing.SystemColors.Window;
-            this.tw_cmbDiff.FormattingEnabled = true;
-            this.tw_cmbDiff.Items.AddRange(new object[] {
-                                    "Easy",
-                                    "Normal",
-                                    "Hard",
-                                    "Extreme"});
-            this.tw_cmbDiff.Location = new System.Drawing.Point(74, 89);
-            this.tw_cmbDiff.Name = "tw_cmbDiff";
-            this.tw_cmbDiff.Size = new System.Drawing.Size(76, 21);
-            this.tw_cmbDiff.TabIndex = 28;
-            this.toolTip.SetToolTip(this.tw_cmbDiff, "Easy (2 Hits to die, TNT has long delay)\nNormal (2 Hits to die, TNT has normal delay)\n" +
-                                    "Hard (1 Hit to die, TNT has short delay and team kills on)\nExtreme (1 Hit to die, TNT has short delay, big explosion and team kills on)");
             // 
             // tw_lblMode
             // 
@@ -5211,18 +5232,18 @@ namespace MCGalaxy.Gui
             this.sec_numChatMsgs.BackColor = System.Drawing.SystemColors.Window;
             this.sec_numChatMsgs.Location = new System.Drawing.Point(53, 45);
             this.sec_numChatMsgs.Maximum = new decimal(new int[] {
-                                    10000,
-                                    0,
-                                    0,
-                                    0});
+            10000,
+            0,
+            0,
+            0});
             this.sec_numChatMsgs.Name = "sec_numChatMsgs";
             this.sec_numChatMsgs.Size = new System.Drawing.Size(37, 21);
             this.sec_numChatMsgs.TabIndex = 30;
             this.sec_numChatMsgs.Value = new decimal(new int[] {
-                                    8,
-                                    0,
-                                    0,
-                                    0});
+            8,
+            0,
+            0,
+            0});
             // 
             // sec_lblChatOnMsgs
             // 
@@ -5305,18 +5326,18 @@ namespace MCGalaxy.Gui
             this.sec_numCmdMsgs.BackColor = System.Drawing.SystemColors.Window;
             this.sec_numCmdMsgs.Location = new System.Drawing.Point(53, 45);
             this.sec_numCmdMsgs.Maximum = new decimal(new int[] {
-                                    10000,
-                                    0,
-                                    0,
-                                    0});
+            10000,
+            0,
+            0,
+            0});
             this.sec_numCmdMsgs.Name = "sec_numCmdMsgs";
             this.sec_numCmdMsgs.Size = new System.Drawing.Size(37, 21);
             this.sec_numCmdMsgs.TabIndex = 30;
             this.sec_numCmdMsgs.Value = new decimal(new int[] {
-                                    25,
-                                    0,
-                                    0,
-                                    0});
+            25,
+            0,
+            0,
+            0});
             // 
             // sec_lblCmdOnMsgs
             // 
@@ -5399,18 +5420,18 @@ namespace MCGalaxy.Gui
             this.sec_numIPMsgs.BackColor = System.Drawing.SystemColors.Window;
             this.sec_numIPMsgs.Location = new System.Drawing.Point(53, 45);
             this.sec_numIPMsgs.Maximum = new decimal(new int[] {
-                                    10000,
-                                    0,
-                                    0,
-                                    0});
+            10000,
+            0,
+            0,
+            0});
             this.sec_numIPMsgs.Name = "sec_numIPMsgs";
             this.sec_numIPMsgs.Size = new System.Drawing.Size(37, 21);
             this.sec_numIPMsgs.TabIndex = 30;
             this.sec_numIPMsgs.Value = new decimal(new int[] {
-                                    25,
-                                    0,
-                                    0,
-                                    0});
+            25,
+            0,
+            0,
+            0});
             // 
             // sec_lblIPOnMsgs
             // 
@@ -5442,7 +5463,7 @@ namespace MCGalaxy.Gui
             this.sec_lblIPForMute.Text = "Block for";
             // 
             // sec_numIPMute
-            //
+            // 
             this.sec_numIPMute.BackColor = System.Drawing.SystemColors.Window;
             this.sec_numIPMute.Location = new System.Drawing.Point(53, 79);
             this.sec_numIPMute.Name = "sec_numIPMute";
@@ -5514,18 +5535,18 @@ namespace MCGalaxy.Gui
             this.sec_numBlocksMsgs.BackColor = System.Drawing.SystemColors.Window;
             this.sec_numBlocksMsgs.Location = new System.Drawing.Point(46, 45);
             this.sec_numBlocksMsgs.Maximum = new decimal(new int[] {
-                                    10000,
-                                    0,
-                                    0,
-                                    0});
+            10000,
+            0,
+            0,
+            0});
             this.sec_numBlocksMsgs.Name = "sec_numBlocksMsgs";
             this.sec_numBlocksMsgs.Size = new System.Drawing.Size(46, 21);
             this.sec_numBlocksMsgs.TabIndex = 30;
             this.sec_numBlocksMsgs.Value = new decimal(new int[] {
-                                    200,
-                                    0,
-                                    0,
-                                    0});
+            200,
+            0,
+            0,
+            0});
             // 
             // sec_lblBlocksOnMsgs
             // 
@@ -5566,8 +5587,6 @@ namespace MCGalaxy.Gui
             this.Load += new System.EventHandler(this.PropertyWindow_Load);
             this.Disposed += new System.EventHandler(this.PropertyWindow_Unload);
             this.pageChat.ResumeLayout(false);
-            this.dis_grp.ResumeLayout(false);
-            this.dis_grp.PerformLayout();
             this.chat_grpTab.ResumeLayout(false);
             this.chat_grpTab.PerformLayout();
             this.chat_grpMessages.ResumeLayout(false);
@@ -5577,13 +5596,20 @@ namespace MCGalaxy.Gui
             this.chat_grpColors.ResumeLayout(false);
             this.chat_grpColors.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.srv_numPort)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.irc_numPort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rank_numPerm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rank_numMaps)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rank_numDraw)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rank_numGen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rank_numCopy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rank_numUndo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zs_numReviveEff)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zs_numReviveLimit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvZombieDur)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvHumanDur)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvZombieMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvHumanMax)).EndInit();
+            this.dis_grp.ResumeLayout(false);
+            this.dis_grp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ls_numMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ls_numKiller)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ls_numFast)).EndInit();
@@ -5622,13 +5648,14 @@ namespace MCGalaxy.Gui
             this.bak_grp.ResumeLayout(false);
             this.bak_grp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bak_numTime)).EndInit();
+            this.sql_grp.ResumeLayout(false);
+            this.sql_grp.PerformLayout();
             this.pageRelay.ResumeLayout(false);
             this.gb_ircSettings.ResumeLayout(false);
             this.gb_ircSettings.PerformLayout();
-            this.sql_grp.ResumeLayout(false);
-            this.sql_grp.PerformLayout();
             this.irc_grp.ResumeLayout(false);
             this.irc_grp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.irc_numPort)).EndInit();
             this.pageServer.ResumeLayout(false);
             this.lvl_grp.ResumeLayout(false);
             this.lvl_grp.PerformLayout();
@@ -5687,15 +5714,9 @@ namespace MCGalaxy.Gui
             this.zs_grpZombie.PerformLayout();
             this.zs_grpRevive.ResumeLayout(false);
             this.zs_grpRevive.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.zs_numReviveEff)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zs_numReviveLimit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.zs_numReviveMax)).EndInit();
             this.zs_grpInv.ResumeLayout(false);
             this.zs_grpInv.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvZombieDur)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvHumanDur)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvZombieMax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zs_numInvHumanMax)).EndInit();
             this.zs_grpMaps.ResumeLayout(false);
             this.zs_grpMaps.PerformLayout();
             this.tabZS_old.ResumeLayout(false);
@@ -5751,6 +5772,7 @@ namespace MCGalaxy.Gui
             ((System.ComponentModel.ISupportInitialize)(this.sec_numBlocksMsgs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sec_numBlocksSecs)).EndInit();
             this.ResumeLayout(false);
+
         }
         private System.Windows.Forms.TextBox zs_txtName;
         private System.Windows.Forms.TextBox zs_txtModel;
@@ -6209,6 +6231,11 @@ namespace MCGalaxy.Gui
         private System.Windows.Forms.CheckBox tw_cbBalance;
         private System.Windows.Forms.CheckBox tw_cbGrace;
         private System.Windows.Forms.CheckBox tw_cbStreaks;
-        private System.Windows.Forms.PropertyGrid propsZG;
+
+        #if DEBUG
+        private System.Windows.Forms.Button General_ForceServerReset;
+        #endif
+
+        private HackyPropertyGrid propsZG;
     }
 }

@@ -126,8 +126,7 @@ namespace MCGalaxy.Gui {
         [Category("Survival")]
         [DisplayName("Fall height")]
         public int FallHeight { get { return cfg.FallHeight; } set { DoMap(LevelOptions.Fall, value); } }
-        
-        
+
         bool GetAutoload() {
             return Server.AutoloadMaps.Contains(lvl.name);
         }

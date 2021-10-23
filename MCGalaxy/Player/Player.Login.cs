@@ -60,6 +60,10 @@ namespace MCGalaxy
             }
             
             if (Server.Config.ClassicubeAccountPlus) name += "+";
+
+            if (Server.Resetting) Leave(null, "Server is resetting to default settings - cannot join", true); // perhaps move to server.config?
+
+
             string mppass = NetUtils.ReadString(buffer, offset + 66);
             OnPlayerStartConnectingEvent.Call(this, mppass);
             if (cancelconnecting) { cancelconnecting = false; return size; }

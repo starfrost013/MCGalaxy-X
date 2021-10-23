@@ -38,10 +38,10 @@ namespace MCGalaxy {
         public static PlayerMetaList Notes = new PlayerMetaList("text/notes.txt");
         
         /// <summary> *** DO NOT USE THIS! *** Use VersionString, as this field is a constant and is inlined if used. </summary>
-        public const string InternalVersion = "1.9.3.5";
+        public const string InternalVersion = "1.9.3.6";
         public static string Version { get { return InternalVersion; } }
         
-        public static string SoftwareName = "MCGalaxy";
+        public static string SoftwareName = "MCGalaxy-X";
         static string fullName;
         public static string SoftwareNameVersioned {
             // By default, if SoftwareName gets externally changed, that is reflected in SoftwareNameVersioned too
@@ -91,5 +91,10 @@ namespace MCGalaxy {
         
         public static bool chatmod, flipHead;
         public static bool shuttingDown;
+
+        /// <summary>
+        /// If true, the server is resetting
+        /// </summary>
+        public static bool Resetting;
     }
 }

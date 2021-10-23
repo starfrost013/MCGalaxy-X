@@ -31,6 +31,7 @@ using MCGalaxy.Events.ServerEvents;
 using MCGalaxy.Games;
 using MCGalaxy.Network;
 using MCGalaxy.Scripting;
+using MCGalaxy.SQL;
 using MCGalaxy.Tasks;
 using MCGalaxy.Util;
 using MCGalaxy.Modules.Awards;
@@ -41,7 +42,7 @@ namespace MCGalaxy {
         public Server() { Server.s = this; }
         
         //True = cancel event
-        //Fale = dont cacnel event
+        //False = dont cancel event
         public static bool Check(string cmd, string message) {
             if (ConsoleCommand != null) ConsoleCommand(cmd, message);
             return cancelcommand;
@@ -407,5 +408,96 @@ namespace MCGalaxy {
                 return name.RemoveLastPlus();
             return name;
         }
+
+#if DEBUG
+        /// <summary>
+        /// Resets the server.
+        /// 
+        /// All levels created are removed, all rank text files are removed,
+        /// the server database is erased, and then the server is restarted.
+        /// 
+        /// Debug only. 
+        /// </summary>
+        /// <returns></returns>
+        public static void Reset()
+        {
+            Resetting = true;
+            Logger.Log(LogType.SystemActivity, "Resetting the server...");
+            Logger.Log(LogType.SystemActivity, "Kicking all players...");
+            
+            Reset_KickAllPlayers();
+            Logger.Log(LogType.SystemActivity, "Silently saving and unloading all levels...");
+
+            if (!Reset_UnloadAll())
+            {
+                Logger.Log(LogType.Error, "Error unloading levels - please terminate all games before resetting");
+                return; 
+            }
+
+            Logger.Log(LogType.SystemActivity, "Deleting all levels (they will be backed up)...");
+            Reset_DeleteAll();
+            Logger.Log(LogType.SystemActivity, "Removing all ranks...");
+            GroupProperties.SaveGroups(new List<Group>()); // this has the effect of removing all groups, need to improve this
+            Logger.Log(LogType.SystemActivity, "Removing all aliases...");
+            Alias.aliases.Clear();
+            Alias.Save(); // has the effect of removing all aliases
+            Logger.Log(LogType.SystemActivity, "Clearing all bans, unbans, and tempbans...");
+            Ban.ClearAllBans();
+            Logger.Log(LogType.SystemActivity, "Removing all players from the database...");
+            Reset_DeleteAllPlayers(); 
+            Logger.Log(LogType.SystemActivity, "Removing all setting text files..."); // soon to be MCGalaxy.xml
+            Reset_DeleteAllRemainingSettings();
+            Logger.Log(LogType.SystemActivity, "Restarting server..."); // soon to be MCGalaxy.xml
+            Stop(true, "Reset complete");
+        }
+
+        private static void Reset_KickAllPlayers()
+        {
+            foreach (Player Player in PlayerInfo.Online.Items) Player.Leave("Server reset - DEBUG [MCGalaxy-X]");
+        }
+
+        private static bool Reset_UnloadAll()
+        {
+            foreach (Level Level in LevelInfo.Loaded.Items) 
+            {
+                Logger.Log(LogType.SystemActivity, $"Unloading level {Level.name}...");
+                if (!Level.Unload(true, true, true)) return false;
+            }
+
+            return true; 
+        }
+
+        private static void Reset_DeleteAll()
+        {
+            string[] MapNames = LevelInfo.AllMapNames();
+
+            foreach (string MapName in MapNames)
+            {
+                Logger.Log(LogType.SystemActivity, $"Deleting level {MapName}...");
+                LevelActions.Delete(null, MapName, true);
+            }
+        }
+
+        private static void Reset_DeleteAllPlayers()
+        {
+            Database.DeleteTable("Opstats");
+            Database.DeleteTable("Players");
+        }
+
+        private static void Reset_DeleteAllRemainingSettings()
+        {
+            FileExts.DeleteAllFilesAndSubdirectories("blockdb");
+            FileExts.DeleteAllFilesAndSubdirectories("blockdefs");
+            FileExts.DeleteAllFilesAndSubdirectories("extra");
+            FileExts.DeleteAllFilesAndSubdirectories("levels");
+            //FileExts.DeleteAllFilesAndSubdirectories("logs"); keep logs for now
+            FileExts.DeleteAllFilesAndSubdirectories("players");
+            FileExts.DeleteAllFilesAndSubdirectories("plugins");
+            FileExts.DeleteAllFilesAndSubdirectories("properties");
+            FileExts.DeleteAllFilesAndSubdirectories("ranks");
+            FileExts.DeleteAllFilesAndSubdirectories("text");
+        }
+
+        #endif
     }
 }
