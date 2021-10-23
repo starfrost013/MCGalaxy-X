@@ -5,6 +5,9 @@ using System.Text;
 
 namespace MCGalaxy.Games
 {
+    /// <summary>
+    /// TownyCC test
+    /// </summary>
     class TownyCC
     {
     }
