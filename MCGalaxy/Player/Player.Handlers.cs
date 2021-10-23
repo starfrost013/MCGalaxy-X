@@ -460,7 +460,7 @@ namespace MCGalaxy
                     CheckVote(text, this, "n", "no", ref Server.NoVotes)) return;
             }
 
-            IGame game = IGame.GameOn(level);
+            Game game = Game.GameOn(level);
             if (game != null && game.HandlesChatMessage(this, text)) return;
             
             // Put this after vote collection so that people can vote even when chat is moderated

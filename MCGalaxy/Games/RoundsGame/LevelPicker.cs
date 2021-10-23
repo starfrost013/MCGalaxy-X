@@ -80,7 +80,7 @@ namespace MCGalaxy.Games {
             if (maps.Count > minMaps) maps.CaselessRemove(Candidate3);
         }
         
-        void DoLevelVote(IGame game) {
+        void DoLevelVote(Game game) {
             Voting = true;
             Player[] players = PlayerInfo.Online.Items;
             foreach (Player pl in players) {
@@ -92,7 +92,7 @@ namespace MCGalaxy.Games {
             Voting = false;
         }
         
-        void VoteCountdown(IGame game) {
+        void VoteCountdown(Game game) {
             // Show message for non-CPE clients
             Player[] players = PlayerInfo.Online.Items;
             foreach (Player pl in players) {

@@ -28,7 +28,7 @@ namespace MCGalaxy.Commands.Info {
             Player target = PlayerInfo.FindMatches(p, message);
             if (target == null) return;
             
-            if (IGame.GameOn(target.level) != null && !(p.IsSuper || p.Game.Referee)) {
+            if (Game.GameOn(target.level) != null && !(p.IsSuper || p.Game.Referee)) {
                 p.Message("You can only use /where on people in games when you are in referee mode."); return;
             }
             

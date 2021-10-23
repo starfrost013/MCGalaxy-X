@@ -23,7 +23,7 @@ using MCGalaxy.Events.GameEvents;
 
 namespace MCGalaxy.Games {
     
-    public abstract partial class RoundsGame : IGame {
+    public abstract partial class RoundsGame : Game {
         public int RoundsLeft;
         public bool RoundInProgress;
         public DateTime RoundStart;
@@ -67,7 +67,7 @@ namespace MCGalaxy.Games {
             RoundsLeft = rounds;
             Running = true;
             
-            IGame.RunningGames.Add(this);
+            Game.RunningGames.Add(this);
             OnStateChangedEvent.Call(this);
             HookEventHandlers();
             
@@ -117,7 +117,7 @@ namespace MCGalaxy.Games {
                 try { End(); }
                 catch (Exception ex2) { Logger.LogError(ex2); }
             }
-            IGame.RunningGames.Remove(this);
+            Game.RunningGames.Remove(this);
         }
         
         protected virtual bool SetMap(string map) {
@@ -234,7 +234,7 @@ namespace MCGalaxy.Games {
         public override void End() {
             if (!Running) return;
             Running = false;
-            IGame.RunningGames.Remove(this);
+            Game.RunningGames.Remove(this);
             UnhookEventHandlers();
             
             if (RoundInProgress) {

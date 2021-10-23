@@ -21,17 +21,17 @@ using MCGalaxy.Commands.World;
 
 namespace MCGalaxy.Games {
 
-    public abstract class IGame {
+    public abstract class Game {
         public Level Map;
         public bool Running;
         public abstract string GameName { get; }
         
-        public static VolatileArray<IGame> RunningGames = new VolatileArray<IGame>(false);
-        public static IGame GameOn(Level lvl) {
+        public static VolatileArray<Game> RunningGames = new VolatileArray<Game>(false);
+        public static Game GameOn(Level lvl) {
             if (lvl == null) return null;
-            IGame[] games = RunningGames.Items;
+            Game[] games = RunningGames.Items;
             
-            foreach (IGame game in games) {
+            foreach (Game game in games) {
                 if (game.Map == lvl) return game;
             }
             return null;

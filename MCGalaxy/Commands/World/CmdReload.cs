@@ -33,7 +33,7 @@ namespace MCGalaxy.Commands.World {
 
         public override void Use(Player p, string message, CommandData data) {
             if (CheckSuper(p, message, "level name")) return;
-            IGame game = IGame.GameOn(p.level);
+            Game game = Game.GameOn(p.level);
             
             if (message.Length == 0) {
                 if (game != null) {

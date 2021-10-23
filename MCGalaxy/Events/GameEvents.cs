@@ -21,11 +21,11 @@ using MCGalaxy.Games;
 
 namespace MCGalaxy.Events.GameEvents {
     
-    public delegate void OnStateChanged(IGame game);
+    public delegate void OnStateChanged(Game game);
     /// <summary> Raised when state of a game changed (started, stopped, round). </summary>
     public sealed class OnStateChangedEvent : IEvent<OnStateChanged> {
         
-        public static void Call(IGame game) {
+        public static void Call(Game game) {
             if (handlers.Count == 0) return;
             CallCommon(pl => pl(game));
         }

@@ -120,7 +120,7 @@ namespace MCGalaxy.Commands.Misc {
             }          
             if (!Server.Config.HigherRankTP && !CheckRank(p, data, target, "teleport to", true)) return false;
             
-            IGame game = IGame.GameOn(target.level);
+            Game game = Game.GameOn(target.level);
             if (!p.Game.Referee && game != null) {
                 p.Message("You can only teleport to players in " +
                                "a game when you are in referee mode."); return false;

@@ -24,7 +24,7 @@ using MCGalaxy.Network;
 
 namespace MCGalaxy.Games {
 
-    public abstract partial class RoundsGame : IGame {
+    public abstract partial class RoundsGame : Game {
         
         protected virtual void HookEventHandlers() {
             OnLevelUnloadEvent.Register(HandleLevelUnload, Priority.High);  
