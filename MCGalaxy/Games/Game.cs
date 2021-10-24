@@ -43,8 +43,6 @@ namespace MCGalaxy.Games {
         
         public virtual void AdjustPrefix(Player p, ref string prefix) { }
         public abstract void End();
-        public abstract void EndRound();
-        
         
         /// <summary> Resets all CPE status messages to blank. </summary>
         protected void ResetStatus(Player p) {

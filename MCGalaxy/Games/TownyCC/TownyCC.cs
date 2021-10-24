@@ -24,11 +24,6 @@ namespace MCGalaxy.Games
             OnStateChangedEvent.Call(this);
         }
 
-        public override void EndRound()
-        {
-            throw new NotImplementedException();
-        }
-
         public override void End()
         {
             if (!Running) return;

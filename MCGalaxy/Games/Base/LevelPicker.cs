@@ -41,7 +41,7 @@ namespace MCGalaxy.Games {
             RecentMaps.Clear();
         }
         
-        public string ChooseNextLevel(RoundsGame game) {
+        public string ChooseNextLevel(BaseGame game) {
             if (QueuedMap != null) return QueuedMap;
             
             try {

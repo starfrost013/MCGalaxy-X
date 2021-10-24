@@ -21,13 +21,11 @@ using System.Threading;
 using MCGalaxy.Commands.World;
 using MCGalaxy.Events.GameEvents;
 
-namespace MCGalaxy.Games {
-    
-    public abstract partial class RoundsGame : BaseGame {
-        public int RoundsLeft;
-        public bool RoundInProgress;
-        public DateTime RoundStart;
-
+namespace MCGalaxy.Games
+{
+       
+    public abstract partial class NoRoundsGame : BaseGame
+    {
         public abstract override BaseGameConfig GetConfig();
 
         /// <summary> Messages general info about current round and players. </summary>
@@ -39,7 +37,6 @@ namespace MCGalaxy.Games {
         /// <summary> Gets the list of all players in this game. </summary>
         protected abstract List<Player> GetPlayers();
 
-        public abstract void EndRound();
 
         public override bool HandlesChatMessage(Player p, string message) {
             if (!Running || p.level != Map) return false;
@@ -61,7 +58,6 @@ namespace MCGalaxy.Games {
             Logger.Log(LogType.GameActivity, "[{0}] game started", GameName);
             
             StartGame();
-            RoundsLeft = rounds;
             Running = true;
             
             Game.RunningGames.Add(this);
@@ -92,13 +88,9 @@ namespace MCGalaxy.Games {
         public override void RunGame()
         {
             try {
-                while (Running && RoundsLeft > 0) {
-                    RoundInProgress = false;
-                    if (RoundsLeft != int.MaxValue) RoundsLeft--;
-                    
+                while (Running)
+                {                    
                     DoRound();
-                    if (Running) EndRound();
-                    if (Running) VoteAndMoveToNextMap();
                 }
                 End();
             } catch (Exception ex) {
@@ -109,7 +101,7 @@ namespace MCGalaxy.Games {
                 catch (Exception ex2) { Logger.LogError(ex2); }
             }
 
-            Game.RunningGames.Remove(this);
+            RunningGames.Remove(this);
         }
 
 
@@ -127,23 +119,10 @@ namespace MCGalaxy.Games {
             MessageMap(type, "");
         }
         
-        protected List<Player> DoRoundCountdown(int delay) {
-            while (true) {
-                RoundStart = DateTime.UtcNow.AddSeconds(delay);
-                if (!Running) return null;
-
-                DoCountdown("&4Starting in &f{0} &4seconds", delay, 10);
-                if (!Running) return null;
-                
-                List<Player> players = GetPlayers();
-                if (players.Count >= 2) return players;
-                Map.Message("&WNeed 2 or more non-ref players to start a round.");
-            }
-        }
+        
         
         protected virtual void VoteAndMoveToNextMap() {
             Picker.AddRecentMap(Map.MapName);
-            if (RoundsLeft == 0) return;
             
             string map = Picker.ChooseNextLevel(this);
             if (!Running) return;
@@ -163,7 +142,8 @@ namespace MCGalaxy.Games {
                 lastMap.Unload();
             }
         }
-        
+         
+
         protected virtual void AnnounceMapChange(string newMap) {
             Map.Message("The next map has been chosen - &c" + newMap);
             Map.Message("Please wait while you are transfered.");
@@ -216,17 +196,10 @@ namespace MCGalaxy.Games {
             Game.RunningGames.Remove(this);
             UnhookEventHandlers();
             
-            if (RoundInProgress) {
-                EndRound();
-                RoundInProgress = false;
-            }
             
             EndGame();
             OnStateChangedEvent.Call(this);
-            
-            RoundStart = DateTime.MinValue;
-            RoundsLeft = 0;
-            RoundInProgress = false;
+
             
             Player[] players = PlayerInfo.Online.Items;
             foreach (Player pl in players) {
@@ -244,7 +217,7 @@ namespace MCGalaxy.Games {
             foreach (Player pl in players) { SaveStats(pl); }
             
             if (Map != null) Map.Message(GameName + " &Sgame ended");
-            Logger.Log(LogType.GameActivity, "[{0}] Game ended", GameName);
+            Logger.Log(LogType.GameActivity, "{0} game ended", GameName);
             if (Picker != null) Picker.Clear();
             
             LastMap = "";
