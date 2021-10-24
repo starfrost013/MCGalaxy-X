@@ -190,7 +190,7 @@ namespace MCGalaxy
             
             // Change -hax into +hax etc when in Referee mode
             //  (can't just do Replace('-', '+') though, that breaks -push)
-            if (Game.Referee) {
+            if (GameProperties.Referee) {
                 motd = motd
                     .Replace("-hax",  "+hax"  ).Replace("-noclip",  "+noclip")
                     .Replace("-speed","+speed").Replace("-respawn", "+respawn")

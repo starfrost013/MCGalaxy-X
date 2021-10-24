@@ -49,7 +49,7 @@ namespace MCGalaxy.Games {
             
             Player[] online = PlayerInfo.Online.Items;
             foreach (Player p in online) {
-                if (p.level != Map || p.Game.Referee) continue;
+                if (p.level != Map || p.GameProperties.Referee) continue;
                 Alive.Add(p);
             }
             Infected.Clear();
@@ -112,7 +112,7 @@ namespace MCGalaxy.Games {
                     if (!InRange(alive, killer, dist)) continue;
                     
                     if (killerData.Infected && !Get(alive).Infected
-                        && !alive.Game.Referee && !killer.Game.Referee
+                        && !alive.GameProperties.Referee && !killer.GameProperties.Referee
                         && killer.level == Map && alive.level == Map)
                     {
                         InfectPlayer(alive, killer);
@@ -169,8 +169,8 @@ namespace MCGalaxy.Games {
         }
         
         void CheckHumanPledge(Player p, Player killer) {
-            if (!p.Game.PledgeSurvive) return;
-            p.Game.PledgeSurvive = false;
+            if (!p.GameProperties.PledgeSurvive) return;
+            p.GameProperties.PledgeSurvive = false;
             Map.Message("&c" + p.DisplayName + " &Sbroke their pledge of not being infected.");
             
             if (killer == null) {
@@ -264,7 +264,7 @@ namespace MCGalaxy.Games {
         }
 
         void IncreaseAliveStats(Player p) {
-            if (p.Game.PledgeSurvive) {
+            if (p.GameProperties.PledgeSurvive) {
                 p.Message("You received &a5 &3" + Server.Config.Currency +
                                " &Sfor successfully pledging that you would survive.");
                 p.SetMoney(p.money + 5);
@@ -295,9 +295,9 @@ namespace MCGalaxy.Games {
                 
                 pl.SetMoney(pl.money + reward);
                 data.ResetState();
-                pl.Game.PledgeSurvive = false;
+                pl.GameProperties.PledgeSurvive = false;
                 
-                if (pl.Game.Referee) {
+                if (pl.GameProperties.Referee) {
                     pl.Message("You gained one " + Server.Config.Currency + " because you're a ref. Would you like a medal as well?");
                     pl.SetMoney(pl.money + 1);
                 }

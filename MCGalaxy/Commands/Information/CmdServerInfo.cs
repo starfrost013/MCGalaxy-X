@@ -38,6 +38,8 @@ namespace MCGalaxy.Commands.Info {
 
         public override void Use(Player p, string message, CommandData data) {
             int count = Database.CountRows("Players");
+            p.Message("&3Server Information:");
+            p.Message($"Software version: &3{Server.SoftwareNameVersioned}");
             p.Message("Server's name: &b{0}&S", Server.Config.Name);
             p.Message("&a{0} &Splayers total. (&a{1} &Sonline, &8{2} banned&S)",
                       count, PlayerInfo.Online.Count, Group.BannedRank.Players.Count);

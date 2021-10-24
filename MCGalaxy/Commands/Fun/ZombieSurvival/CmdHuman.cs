@@ -27,7 +27,7 @@ namespace MCGalaxy.Commands.Fun {
         public override bool SuperUseable { get { return false; } }
         
         public override void Use(Player p, string message, CommandData data) {
-            if (p.Game.PledgeSurvive) {
+            if (p.GameProperties.PledgeSurvive) {
                 p.Message("You cannot un-pledge that you will be infected."); return;
             }
             if (ZSGame.Get(p).Infected) {
@@ -47,7 +47,7 @@ namespace MCGalaxy.Commands.Fun {
                 p.Message("Cannot use &T/human &Sin last three minutes of a round."); return;
             }
             
-            p.Game.PledgeSurvive = true;
+            p.GameProperties.PledgeSurvive = true;
             ZSGame.Instance.Map
                 .Message(p.ColoredName + " &Spledges that they will not succumb to the infection!");
         }

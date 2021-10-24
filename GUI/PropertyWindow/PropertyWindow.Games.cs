@@ -20,7 +20,11 @@ using MCGalaxy.Games;
 
 namespace MCGalaxy.Gui {
     public partial class PropertyWindow : Form {
-        GamesHelper lsHelper, zsHelper, ctfHelper, twHelper;
+        GamesHelper lsHelper, 
+        zsHelper, 
+        ctfHelper, 
+        twHelper,
+        TCCHelper;
         
         void LoadGameProps() {
             string[] allMaps = LevelInfo.AllMapNames();
@@ -37,7 +41,7 @@ namespace MCGalaxy.Gui {
             SaveTWSettings();
         }
         
-        GamesHelper GetGameHelper(IGame game) {
+        GamesHelper GetGameHelper(Game game) {
             // TODO: Find a better way of doing this
             if (game == ZSGame.Instance)  return zsHelper;
             if (game == CTFGame.Instance) return ctfHelper;
@@ -52,7 +56,7 @@ namespace MCGalaxy.Gui {
             RunOnUI_Async(() => helper.UpdateMaps());
         }
         
-        void HandleStateChanged(IGame game) {
+        void HandleStateChanged(Game game) {
             GamesHelper helper = GetGameHelper(game);
             if (helper == null) return;
             RunOnUI_Async(() => helper.UpdateButtons());
@@ -227,6 +231,7 @@ namespace MCGalaxy.Gui {
             }
         }
         
+
         string twCurMap;
         TWMapConfig twCurCfg;
         void twMapUse_SelectedIndexChanged(object sender, EventArgs e) {

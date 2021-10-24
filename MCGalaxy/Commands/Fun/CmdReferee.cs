@@ -28,14 +28,14 @@ namespace MCGalaxy.Commands.Fun {
         public override bool SuperUseable { get { return false; } }
         
         public override void Use(Player p, string message, CommandData data) {
-            if (p.Game.Referee) {
+            if (p.GameProperties.Referee) {
                 Chat.MessageFrom(p, "λNICK &Sis no longer a referee", Chat.FilterVisible(p));
                 OnPlayerActionEvent.Call(p, PlayerAction.UnReferee);
-                p.Game.Referee = false;
+                p.GameProperties.Referee = false;
             } else {
                 Chat.MessageFrom(p, "λNICK &Sis now a referee", Chat.FilterVisible(p));
                 OnPlayerActionEvent.Call(p, PlayerAction.Referee);
-                p.Game.Referee = true;
+                p.GameProperties.Referee = true;
             }
             p.SetPrefix();
             
@@ -43,7 +43,7 @@ namespace MCGalaxy.Commands.Fun {
                 p.SendMapMotd();
             } else if (p.Supports(CpeExt.HackControl)) {
                 string motd = p.GetMotd();
-                if (p.Game.Referee) motd += " +hax";
+                if (p.GameProperties.Referee) motd += " +hax";
                 p.Send(Hacks.MakeHackControl(p, motd));
             }
         }

@@ -67,11 +67,11 @@ namespace MCGalaxy.Games {
         
         void HandleCanSeeEntity(Player p, ref bool canSee, Entity other) {
             Player target = other as Player;
-            if (!canSee || p.Game.Referee || target == null) return;
+            if (!canSee || p.GameProperties.Referee || target == null) return;
             
             ZSData data = TryGet(target);
             if (data == null || target.level != Map) return;
-            canSee = !(target.Game.Referee || data.Invisible);
+            canSee = !(target.GameProperties.Referee || data.Invisible);
         }
         
         void HandleSendingModel(Entity e, ref string model, Player dst) {
@@ -84,7 +84,7 @@ namespace MCGalaxy.Games {
             Player p = e as Player;
             if (p == null || p.level != Map) return;
             
-            if (p.Game.Referee) {
+            if (p.GameProperties.Referee) {
                 tabGroup = "&2Referees";
             } else if (Get(p).Infected) {
                 tabGroup = Config.ZombieTabListGroup;
@@ -123,16 +123,16 @@ namespace MCGalaxy.Games {
             if (!RoundInProgress || p.level != Map) return;
             
             // TODO: Maybe tidy this up?
-            if (p.Game.Noclip == null) p.Game.Noclip = new NoclipDetector(p);
-            if (p.Game.Speed  == null) p.Game.Speed  = new SpeedhackDetector(p);
+            if (p.GameProperties.Noclip == null) p.GameProperties.Noclip = new NoclipDetector(p);
+            if (p.GameProperties.Speed  == null) p.GameProperties.Speed  = new SpeedhackDetector(p);
             
-            bool reverted = p.Game.Noclip.Detect(next) || p.Game.Speed.Detect(next, Config.MaxMoveDist);
+            bool reverted = p.GameProperties.Noclip.Detect(next) || p.GameProperties.Speed.Detect(next, Config.MaxMoveDist);
             if (reverted) p.cancelmove = true;
         }
         
         void HandlePlayerSpawning(Player p, ref Position pos, ref byte yaw, ref byte pitch, bool respawning) {
             if (p.level != Map) return;
-            if (!p.Game.Referee && RoundInProgress && !Get(p).Infected) {
+            if (!p.GameProperties.Referee && RoundInProgress && !Get(p).Infected) {
                 InfectPlayer(p, null);
             }
         }
@@ -168,17 +168,17 @@ namespace MCGalaxy.Games {
                 
                 if (Get(p).Infected) {
                     Chat.MessageChat(ChatScope.Level, p, "&c- to zombies - λNICK: &f" + message,
-                                    Map, (pl, arg) => pl.Game.Referee || Get(pl).Infected);
+                                    Map, (pl, arg) => pl.GameProperties.Referee || Get(pl).Infected);
                 } else {
                     Chat.MessageChat(ChatScope.Level, p, "&a- to humans - λNICK: &f" + message,
-                                    Map, (pl, arg) => pl.Game.Referee || !Get(pl).Infected);
+                                    Map, (pl, arg) => pl.GameProperties.Referee || !Get(pl).Infected);
                 }
                 p.cancelchat = true;
             } else if (message[0] == '`') {
-                if (p.Game.Team == null) {
+                if (p.GameProperties.Team == null) {
                     p.Message("You are not on a team, so cannot send a team message.");
                 } else {
-                    p.Game.Team.Message(p, message.Substring(1));
+                    p.GameProperties.Team.Message(p, message.Substring(1));
                 }
                 p.cancelchat = true;
             }
@@ -193,7 +193,7 @@ namespace MCGalaxy.Games {
                                  Map.Config.BuildType == BuildType.ModifyOnly && Map.Props[old].OPBlock;
             
             // Check pillaring
-            if (placing && !Map.Config.Pillaring && !p.Game.Referee) {
+            if (placing && !Map.Config.Pillaring && !p.GameProperties.Referee) {
                 if (NotPillaring(block, old)) {
                     data.BlocksStacked = 0;
                 } else if (CheckCoords(p, data, x, y, z)) {
@@ -209,7 +209,7 @@ namespace MCGalaxy.Games {
                 p.RevertBlock(x, y, z); cancel = true; return;
             }
             
-            if (p.Game.Referee) return;
+            if (p.GameProperties.Referee) return;
             
             if (placing || (!placing && p.painting)) {
                 if (data.BlocksLeft <= 0) {

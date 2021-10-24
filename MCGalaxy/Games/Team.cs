@@ -38,13 +38,13 @@ namespace MCGalaxy.Games {
             if (!source.CheckCanSpeak("send teamchat")) return;
             
             Chat.MessageChat(ChatScope.All, source, message, this,
-                             (pl, arg) => pl.Game.Team == arg);
+                             (pl, arg) => pl.GameProperties.Team == arg);
         }
         
         public void Action(Player source, string message) {
             message = "Team - λNICK &S" + message;
             Chat.MessageFrom(ChatScope.All, source, message, this,
-                             (pl, arg) => pl.Game.Team == arg);
+                             (pl, arg) => pl.GameProperties.Team == arg);
         }
         
         public bool Remove(string name) {

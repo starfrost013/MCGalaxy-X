@@ -30,8 +30,8 @@ namespace MCGalaxy.Commands.Fun {
         protected bool RateMap(Player p, bool like) {
             string prefix = like ? "" : "dis";
             
-            if (p.Game.RatedMap) {
-                prefix = p.Game.LikedMap ? "" : "dis";
+            if (p.GameProperties.RatedMap) {
+                prefix = p.GameProperties.LikedMap ? "" : "dis";
                 p.Message("You have already {0}liked this map.", prefix); return false; 
             }
             if (CheckIsAuthor(p)) {
@@ -41,8 +41,8 @@ namespace MCGalaxy.Commands.Fun {
             if (like) p.level.Config.Likes++;
             else p.level.Config.Dislikes++;
             
-            p.Game.RatedMap = true;
-            p.Game.LikedMap = like;
+            p.GameProperties.RatedMap = true;
+            p.GameProperties.LikedMap = like;
             p.level.SaveSettings();
             
             prefix = like ? "&a" : "&cdis";

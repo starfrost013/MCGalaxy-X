@@ -108,7 +108,7 @@ namespace MCGalaxy.Games {
             List<Player> playing = new List<Player>();
             
             foreach (Player pl in players) {
-                if (pl.level != Map || pl.Game.Referee) continue;
+                if (pl.level != Map || pl.GameProperties.Referee) continue;
                 playing.Add(pl);
             }
             return playing;

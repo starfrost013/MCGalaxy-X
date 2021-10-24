@@ -67,7 +67,7 @@ namespace MCGalaxy.Games {
             // "To Team &c-" + ColoredName + "&c- &S" + message);
             string prefix = team.Color + " - to " + team.Name;
             Chat.MessageChat(ChatScope.Level, p, prefix + " - λNICK: &f" + message,
-                             Map, (pl, arg) => pl.Game.Referee || TeamOf(pl) == team);
+                             Map, (pl, arg) => pl.GameProperties.Referee || TeamOf(pl) == team);
             p.cancelchat = true;
         }
         
@@ -94,7 +94,7 @@ namespace MCGalaxy.Games {
             if (p == null || p.level != Map) return;
             TWTeam team = TeamOf(p);
             
-            if (p.Game.Referee) {
+            if (p.GameProperties.Referee) {
                 tabGroup = "&2Referees";
             } else if (team != null) {
                 tabGroup = team.ColoredName + " team";

@@ -136,7 +136,7 @@ namespace MCGalaxy
             CheckState();
             
             PlayerDB.LoadNick(this);
-            Game.Team = Team.TeamIn(this);
+            GameProperties.Team = Team.TeamIn(this);
             SetPrefix();
             LoadCpeData();
             

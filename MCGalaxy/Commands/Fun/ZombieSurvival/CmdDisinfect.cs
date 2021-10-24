@@ -31,7 +31,7 @@ namespace MCGalaxy.Commands.Fun {
             
             if (!ZSGame.Instance.RoundInProgress || !ZSGame.Get(who).Infected) {
                 p.Message("Cannot disinfect player");
-            } else if (!who.Game.Referee) {
+            } else if (!who.GameProperties.Referee) {
                 ZSGame.Instance.DisinfectPlayer(who);
                 Chat.MessageFrom(who, "λNICK &Swas disinfected.");
             }

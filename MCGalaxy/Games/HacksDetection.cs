@@ -46,7 +46,7 @@ namespace MCGalaxy.Games {
         
         public bool Detect(Position newPos, float moveDist) {
             Player p = player;
-            if (p.Game.Referee || Hacks.CanUseSpeed(p)) return false;
+            if (p.GameProperties.Referee || Hacks.CanUseSpeed(p)) return false;
             int dx = Math.Abs(p.Pos.X - newPos.X), dz = Math.Abs(p.Pos.Z - newPos.Z);
             
             int maxMove = (int)(moveDist * 32);
@@ -65,7 +65,7 @@ namespace MCGalaxy.Games {
         
         public bool Detect(Position newPos) {
             Player p = player;
-            if (p.Game.Referee || Hacks.CanUseNoclip(p)) return false;
+            if (p.GameProperties.Referee || Hacks.CanUseNoclip(p)) return false;
             if (!p.IsLikelyInsideBlock() || log.AddSpamEntry(5, interval)) return false;
             
             Warn("noclip");

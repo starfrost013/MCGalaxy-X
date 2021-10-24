@@ -196,7 +196,7 @@ namespace MCGalaxy
             if (p.hidden)       flags += "-hidden";
             if (p.muted)        flags += "-muted";
             if (p.frozen)       flags += "-frozen";
-            if (p.Game.Referee) flags += "-ref";
+            if (p.GameProperties.Referee) flags += "-ref";
             if (p.IsAfk)        flags += "-afk";
             if (p.Unverified)   flags += "-unverified";
             return flags;
