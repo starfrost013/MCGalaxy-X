@@ -46,7 +46,7 @@ namespace MCGalaxy.Games
             
         }
 
-       public virtual void Start(Player p, string map, int rounds)
+       public virtual void Start(Player p, string map)
        {
             string StartMapName = GetStartMap(p, map);
 

@@ -24,8 +24,8 @@ using MCGalaxy.Modules.Relay.IRC;
 namespace MCGalaxy {
     public sealed class ServerConfig : EnvConfig {
 
-        [ConfigString("server-name", "Server", "[MCGalaxy] Default", false, " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")]
-        public string Name = "[MCGalaxy] Default";
+        [ConfigString("server-name", "Server", "[MCGalaxy-X] Default", false, " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")]
+        public string Name = "[MCGalaxy-X] Default";
         [ConfigString("motd", "Server", "Welcome", false)]
         public string MOTD = "Welcome!";
         [ConfigInt("max-players", "Server", 12, 1, 128)]
@@ -235,8 +235,8 @@ namespace MCGalaxy {
         public string InvincibleMessage = " is now invincible";
         [ConfigString("custom-ban-message", "Messages", "You're banned!")]
         public string DefaultBanMessage = "You're banned!";
-        [ConfigString("custom-shutdown-message", "Messages", "Server shutdown. Rejoin in 10 seconds.")]
-        public string DefaultShutdownMessage = "Server shutdown. Rejoin in 10 seconds.";
+        [ConfigString("custom-shutdown-message", "Messages", "Server shutdown - try to rejoin in 10 seconds.")]
+        public string DefaultShutdownMessage = "Server shutdown - try to rejoin in 10 seconds.";
         [ConfigString("custom-promote-message", "Messages", "&6Congratulations for working hard and getting &2PROMOTED!")]
         public string DefaultPromoteMessage = "&6Congratulations for working hard and getting &2PROMOTED!";
         [ConfigString("custom-demote-message", "Messages", "&4DEMOTED! &6We're sorry for your loss. Good luck on your future endeavors! &1:'(")]

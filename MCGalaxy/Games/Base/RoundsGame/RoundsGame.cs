@@ -41,13 +41,14 @@ namespace MCGalaxy.Games {
 
         public abstract void EndRound();
 
-        public override bool HandlesChatMessage(Player p, string message) {
+        public override bool HandlesChatMessage(Player p, string message)
+        {
             if (!Running || p.level != Map) return false;
             return Picker.HandlesMessage(p, message);
         }
         
 
-        public override void Start(Player p, string map, int rounds)
+        public virtual void Start(Player p, string map, int rounds)
         {
             map = GetStartMap(p, map);
             if (map == null) {
@@ -69,7 +70,8 @@ namespace MCGalaxy.Games {
             HookEventHandlers();
             
             Player[] players = PlayerInfo.Online.Items;
-            foreach (Player pl in players) {
+            foreach (Player pl in players)
+            {
                 if (pl.level == Map) PlayerJoinedGame(pl);
             }
             
@@ -113,7 +115,8 @@ namespace MCGalaxy.Games {
         }
 
 
-        protected void DoCountdown(string format, int delay, int minThreshold) {
+        protected void DoCountdown(string format, int delay, int minThreshold)
+        {
             const CpeMessageType type = CpeMessageType.Announcement;
             for (int i = delay; i > 0 && Running; i--) {
                 if (i == 1) {

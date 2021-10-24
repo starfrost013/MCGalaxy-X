@@ -512,6 +512,7 @@
     <Compile Include="Games\TntWars\TWConfig.cs" />
     <Compile Include="Games\TownyCC\TownyCC.cs" />
     <Compile Include="Games\TownyCC\TownyCC.Config.cs" />
+    <Compile Include="Games\TownyCC\TownyCC.MapConfig.cs" />
     <Compile Include="Games\Weapons\Missile.cs" />
     <Compile Include="Games\Weapons\Weapon.cs" />
     <Compile Include="Games\Weapons\Guns.cs" />

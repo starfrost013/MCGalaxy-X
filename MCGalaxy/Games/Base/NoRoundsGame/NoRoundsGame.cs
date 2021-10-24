@@ -24,6 +24,9 @@ using MCGalaxy.Events.GameEvents;
 namespace MCGalaxy.Games
 {
        
+    /// <summary>
+    /// Implements a game with a single round that can only be stopped or started.
+    /// </summary>
     public abstract partial class NoRoundsGame : BaseGame
     {
         public abstract override BaseGameConfig GetConfig();
@@ -44,7 +47,7 @@ namespace MCGalaxy.Games
         }
         
 
-        public override void Start(Player p, string map, int rounds)
+        public override void Start(Player p, string map)
         {
             map = GetStartMap(p, map);
             if (map == null) {
@@ -78,7 +81,7 @@ namespace MCGalaxy.Games
         public void AutoStart() {
             if (!GetConfig().StartImmediately) return;
             try {
-                Start(Player.Console, "", int.MaxValue);
+                Start(Player.Console, "");
             } catch (Exception ex) { 
                 Logger.LogError("Error auto-starting " + GameName, ex); 
             }

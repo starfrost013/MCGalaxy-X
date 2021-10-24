@@ -127,14 +127,16 @@ namespace MCGalaxy {
         
         void Cleanup() {
             Physicsint = 0;
-            try {
+
+            // this piece of code was changed to prevent annoying bogus exceptions when debugging w/VS
+            if (physThread != null)
+            {
                 // Wake up physics thread from Thread.Sleep
                 physThread.Interrupt(); // slightly annoying when attached to a debugger, as the exception is usually silently caught - change this code?
                 // Wait up to 1 second for physics thread to finish
                 physThread.Join(1000);
-            } catch {
-                // No physics thread at all
             }
+
             
             Dispose();
             Server.DoGC();

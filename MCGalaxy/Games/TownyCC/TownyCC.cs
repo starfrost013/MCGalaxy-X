@@ -11,28 +11,58 @@ namespace MCGalaxy.Games
     /// 
     /// October 2021, starfrost
     /// </summary>
-    public sealed partial class TownyCC : Game
+    public sealed partial class TownyCC : NoRoundsGame
     {
         public override string GameName => "TownyCC";
         public string GameVersion => "0.1.0";
 
-        public void Start()
+        public static TownyCCConfig Config = new TownyCCConfig(); // constructor probably 
+
+
+        public override void Start(Player p, string Map)
         {
             Logger.Log(LogType.TCCSystem, $"TownyCC {GameVersion} starting...");
-            Running = true;
-            RunningGames.Add(this);
-            OnStateChangedEvent.Call(this);
+            base.Start(p, Map);
         }
+
+        protected override void StartGame()
+        {
+            return; // empty for now
+        }
+
+        protected override void EndGame()
+        {
+            return; // empty for now
+        }
+
 
         public override void End()
         {
-            if (!Running) return;
-            RunningGames.Remove(this);
-            OnStateChangedEvent.Call(this);
+            base.End();
             
         }
 
-       
+        public override BaseGameConfig GetConfig() { return Config; }
+
+        public override void UpdateMapConfig()
+        {
+            return; // empty for now
+        }
+
+        protected override void DoRound()
+        {
+            return; // empty for now
+        }
+
+        protected override List<Player> GetPlayers()
+        {
+            return new List<Player>(); // empty for now
+        }
+
+        public override void OutputStatus(Player p)
+        {
+            return; // empty for now
+        }
 
 
     }

@@ -39,7 +39,7 @@ namespace MCGalaxy.Games {
         Easy,    // 2 Hits to die, Tnt has long delay
         Normal,  // 2 Hits to die, Tnt has normal delay
         Hard,    // 1 Hit to die, Tnt has short delay
-        Extreme, // 1 Hit to die, Tnt has short delay and BIG exlosion
+        Extreme, // 1 Hit to die, Tnt has short delay and BIG explosion
     }
     public sealed class PlayerAndScore { public Player p; public int Score; }
     
