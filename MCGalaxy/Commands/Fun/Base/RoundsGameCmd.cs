@@ -58,6 +58,15 @@ namespace MCGalaxy.Commands.Fun
             }
         }
 
+        protected override void HandleStart(Player p, BaseGame game_, string[] args)
+        {
+            RoundsGame game = (RoundsGame)game_; // actually really bad
+            if (game.Running) { p.Message("{0} is already running", game.GameName); return; }
+
+            string map = args.Length > 1 ? args[1] : "";
+            game.Start(p, map, int.MaxValue);
+        }
+
         protected void HandleEnd(Player p, RoundsGame game)
         {
             if (game.RoundInProgress)
