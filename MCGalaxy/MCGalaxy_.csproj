@@ -212,6 +212,7 @@
     <Compile Include="Commands\Economy\MoneyCmd.cs" />
     <Compile Include="Commands\EntityPropertyCmd.cs" />
     <Compile Include="Commands\Fun\Base\BaseGameCmd.cs" />
+    <Compile Include="Commands\Fun\Base\NoRoundsGameCmd.cs" />
     <Compile Include="Commands\Fun\CmdCountdown.cs" />
     <Compile Include="Commands\Fun\CmdExplode.cs" />
     <Compile Include="Commands\Fun\CmdFlipHeads.cs" />

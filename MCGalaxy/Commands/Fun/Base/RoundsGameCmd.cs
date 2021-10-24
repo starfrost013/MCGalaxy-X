@@ -25,7 +25,11 @@ namespace MCGalaxy.Commands.Fun
         public override string type { get { return CommandTypes.Games; } }
         public override bool museumUsable { get { return false; } }
         public override bool SuperUseable { get { return false; } }
-        protected virtual RoundsGame Game { get { return (RoundsGame)base.Game; } } // probably terrible
+
+        /// <summary>
+        /// terrible dumb hack because i am an idiot
+        /// </summary>
+        protected virtual new RoundsGame Game { get { return (RoundsGame)base.Game; } } 
         
         public override void Use(Player p, string message, CommandData data)
         {
