@@ -28,93 +28,14 @@ using MCGalaxy.Network;
 namespace MCGalaxy.Games {
 
     /// <summary> Stores map-specific game configuration state. </summary>
-    public abstract class RoundsGameMapConfig {
-        
-        protected void LoadFrom(ConfigElement[] cfg, string propsDir, string map) {
-            string path = propsDir + map + ".properties";
-            ConfigElement.ParseFile(cfg, path, this);
-        }
-        
-        protected void SaveTo(ConfigElement[] cfg, string propsDir, string map) {
-            string path = propsDir + map + ".properties";
-            if (!Directory.Exists(propsDir)) Directory.CreateDirectory(propsDir);
-            ConfigElement.SerialiseSimple(cfg, path, this);
-        }
-        
-        /// <summary> Saves this configuration to disc. </summary>
-        public abstract void Save(string map);
-        /// <summary> Loads this configuration from disc. </summary>
-        public abstract void Load(string map);
-        /// <summary> Applies default values for config fields which differ per map. </summary>
-        /// <remarks> e.g. spawn positions, zones </remarks>
-        public abstract void SetDefaults(Level lvl);
+    public abstract class RoundsGameMapConfig : BaseGameMapConfig
+    {
+        // empty for now, may be expanded in future so keep
     }
-    
-    /// <summary> Stores overall game configuration state. </summary>
-    public abstract class RoundsGameConfig {
-        [ConfigBool("start-on-server-start", "Game", false)] 
-        public bool StartImmediately;
-        [ConfigBool("set-main-level", "Game", false)] 
-        public bool SetMainLevel;
-        [ConfigBool("map-in-heartbeat", "Game", false)]
-        public bool MapInHeartbeat;
-        [ConfigStringList("maps", "Game")] 
-        public List<string> Maps = new List<string>();
 
-        /// <summary> Whether users are allowed to auto-join maps used by this game. </summary>
-        /// <remarks> If false, users can only join these maps when manually /load ed. </remarks>
-        public abstract bool AllowAutoload { get; }
-        protected abstract string PropsPath { get; }
-        protected abstract string GameName { get; }
-        
-        ConfigElement[] cfg;
-        public virtual void Save() {
-            if (cfg == null) cfg = ConfigElement.GetAll(GetType());
-            
-            using (StreamWriter w = new StreamWriter(PropsPath)) {
-                w.WriteLine("#" + GameName + " configuration");
-                ConfigElement.SerialiseElements(cfg, w, this);
-            }
-        }
-        
-        public virtual void Load() {
-            if (cfg == null) cfg = ConfigElement.GetAll(GetType());
-            ConfigElement.ParseFile(cfg, PropsPath, this);
-        }
-        
-        
-        public static void AddMap(Player p, string map, LevelConfig lvlCfg, RoundsGame game) {
-            RoundsGameConfig cfg = game.GetConfig();
-            string coloredName = lvlCfg.Color + map;
-            
-            if (cfg.Maps.CaselessContains(map)) {
-                p.Message("{0} &Sis already in the list of {1} maps", coloredName, game.GameName);
-            } else {
-                p.Message("Added {0} &Sto the list of {1} maps", coloredName, game.GameName);
-                cfg.Maps.Add(map);
-                if (!cfg.AllowAutoload) lvlCfg.LoadOnGoto = false;
-                
-                cfg.Save();
-                lvlCfg.SaveFor(map);
-                OnMapsChangedEvent.Call(game);
-            }
-        }
-        
-        public static void RemoveMap(Player p, string map, LevelConfig lvlCfg, RoundsGame game) {
-            RoundsGameConfig cfg = game.GetConfig();
-            string coloredName = lvlCfg.Color + map;
-                
-            if (!cfg.Maps.CaselessRemove(map)) {
-                p.Message("{0} &Swas not in the list of {1} maps", coloredName, game.GameName);
-            } else {
-                p.Message("Removed {0} &Sfrom the list of {1} maps", coloredName, game.GameName);
-                lvlCfg.AutoUnload = true;
-                if (!cfg.AllowAutoload) lvlCfg.LoadOnGoto = true;
-                
-                cfg.Save();
-                lvlCfg.SaveFor(map);
-                OnMapsChangedEvent.Call(game);
-            }
-        }
+    /// <summary> Stores overall game configuration state. </summary>
+    public abstract class RoundsGameConfig : BaseGameConfig
+    {
+        // empty for now, may be expanded in future so keep
     }
 }

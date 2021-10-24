@@ -46,7 +46,7 @@ namespace MCGalaxy.Games
         
         public static CountdownConfig Config = new CountdownConfig();
         public override string GameName { get { return "Countdown"; } }
-        public override RoundsGameConfig GetConfig() { return Config; }
+        public override BaseGameConfig GetConfig() { return Config; }
         
         public bool FreezeMode;
         public int Interval;

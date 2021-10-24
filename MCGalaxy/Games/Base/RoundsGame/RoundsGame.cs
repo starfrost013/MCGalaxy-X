@@ -23,45 +23,41 @@ using MCGalaxy.Events.GameEvents;
 
 namespace MCGalaxy.Games {
     
-    public abstract partial class RoundsGame : Game {
+    public abstract partial class RoundsGame : BaseGame {
         public int RoundsLeft;
         public bool RoundInProgress;
         public DateTime RoundStart;
-        public string LastMap = "";
-        public LevelPicker Picker;
-        
+
+        public abstract override BaseGameConfig GetConfig();
+
         /// <summary> Messages general info about current round and players. </summary>
         /// <remarks> e.g. who is alive, points of each team, etc. </remarks>
         public abstract void OutputStatus(Player p);
-        /// <summary> The instance of this game's overall configuration object. </summary>
-        public abstract RoundsGameConfig GetConfig();
-        /// <summary> Updates state from the map specific configuration file. </summary>
-        public abstract void UpdateMapConfig();
         
         /// <summary> Runs a single round of this game. </summary>
         protected abstract void DoRound();
         /// <summary> Gets the list of all players in this game. </summary>
         protected abstract List<Player> GetPlayers();
-        /// <summary> Saves stats to the database for the given player. </summary>
-        protected virtual void SaveStats(Player pl) { }
-        
+
+
         public override bool HandlesChatMessage(Player p, string message) {
             if (!Running || p.level != Map) return false;
             return Picker.HandlesMessage(p, message);
         }
         
-        protected abstract void StartGame();
-        public virtual void Start(Player p, string map, int rounds) {
+
+        public override void Start(Player p, string map, int rounds)
+        {
             map = GetStartMap(p, map);
             if (map == null) {
-                p.Message("No maps have been setup for {0} yet", GameName); return;
+                p.Message("No maps have been setup for {0} yet!", GameName); return;
             }
             if (!SetMap(map)) {
                 p.Message("Failed to load initial map!"); return;
             }
             
             Chat.MessageGlobal("{0} is starting on {1}&S!", GameName, Map.ColoredName);
-            Logger.Log(LogType.GameActivity, "[{0}] Game started", GameName);
+            Logger.Log(LogType.GameActivity, "[{0}] game started", GameName);
             
             StartGame();
             RoundsLeft = rounds;
@@ -91,15 +87,9 @@ namespace MCGalaxy.Games {
             }
         }
         
-        protected virtual string GetStartMap(Player p, string forcedMap) {
-            if (forcedMap.Length > 0) return forcedMap;
-            List<string> maps = Picker.GetCandidateMaps(this);
-            
-            if (maps == null || maps.Count == 0) return null;
-            return LevelPicker.GetRandomMap(new Random(), maps);
-        }
-        
-        void RunGame() {
+
+        public override void RunGame()
+        {
             try {
                 while (Running && RoundsLeft > 0) {
                     RoundInProgress = false;
@@ -117,23 +107,11 @@ namespace MCGalaxy.Games {
                 try { End(); }
                 catch (Exception ex2) { Logger.LogError(ex2); }
             }
+
             Game.RunningGames.Remove(this);
         }
-        
-        protected virtual bool SetMap(string map) {
-            Picker.QueuedMap = null;
-            Level next = LevelInfo.FindExact(map);
-            if (next == null) next = LevelActions.Load(Player.Console, map, false);
-            if (next == null) return false;
-            
-            Map = next;
-            Map.SaveChanges = false;
-            
-            if (GetConfig().SetMainLevel) Server.SetMainLevel(Map);
-            UpdateMapConfig();
-            return true;
-        }
-        
+
+
         protected void DoCountdown(string format, int delay, int minThreshold) {
             const CpeMessageType type = CpeMessageType.Announcement;
             for (int i = delay; i > 0 && Running; i--) {

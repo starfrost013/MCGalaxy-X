@@ -25,10 +25,12 @@ using MCGalaxy.Events.PlayerEvents;
 using MCGalaxy.Events.ServerEvents;
 using MCGalaxy.Network;
 
-namespace MCGalaxy.Games {
+namespace MCGalaxy.Games
+{
 
     /// <summary> Stores overall game configuration state. </summary>
-    public abstract class NoRoundsGameConfig {
+    public abstract class BaseGameConfig
+    {
         [ConfigBool("start-on-server-start", "Game", false)] 
         public bool StartImmediately;
         [ConfigBool("set-main-level", "Game", false)] 
@@ -61,13 +63,13 @@ namespace MCGalaxy.Games {
         
         
         public static void AddMap(Player p, string map, LevelConfig lvlCfg, RoundsGame game) {
-            RoundsGameConfig cfg = game.GetConfig();
+            BaseGameConfig cfg = game.GetConfig();
             string coloredName = lvlCfg.Color + map;
             
             if (cfg.Maps.CaselessContains(map)) {
-                p.Message("{0} &Sis already in the list of {1} maps", coloredName, game.GameName);
+                p.Message("{0} &Sis already in the list of {1} maps!", coloredName, game.GameName);
             } else {
-                p.Message("Added {0} &Sto the list of {1} maps", coloredName, game.GameName);
+                p.Message("Added {0} &Sto the list of {1} maps!", coloredName, game.GameName);
                 cfg.Maps.Add(map);
                 if (!cfg.AllowAutoload) lvlCfg.LoadOnGoto = false;
                 
@@ -78,13 +80,13 @@ namespace MCGalaxy.Games {
         }
         
         public static void RemoveMap(Player p, string map, LevelConfig lvlCfg, RoundsGame game) {
-            RoundsGameConfig cfg = game.GetConfig();
+            BaseGameConfig cfg = game.GetConfig();
             string coloredName = lvlCfg.Color + map;
                 
             if (!cfg.Maps.CaselessRemove(map)) {
-                p.Message("{0} &Swas not in the list of {1} maps", coloredName, game.GameName);
+                p.Message("{0} &Swas not in the list of {1} maps!", coloredName, game.GameName);
             } else {
-                p.Message("Removed {0} &Sfrom the list of {1} maps", coloredName, game.GameName);
+                p.Message("Removed {0} &Sfrom the list of {1} maps!", coloredName, game.GameName);
                 lvlCfg.AutoUnload = true;
                 if (!cfg.AllowAutoload) lvlCfg.LoadOnGoto = true;
                 

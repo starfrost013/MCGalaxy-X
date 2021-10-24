@@ -45,7 +45,7 @@ namespace MCGalaxy.Gui {
         }
         
         public void Load(string[] allMaps) {
-            RoundsGameConfig cfg = game.GetConfig();
+            BaseGameConfig cfg = game.GetConfig();
             cbStart.Checked = cfg.StartImmediately;
             cbMap.Checked   = cfg.MapInHeartbeat;
             cbMain.Checked  = cfg.SetMainLevel;
@@ -56,7 +56,7 @@ namespace MCGalaxy.Gui {
         }
         
         public void Save() {
-            RoundsGameConfig cfg = game.GetConfig();
+            BaseGameConfig cfg = game.GetConfig();
             cfg.StartImmediately = cbStart.Checked;
             cfg.MapInHeartbeat   = cbMap.Checked;
             cfg.SetMainLevel     = cbMain.Checked;

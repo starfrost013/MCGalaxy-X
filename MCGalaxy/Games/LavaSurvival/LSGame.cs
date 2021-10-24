@@ -25,11 +25,15 @@ namespace MCGalaxy.Games {
         public int TimesDied;
     }
     
-    public sealed partial class LSGame : RoundsGame {
+    public sealed partial class LSGame : RoundsGame
+    {
         LSMapConfig cfg = new LSMapConfig();
         public static LSConfig Config = new LSConfig();
+
+        public override BaseGameConfig GetConfig() { return Config; }
+
         public override string GameName { get { return "Lava survival"; } }
-        public override RoundsGameConfig GetConfig() { return Config; }
+
         
         bool flooded, fastMode, killerMode, destroyMode, waterMode, layerMode;
         BlockID floodBlock;

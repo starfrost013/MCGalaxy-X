@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
 namespace MCGalaxy.Games
 {
     /// <summary> Stores map-specific game configuration state. </summary>
-    public abstract class NoRoundsGameMapConfig
+    public abstract class BaseGameMapConfig
     {
 
         protected void LoadFrom(ConfigElement[] cfg, string propsDir, string map)

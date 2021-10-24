@@ -139,7 +139,7 @@ namespace MCGalaxy.Games {
             return map;
         }
         
-        public virtual List<string> GetCandidateMaps(RoundsGame game) {
+        public virtual List<string> GetCandidateMaps(BaseGame game) {
             List<string> maps = new List<string>(game.GetConfig().Maps);
             if (maps.Count < minMaps) {
                 Logger.Log(LogType.Warning, "You must have 3 or more maps configured to change levels in " + game.GameName);

@@ -479,11 +479,11 @@
     <Compile Include="Events\ModActionEvent.cs" />
     <Compile Include="Events\PlayerEvents.cs" />
     <Compile Include="Events\ServerEvents.cs" />
+    <Compile Include="Games\Base\BaseGame.cs" />
+    <Compile Include="Games\Base\BaseGame.Plugin.cs" />
+    <Compile Include="Games\Base\BaseGame.MapConfig.cs" />
     <Compile Include="Games\Base\LevelPicker.cs" />
-    <Compile Include="Games\Base\NoRoundsGame\NoRoundsGame.cs" />
-    <Compile Include="Games\Base\NoRoundsGame\NoRoundsGame.Plugin.cs" />
-    <Compile Include="Games\Base\NoRoundsGame\NoRoundsGameConfig.cs" />
-    <Compile Include="Games\Base\NoRoundsGame\NoRoundsGameMapConfig.cs" />
+    <Compile Include="Games\Base\BaseGame.Config.cs" />
     <Compile Include="Games\Countdown\CountdownGame.cs" />
     <Compile Include="Games\Countdown\CountdownGame.Plugin.cs" />
     <Compile Include="Games\Countdown\CountdownGame.Round.cs" />
@@ -733,7 +733,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Games\Base\NoRoundsGame\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

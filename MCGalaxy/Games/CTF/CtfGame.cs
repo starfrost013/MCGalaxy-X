@@ -37,7 +37,7 @@ namespace MCGalaxy.Games {
         CTFMapConfig cfg = new CTFMapConfig();
         public static CTFConfig Config = new CTFConfig();
         public override string GameName { get { return "CTF"; } }
-        public override RoundsGameConfig GetConfig() { return Config; }
+        public override BaseGameConfig GetConfig() { return Config; }
         
         sealed class CtfTeam {
             public string Name, Color;
