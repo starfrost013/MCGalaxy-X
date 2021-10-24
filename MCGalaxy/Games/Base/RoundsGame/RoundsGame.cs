@@ -44,7 +44,7 @@ namespace MCGalaxy.Games {
             return Picker.HandlesMessage(p, message);
         }
 
-        public virtual void Start(Player p, string map, int rounds)
+        public override void Start(Player p, string map, int rounds)
         {
             map = GetStartMap(p, map);
             if (map == null) {

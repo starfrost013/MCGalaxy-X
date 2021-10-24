@@ -24,10 +24,11 @@ namespace MCGalaxy.Games
         public static TownyCC Instance => new TownyCC();
 
 
-        public override void Start(Player p, string Map)
+        public override void Start(Player p, string Map, int Rounds = int.MaxValue)
         {
             Logger.Log(LogType.TCCSystem, $"TownyCC {GameVersion} starting...");
             base.Start(p, Map);
+            Config.Save(); 
         }
 
         protected override void StartGame()

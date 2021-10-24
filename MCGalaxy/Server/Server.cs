@@ -67,7 +67,7 @@ namespace MCGalaxy {
                     client.DownloadFile(Updater.BaseURL + file + "?raw=true", file);
                 }
                 if (File.Exists(file)) {
-                    Logger.Log(LogType.SystemActivity, file + " download succesful!");
+                    Logger.Log(LogType.SystemActivity, file + " download successful!");
                 }
             } catch (Exception ex) {
                 Logger.LogError("Downloading " + file +" failed, try again later", ex);
@@ -135,8 +135,10 @@ namespace MCGalaxy {
             }
         }
         
-        static void EnsureFilesExist() {
+        static void EnsureFilesExist()
+        {
             EnsureDirectoryExists("properties");
+            EnsureDirectoryExists("properties/TownyCC"); // the easiest way of doing things
             EnsureDirectoryExists("levels");
             EnsureDirectoryExists("bots");
             EnsureDirectoryExists("text");
@@ -166,7 +168,8 @@ namespace MCGalaxy {
             catch { }
         }        
         
-        public static void LoadAllSettings() {
+        public static void LoadAllSettings() 
+        {
             // Unload custom plugins
             List<Plugin> plugins = new List<Plugin>(Plugin.all);
             foreach (Plugin p in plugins) {
@@ -432,6 +435,7 @@ namespace MCGalaxy {
             if (!Reset_UnloadAll())
             {
                 Logger.Log(LogType.Error, "Error unloading levels - please terminate all games before resetting");
+                Resetting = false; 
                 return; 
             }
 

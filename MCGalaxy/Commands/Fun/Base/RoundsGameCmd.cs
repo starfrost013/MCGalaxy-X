@@ -60,7 +60,7 @@ namespace MCGalaxy.Commands.Fun
 
         protected override void HandleStart(Player p, BaseGame game_, string[] args)
         {
-            RoundsGame game = (RoundsGame)game_; // actually really bad
+            RoundsGame game = (RoundsGame)game_; // dumb but this fixes LS for some reason
             if (game.Running) { p.Message("{0} is already running", game.GameName); return; }
 
             string map = args.Length > 1 ? args[1] : "";

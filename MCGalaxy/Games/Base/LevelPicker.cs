@@ -19,8 +19,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace MCGalaxy.Games {
-    public class LevelPicker {
+namespace MCGalaxy.Games
+{
+    public class LevelPicker
+    {
         public string QueuedMap;
         public List<string> RecentMaps = new List<string>();
         public int VoteTime = 20;
@@ -28,14 +30,23 @@ namespace MCGalaxy.Games {
 
         internal string Candidate1 = "", Candidate2 = "", Candidate3 = "";
         internal int Votes1, Votes2, Votes3;
-        const int minMaps = 3;
-        
-        public void AddRecentMap(string map) {
-            if (RecentMaps.Count >= 20)
-                RecentMaps.RemoveAt(0);
-            RecentMaps.Add(map);
+        public int minMaps = 3;
+       
+        public LevelPicker()
+        {
+
         }
-        
+
+        public void AddRecentMap(string map)
+        {
+            if (RecentMaps.Count >= 20)
+            {
+                RecentMaps.RemoveAt(0);
+            }
+            RecentMaps.Add(map);
+
+        }
+
         public void Clear() {
             QueuedMap = null;
             RecentMaps.Clear();

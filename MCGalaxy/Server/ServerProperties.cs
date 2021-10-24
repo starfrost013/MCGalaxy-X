@@ -35,7 +35,8 @@ namespace MCGalaxy {
             LSGame.Config.Load();
             CTFGame.Config.Load();
             TWGame.Config.Load();
-            
+            TownyCC.Config.Load();
+
             Database.Backend = Server.Config.UseMySQL ? MySQLBackend.Instance : SQLiteBackend.Instance;
             
             if (!Directory.Exists(Server.Config.BackupDirectory))

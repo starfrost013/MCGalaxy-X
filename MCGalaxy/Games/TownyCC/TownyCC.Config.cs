@@ -13,8 +13,14 @@ namespace MCGalaxy.Games
     public partial class TownyCCConfig : NoRoundsGameConfig
     {
 
-        public override bool AllowAutoload => false;
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        public override bool AllowAutoload => true;
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override string GameName { get { return "TownyCC [DEBUG]"; } }
 
         /// <summary>
@@ -22,7 +28,7 @@ namespace MCGalaxy.Games
         /// 
         /// temp: until tccxml
         /// </summary>
-        protected override string PropsPath { get { return "properties/TownyCC/main.properties "; } }
+        protected override string PropsPath { get { return "properties/TownyCC/main.properties"; } }
 
     }
 }

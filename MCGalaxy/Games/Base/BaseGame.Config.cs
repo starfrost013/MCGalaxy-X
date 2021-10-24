@@ -40,6 +40,12 @@ namespace MCGalaxy.Games
         [ConfigStringList("maps", "Game")] 
         public List<string> Maps = new List<string>();
 
+        [ConfigInt("MinimumMaps", "Game", 3, 1)]
+        public int MinimumMaps;
+
+        [ConfigInt("VotingTime", "Game", 20, 1, 120)]
+        public int VotingTime; // ideally properties
+
         /// <summary> Whether users are allowed to auto-join maps used by this game. </summary>
         /// <remarks> If false, users can only join these maps when manually /load ed. </remarks>
         public abstract bool AllowAutoload { get; }

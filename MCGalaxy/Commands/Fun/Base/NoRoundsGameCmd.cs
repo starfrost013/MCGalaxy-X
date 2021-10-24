@@ -29,8 +29,46 @@ namespace MCGalaxy.Commands.Fun
         public override bool museumUsable { get { return false; } }
         public override bool SuperUseable { get { return false; } }
         protected new virtual NoRoundsGame Game { get { return (NoRoundsGame)base.Game; } } // probably terrible until c#9
-        
-        
+
+        public override void Use(Player p, string message, CommandData data)
+        {
+            NoRoundsGame game = Game;
+            if (message.CaselessEq("go"))
+            {
+                HandleGo(p, game); return;
+            }
+            else if (IsInfoCommand(message))
+            {
+                HandleStatus(p, game); return;
+            }
+            if (!CheckExtraPerm(p, data, 1)) return;
+
+            if (message.CaselessEq("start") || message.CaselessStarts("start "))
+            {
+                HandleStart(p, game, message.SplitSpaces());
+            }
+            else if (message.CaselessEq("stop"))
+            {
+                HandleStop(p, game);
+            }
+            else if (message.CaselessEq("add"))
+            {
+                NoRoundsGameConfig.AddMap(p, p.level.name, p.level.Config, game);
+            }
+            else if (IsDeleteCommand(message))
+            {
+                NoRoundsGameConfig.RemoveMap(p, p.level.name, p.level.Config, game);
+            }
+            else if (message.CaselessStarts("set ") || message.CaselessStarts("setup "))
+            {
+                HandleSet(p, game, message.SplitSpaces());
+            }
+            else
+            {
+                Help(p);
+            }
+        }
+
 
     }
 }

@@ -53,9 +53,13 @@ namespace MCGalaxy.Games
             
         }
 
-       public virtual void Start(Player p, string map)
+       public virtual void Start(Player p, string map, int rounds = int.MaxValue)
        {
             string StartMapName = GetStartMap(p, map);
+
+            BaseGameConfig BGC = GetConfig();
+            Picker.minMaps = BGC.MinimumMaps;
+            Picker.VoteTime = BGC.VotingTime;
 
             if (StartMapName == null || StartMapName.Length == 0) p.Message($"No maps have been set up for {GameName} yet!");
             if (!SetMap(StartMapName)) p.Message("Failed to load initial map!");

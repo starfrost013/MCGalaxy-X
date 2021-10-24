@@ -21,7 +21,8 @@ using MCGalaxy.Network;
 using MCGalaxy.Tasks;
 
 namespace MCGalaxy {
-    public sealed partial class Server {
+    public sealed partial class Server
+    {
         public static bool cancelcommand;        
         public delegate void OnConsoleCommand(string cmd, string message);
         public static event OnConsoleCommand ConsoleCommand;
@@ -41,7 +42,7 @@ namespace MCGalaxy {
         public const string InternalVersion = "1.9.3.6";
         public static string Version { get { return InternalVersion; } }
         
-        public static string SoftwareName = "MCGalaxy-X";
+        public static string SoftwareName = "MCGalaxy-&3X&f";
         static string fullName;
         public static string SoftwareNameVersioned {
             // By default, if SoftwareName gets externally changed, that is reflected in SoftwareNameVersioned too

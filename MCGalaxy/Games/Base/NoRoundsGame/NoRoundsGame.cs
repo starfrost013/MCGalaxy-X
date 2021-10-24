@@ -42,7 +42,7 @@ namespace MCGalaxy.Games
         }
         
 
-        public override void Start(Player p, string map)
+        public override void Start(Player p, string map, int rounds = int.MaxValue)
         {
             map = GetStartMap(p, map);
             if (map == null) {

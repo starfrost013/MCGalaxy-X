@@ -248,12 +248,12 @@ namespace MCGalaxy {
         
         static readonly bool[] defLogLevels = new bool[] { 
             true,true,true,true,true,true, true,true,true, 
-            true,true,true,true,true,true, true,true };
+            true,true,true,true,true,true, true,true,true };
         [ConfigBool("log-notes", "Logging", true)]
         public bool LogNotes = true;
-        [ConfigBoolArray("file-logging", "Logging", true, 17)]
+        [ConfigBoolArray("file-logging", "Logging", true, 18)]
         public bool[] FileLogging = defLogLevels;
-        [ConfigBoolArray("console-logging", "Logging", true, 17)]
+        [ConfigBoolArray("console-logging", "Logging", true, 18)]
         public bool[] ConsoleLogging = defLogLevels;
         
         [ConfigBool("admin-verification", "Admin", true)]
