@@ -21,38 +21,51 @@ using MCGalaxy.Maths;
 using BlockID = System.UInt16;
 
 namespace MCGalaxy.Commands.Fun {
-    public sealed class CmdCTF : RoundsGameCmd {
+    public sealed class CmdCTF : RoundsGameCmd
+    {
         public override string name { get { return "CTF"; } }
         public override string shortcut { get { return "CTFSetup"; } }
         protected override RoundsGame Game { get { return CTFGame.Instance; } }
         public override CommandPerm[] ExtraPerms {
             get { return new[] { new CommandPerm(LevelPermission.Operator, "can manage CTF") }; }
         }
-        
-        protected override void HandleSet(Player p, RoundsGame game, string[] args) {
+
+        protected override void HandleSet(Player p, BaseGame game, string[] args)
+        {
             string prop = args[1];
             CTFMapConfig cfg = new CTFMapConfig();
             LoadMapConfig(p, cfg);
-            
-            if (prop.CaselessEq("bluespawn")) {
+
+            if (prop.CaselessEq("bluespawn"))
+            {
                 cfg.BlueSpawn = (Vec3U16)p.Pos.FeetBlockCoords;
                 p.Message("Set spawn of blue team to &b" + cfg.BlueSpawn);
                 SaveMapConfig(p, cfg);
-            } else if (prop.CaselessEq("redspawn")) {
+            }
+            else if (prop.CaselessEq("redspawn"))
+            {
                 cfg.RedSpawn = (Vec3U16)p.Pos.FeetBlockCoords;
                 p.Message("Set spawn of red team to &b" + cfg.RedSpawn);
                 SaveMapConfig(p, cfg);
-            } else if (prop.CaselessEq("blueflag")) {
+            }
+            else if (prop.CaselessEq("blueflag"))
+            {
                 p.Message("Place or delete a block to set blue team's flag.");
                 p.MakeSelection(1, cfg, BlueFlagCallback);
-            } else if (prop.CaselessEq("redflag")) {
+            }
+            else if (prop.CaselessEq("redflag"))
+            {
                 p.Message("Place or delete a block to set red team's flag.");
                 p.MakeSelection(1, cfg, RedFlagCallback);
-            } else if (prop.CaselessEq("divider")) {
+            }
+            else if (prop.CaselessEq("divider"))
+            {
                 cfg.ZDivider = p.Pos.BlockZ;
                 p.Message("Set Z line divider to {0}.", cfg.ZDivider);
                 SaveMapConfig(p, cfg);
-            } else {
+            }
+            else
+            {
                 Help(p, "set");
             }
         }

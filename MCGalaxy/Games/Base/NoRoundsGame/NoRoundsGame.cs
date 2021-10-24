@@ -31,15 +31,10 @@ namespace MCGalaxy.Games
     {
         public abstract override BaseGameConfig GetConfig();
 
-        /// <summary> Messages general info about current round and players. </summary>
-        /// <remarks> e.g. who is alive, points of each team, etc. </remarks>
-        public abstract void OutputStatus(Player p);
-        
         /// <summary> Runs a single round of this game. </summary>
         protected abstract void DoRound();
         /// <summary> Gets the list of all players in this game. </summary>
         protected abstract List<Player> GetPlayers();
-
 
         public override bool HandlesChatMessage(Player p, string message) {
             if (!Running || p.level != Map) return false;

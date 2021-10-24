@@ -50,39 +50,45 @@ namespace MCGalaxy.Commands.Fun {
             }
         }
 
-        static string FormatPlayer(Player pl, CountdownGame game) {
+        static string FormatPlayer(Player pl, CountdownGame game)
+        {
             string suffix = game.Remaining.Contains(pl) ? " &a[IN]" : " &c[OUT]";
             return pl.ColoredName + suffix;
         }
-        
-        protected override void HandleSet(Player p, RoundsGame game_, string[] args) {
+
+        protected override void HandleSet(Player p, BaseGame game_, string[] args)
+        {
             if (args.Length < 4) { Help(p); return; }
-            if (game_.Running) {
+            if (game_.Running)
+            {
                 p.Message("You must stop Countdown before replacing the map."); return;
             }
-            
+
             ushort x = 0, y = 0, z = 0;
             if (!MapGen.GetDimensions(p, args, 1, ref x, ref y, ref z)) return;
-            
+
             CountdownGame game = (CountdownGame)game_;
             game.GenerateMap(p, x, y, z);
-        }        
-        
-        protected override void HandleStart(Player p, RoundsGame game_, string[] args) {
+        }
+
+        protected override void HandleStart(Player p, BaseGame game_, string[] args)
+        {
             if (game_.Running) { p.Message("{0} is already running", game_.GameName); return; }
-            
+
             CountdownGame game = (CountdownGame)game_;
             string speed = args.Length > 1 ? args[1] : "";
-            string  mode = args.Length > 2 ? args[2] : "";
-            
-            if (!game.SetSpeed(speed)) {
+            string mode = args.Length > 2 ? args[2] : "";
+
+            if (!game.SetSpeed(speed))
+            {
                 p.Message("No speed specified, playing at 'normal' speed.");
                 game.SetSpeed("normal");
             }
-            
+
             game.FreezeMode = mode == "freeze" || mode == "frozen";
             game.Start(p, "countdown", int.MaxValue);
-        }       
+        }
+    
         
         public override void Help(Player p) {
             p.Message("&T/CD set [width] [height] [length]");

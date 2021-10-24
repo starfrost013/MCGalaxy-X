@@ -20,22 +20,29 @@ namespace MCGalaxy.Games
         /// <summary> The instance of this game's overall configuration object. </summary>
         public abstract BaseGameConfig GetConfig();
 
-
         /// <summary> Saves stats to the database for the given player. </summary>
         protected virtual void SaveStats(Player pl) { }
 
         /// <summary> Updates state from the map specific configuration file. </summary>
         public abstract void UpdateMapConfig();
 
+        /// <summary> Messages general info about current round and players. </summary>
+        /// <remarks> e.g. who is alive, points of each team, etc. </remarks>
+        public abstract void OutputStatus(Player p);
+
         // these should probably be properties
         public LevelPicker Picker;
         public string LastMap = "";
-
 
         /// <summary>
         /// The name of thi game.
         /// </summary>
         public override string GameName => "BaseGame";
+
+        public BaseGame()
+        {
+            Picker = new LevelPicker();
+        }
 
         public override void End()
         {

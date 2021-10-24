@@ -30,18 +30,26 @@ namespace MCGalaxy.Commands.Fun {
             get { return new[] { new CommandPerm(LevelPermission.Operator, "can manage lava survival") }; }
         }
 
-        protected override void HandleSet(Player p, RoundsGame game, string[] args) {
+        protected override void HandleSet(Player p, BaseGame game, string[] args)
+        {
             string prop = args[1];
             LSMapConfig cfg = new LSMapConfig();
             LoadMapConfig(p, cfg);
-            
-            if (prop.CaselessEq("spawn")) {
+
+            if (prop.CaselessEq("spawn"))
+            {
                 HandleSetSpawn(p, args, cfg);
-            } else if (prop.CaselessEq("block")) {
+            }
+            else if (prop.CaselessEq("block"))
+            {
                 HandleSetBlock(p, args, cfg);
-            } else if (prop.CaselessEq("other")) {
+            }
+            else if (prop.CaselessEq("other"))
+            {
                 HandleSetOther(p, args, cfg);
-            } else {
+            }
+            else
+            {
                 Help(p, "set");
             }
         }

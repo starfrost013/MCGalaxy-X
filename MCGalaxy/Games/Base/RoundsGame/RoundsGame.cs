@@ -30,9 +30,6 @@ namespace MCGalaxy.Games {
 
         public abstract override BaseGameConfig GetConfig();
 
-        /// <summary> Messages general info about current round and players. </summary>
-        /// <remarks> e.g. who is alive, points of each team, etc. </remarks>
-        public abstract void OutputStatus(Player p);
         
         /// <summary> Runs a single round of this game. </summary>
         protected abstract void DoRound();
@@ -46,7 +43,6 @@ namespace MCGalaxy.Games {
             if (!Running || p.level != Map) return false;
             return Picker.HandlesMessage(p, message);
         }
-        
 
         public virtual void Start(Player p, string map, int rounds)
         {

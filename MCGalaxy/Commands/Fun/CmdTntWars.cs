@@ -52,91 +52,135 @@ namespace MCGalaxy.Commands.Fun {
                 p.Message(game.FormatTopScore(top, i));
             }
         }
-        
-        protected override void HandleSet(Player p, RoundsGame game_, string[] args) {
+
+        protected override void HandleSet(Player p, BaseGame game_, string[] args)
+        {
             TWGame game = (TWGame)game_;
-            TWMapConfig cfg  = new TWMapConfig();
+            TWMapConfig cfg = new TWMapConfig();
             TWConfig gameCfg = TWGame.Config;
-            
+
             LoadMapConfig(p, cfg);
             if (args.Length == 1) { Help(p, "set"); return; }
             if (args.Length == 2) { OutputStatus(p, gameCfg, cfg); return; }
 
             string prop = args[1], value = args[2];
-            if (prop.CaselessEq("spawn")) {
-                if (gameCfg.Mode == TWGameMode.FFA) {
+            if (prop.CaselessEq("spawn"))
+            {
+                if (gameCfg.Mode == TWGameMode.FFA)
+                {
                     p.Message("&WCannot set spawns in Free For All mode"); return;
                 }
-                
-                if (value.CaselessEq("red")) {
+
+                if (value.CaselessEq("red"))
+                {
                     cfg.RedSpawn = (Vec3U16)p.Pos.FeetBlockCoords;
                     p.Message("Set &cRed &Sspawn");
-                } else if (value.CaselessEq("blue")) {
+                }
+                else if (value.CaselessEq("blue"))
+                {
                     cfg.BlueSpawn = (Vec3U16)p.Pos.FeetBlockCoords;
                     p.Message("Set &9Blue &Sspawn");
-                } else {
+                }
+                else
+                {
                     Help(p, "team"); return;
                 }
-            } else if (prop.CaselessEq("tnt")) {
+            }
+            else if (prop.CaselessEq("tnt"))
+            {
                 int amount = 1;
                 if (!CommandParser.GetInt(p, value, "TNT at a time", ref amount, 0)) return;
                 cfg.MaxActiveTnt = amount;
-                
+
                 p.Message("Number of TNTs placeable by a player at a time is now {0}",
                                amount == 0 ? "unlimited" : value);
-            } else if (prop.CaselessEq("graceperiod")) {
+            }
+            else if (prop.CaselessEq("graceperiod"))
+            {
                 SetBool(p, ref cfg.GracePeriod, value, "Grace period");
-            } else if (prop.CaselessEq("gracetime")) {
+            }
+            else if (prop.CaselessEq("gracetime"))
+            {
                 TimeSpan time = default(TimeSpan);
                 if (!CommandParser.GetTimespan(p, value, ref time, "set grace time to", "s")) return;
                 cfg.GracePeriodTime = time;
-                
+
                 p.Message("Grace period is now {0}", time.Shorten(true, true));
-            } else if (prop.CaselessEq("gamemode")) {
-                if (value.CaselessEq("tdm")) {
-                    if (gameCfg.Mode == TWGameMode.FFA) {
+            }
+            else if (prop.CaselessEq("gamemode"))
+            {
+                if (value.CaselessEq("tdm"))
+                {
+                    if (gameCfg.Mode == TWGameMode.FFA)
+                    {
                         if (p.level != game.Map) { p.Message("Changed gamemode to Team Deathmatch"); }
                         game.ModeTDM();
-                    } else {
+                    }
+                    else
+                    {
                         p.Message("&cGamemode is already Team Deathmatch"); return;
                     }
-                } else if (value.CaselessEq("ffa")) {
-                    if (gameCfg.Mode == TWGameMode.TDM) {
+                }
+                else if (value.CaselessEq("ffa"))
+                {
+                    if (gameCfg.Mode == TWGameMode.TDM)
+                    {
                         if (p.level != game.Map) { p.Message("Changed gamemode to Free For All"); }
                         game.ModeFFA();
-                    } else {
+                    }
+                    else
+                    {
                         p.Message("&cGamemode is already Free For All"); return;
                     }
-                } else {
+                }
+                else
+                {
                     Help(p, "other"); return;
                 }
-            } else if (prop.CaselessEq("difficulty")) {
+            }
+            else if (prop.CaselessEq("difficulty"))
+            {
                 TWDifficulty diff = TWDifficulty.Easy;
                 if (!CommandParser.GetEnum(p, value, "Difficulty", ref diff)) return;
                 SetDifficulty(game, diff, p);
-            } else if (prop.CaselessEq("score")) {
+            }
+            else if (prop.CaselessEq("score"))
+            {
                 if (args.Length < 4) { Help(p, "score"); return; }
                 if (!HandleSetScore(p, cfg, args)) return;
-            } else if (prop.CaselessEq("balanceteams")) {
+            }
+            else if (prop.CaselessEq("balanceteams"))
+            {
                 SetBool(p, ref cfg.BalanceTeams, value, "Team balancing");
-            } else if (prop.CaselessEq("teamkill")) {
+            }
+            else if (prop.CaselessEq("teamkill"))
+            {
                 SetBool(p, ref cfg.TeamKills, value, "Team killing");
-            } else if (prop.CaselessEq("zone")) {
+            }
+            else if (prop.CaselessEq("zone"))
+            {
                 if (args.Length < 4) { Help(p, "zone"); return; }
-                
-                if (value.CaselessEq("notnt")) {
+
+                if (value.CaselessEq("notnt"))
+                {
                     if (!HandleZone(p, game, true, args)) return;
-                } else if (value.CaselessEq("nodestroy")) {
+                }
+                else if (value.CaselessEq("nodestroy"))
+                {
                     if (!HandleZone(p, game, false, args)) return;
-                } else {
+                }
+                else
+                {
                     Help(p, "zone"); return;
                 }
-            } else {
+            }
+            else
+            {
                 OutputStatus(p, gameCfg, cfg); return;
             }
             SaveMapConfig(p, cfg);
         }
-        
+
         static void OutputStatus(Player p, TWConfig gameCfg, TWMapConfig cfg) {
             p.Message("Gamemode: &a{0} &Sat difficulty &a{1}",
                            gameCfg.Mode, gameCfg.Difficulty);

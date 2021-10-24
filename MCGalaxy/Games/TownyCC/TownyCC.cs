@@ -18,6 +18,11 @@ namespace MCGalaxy.Games
 
         public static TownyCCConfig Config = new TownyCCConfig(); // constructor probably 
 
+        /// <summary>
+        /// TODO: This is dumb
+        /// </summary>
+        public static TownyCC Instance => new TownyCC();
+
 
         public override void Start(Player p, string Map)
         {
@@ -63,7 +68,6 @@ namespace MCGalaxy.Games
         {
             return; // empty for now
         }
-
 
     }
 }

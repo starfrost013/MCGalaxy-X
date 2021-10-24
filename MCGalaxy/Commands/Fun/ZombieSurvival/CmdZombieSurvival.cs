@@ -30,48 +30,62 @@ namespace MCGalaxy.Commands.Fun {
         public override CommandPerm[] ExtraPerms {
             get { return new[] { new CommandPerm(LevelPermission.Operator, "can manage zombie survival") }; }
         }
-        
-        protected override void HandleSet(Player p, RoundsGame game, string[] args) {
+
+        protected override void HandleSet(Player p, BaseGame game, string[] args)
+        {
             ZSConfig cfg = ZSGame.Config;
             string prop = args[1];
             LevelConfig lCfg = p.level.Config;
-            
-            if (prop.CaselessEq("map")) {
+
+            if (prop.CaselessEq("map"))
+            {
                 p.Message("Pillaring allowed: &b" + lCfg.Pillaring);
                 p.Message("Build type: &b" + lCfg.BuildType);
                 p.Message("Round time: &b{0}" + lCfg.RoundTime.Shorten(true, true));
                 return;
             }
-            if (args.Length < 3) { Help(p, "set"); return; }  
-            
-            if (prop.CaselessEq("hitbox")) {
+            if (args.Length < 3) { Help(p, "set"); return; }
+
+            if (prop.CaselessEq("hitbox"))
+            {
                 if (!CommandParser.GetReal(p, args[2], "Hitbox detection", ref cfg.HitboxDist, 0, 4)) return;
                 p.Message("Set hitbox detection to &a" + cfg.HitboxDist + " &Sblocks apart");
-                
+
                 cfg.Save(); return;
-            } else if (prop.CaselessEq("maxmove")) {
+            }
+            else if (prop.CaselessEq("maxmove"))
+            {
                 if (!CommandParser.GetReal(p, args[2], "Max move distance", ref cfg.MaxMoveDist, 0, 4)) return;
                 p.Message("Set max move distance to &a" + cfg.MaxMoveDist + " &Sblocks apart");
-                
+
                 cfg.Save(); return;
-            } else if (prop.CaselessEq("pillaring")) {
+            }
+            else if (prop.CaselessEq("pillaring"))
+            {
                 if (!CommandParser.GetBool(p, args[2], ref lCfg.Pillaring)) return;
-                
+
                 p.Message("Set pillaring allowed to &b" + lCfg.Pillaring);
                 game.UpdateAllStatus2();
-            } else if (prop.CaselessEq("build")) {
+            }
+            else if (prop.CaselessEq("build"))
+            {
                 if (!CommandParser.GetEnum(p, args[2], "Build type", ref lCfg.BuildType)) return;
                 p.level.UpdateBlockPermissions();
-                
+
                 p.Message("Set build type to &b" + lCfg.BuildType);
                 game.UpdateAllStatus2();
-            } else if (prop.CaselessEq("roundtime")) {
+            }
+            else if (prop.CaselessEq("roundtime"))
+            {
                 if (!ParseTimespan(p, "round time", args, ref lCfg.RoundTime)) return;
-            } else {
+            }
+            else
+            {
                 Help(p, "set"); return;
             }
             p.level.SaveSettings();
         }
+
         
         static bool ParseTimespan(Player p, string arg, string[] args, ref TimeSpan span) {
             if (!CommandParser.GetTimespan(p, args[2], ref span, "set " + arg + " to", "m")) return false;

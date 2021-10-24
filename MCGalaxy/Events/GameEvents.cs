@@ -31,11 +31,11 @@ namespace MCGalaxy.Events.GameEvents {
         }
     }
     
-    public delegate void OnMapsChanged(RoundsGame game);
+    public delegate void OnMapsChanged(BaseGame game);
     /// <summary> Raised when maps list in a game changes. </summary>
     public sealed class OnMapsChangedEvent : IEvent<OnMapsChanged> {
         
-        public static void Call(RoundsGame game) {
+        public static void Call(BaseGame game) {
             if (handlers.Count == 0) return;
             CallCommon(pl => pl(game));
         }

@@ -211,6 +211,7 @@
     <Compile Include="Commands\Economy\CmdTake.cs" />
     <Compile Include="Commands\Economy\MoneyCmd.cs" />
     <Compile Include="Commands\EntityPropertyCmd.cs" />
+    <Compile Include="Commands\Fun\Base\BaseGameCmd.cs" />
     <Compile Include="Commands\Fun\CmdCountdown.cs" />
     <Compile Include="Commands\Fun\CmdExplode.cs" />
     <Compile Include="Commands\Fun\CmdFlipHeads.cs" />
@@ -224,7 +225,7 @@
     <Compile Include="Commands\Fun\CmdZombieSpawn.cs" />
     <Compile Include="Commands\Fun\CTF\CmdCtf.cs" />
     <Compile Include="Commands\Fun\RateMapCmds.cs" />
-    <Compile Include="Commands\Fun\RoundsGameCmd.cs" />
+    <Compile Include="Commands\Fun\Base\RoundsGameCmd.cs" />
     <Compile Include="Commands\Fun\ZombieSurvival\CmdAka.cs" />
     <Compile Include="Commands\Fun\ZombieSurvival\CmdAlive.cs" />
     <Compile Include="Commands\Fun\ZombieSurvival\CmdBounties.cs" />
@@ -737,7 +738,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Commands\Fun\TownyCC\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

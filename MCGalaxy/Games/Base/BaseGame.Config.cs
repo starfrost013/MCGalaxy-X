@@ -62,7 +62,7 @@ namespace MCGalaxy.Games
         }
         
         
-        public static void AddMap(Player p, string map, LevelConfig lvlCfg, RoundsGame game) {
+        public static void AddMap(Player p, string map, LevelConfig lvlCfg, BaseGame game) {
             BaseGameConfig cfg = game.GetConfig();
             string coloredName = lvlCfg.Color + map;
             
@@ -79,7 +79,7 @@ namespace MCGalaxy.Games
             }
         }
         
-        public static void RemoveMap(Player p, string map, LevelConfig lvlCfg, RoundsGame game) {
+        public static void RemoveMap(Player p, string map, LevelConfig lvlCfg, BaseGame game) {
             BaseGameConfig cfg = game.GetConfig();
             string coloredName = lvlCfg.Color + map;
                 

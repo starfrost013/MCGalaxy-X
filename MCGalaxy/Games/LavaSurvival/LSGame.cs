@@ -33,14 +33,12 @@ namespace MCGalaxy.Games {
         public override BaseGameConfig GetConfig() { return Config; }
 
         public override string GameName { get { return "Lava survival"; } }
-
         
         bool flooded, fastMode, killerMode, destroyMode, waterMode, layerMode;
         BlockID floodBlock;
         int curLayer, roundTotalSecs, floodDelaySecs, layerIntervalSecs;
         
         public static LSGame Instance = new LSGame();
-        public LSGame() { Picker = new LevelPicker(); }
         
         LSData Get(Player p) {
             object data;

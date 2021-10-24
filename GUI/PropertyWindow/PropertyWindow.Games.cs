@@ -50,7 +50,7 @@ namespace MCGalaxy.Gui {
             return null;
         }
         
-        void HandleMapsChanged(RoundsGame game) {
+        void HandleMapsChanged(BaseGame game) {
             GamesHelper helper = GetGameHelper(game);
             if (helper == null) return;
             RunOnUI_Async(() => helper.UpdateMaps());
