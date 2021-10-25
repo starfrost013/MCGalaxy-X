@@ -252,5 +252,10 @@ namespace MCGalaxy {
         /// <summary> Called when the player has provided a mark for a selection. </summary>
         /// <remarks> i is the index of the mark, so the 'first' mark has 0 for i. </remarks>
         public delegate void SelectionMarkHandler(Player p, Vec3S32[] marks, int i, object state, BlockID block);
+
+        /// <summary>
+        /// TownyCC data
+        /// </summary>
+        public PlayerTCCData TCCData; 
     }
 }

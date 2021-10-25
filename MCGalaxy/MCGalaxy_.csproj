@@ -518,9 +518,11 @@
     <Compile Include="Games\TownyCC\TownyCC.cs" />
     <Compile Include="Games\TownyCC\TownyCC.Config.cs" />
     <Compile Include="Games\TownyCC\TownyCC.MapConfig.cs" />
-    <Compile Include="Games\Weapons\Missile.cs" />
+    <Compile Include="Games\Weapons\WeaponDef\Missile.cs" />
     <Compile Include="Games\Weapons\Weapon.cs" />
-    <Compile Include="Games\Weapons\Guns.cs" />
+    <Compile Include="Games\Weapons\WeaponDef\Guns.cs" />
+    <Compile Include="Games\Weapons\WeaponConfig\WeaponConfig.cs" />
+    <Compile Include="Games\Weapons\WeaponInfo.cs" />
     <Compile Include="Games\ZombieSurvival\ZSGame.DB.cs" />
     <Compile Include="Games\ZombieSurvival\ZSGame.Round.cs" />
     <Compile Include="Games\ZombieSurvival\ZSGame.cs" />
@@ -641,6 +643,7 @@
     <Compile Include="Player\PlayerOperations.cs" />
     <Compile Include="Player\PlayerPhysics.cs" />
     <Compile Include="Player\SpamChecker.cs" />
+    <Compile Include="Player\TownyCC\Player.TCCData.cs" />
     <Compile Include="Player\Warp.cs" />
     <Compile Include="Database\Undo\UndoFormat.cs" />
     <Compile Include="Network\Player.Networking.cs" />

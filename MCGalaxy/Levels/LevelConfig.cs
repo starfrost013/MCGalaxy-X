@@ -23,7 +23,8 @@ using MCGalaxy.Games;
 using BlockID = System.UInt16;
 
 namespace MCGalaxy {
-    public abstract class EnvConfig {
+    public abstract class EnvConfig // todo: : Config
+    {
         // Environment settings
         const int envRange = 0xFFFFFF;
         [ConfigInt("Weather", "Env", 0, -1, 2)]

@@ -144,6 +144,18 @@ namespace MCGalaxy.Config {
         }
     }
     
+    public class ConfigDoubleAttribute : ConfigRealAttribute
+    {
+        double defValue, minValue, maxValue; // stinky capitalisation for backwards compatibility
+
+        public ConfigDoubleAttribute() : this(null, null, 0, double.NegativeInfinity, double.PositiveInfinity) { };
+
+        public ConfigDoubleAttribute(string Name, string Section, double Default, double MinValue = double.NegativeInfinity, double MaxValue = double.PositiveInfinity)
+        : base(Name, Section) { defValue = Default; minValue = MinValue; maxValue = MaxValue; }
+
+        public override object Parse(string Raw) => (double)ParseReal(Raw, defValue, minValue, maxValue);
+    }
+
     public class ConfigTimespanAttribute : ConfigRealAttribute {
         bool mins; int def;
         public ConfigTimespanAttribute(string name, string section, int def, bool mins)

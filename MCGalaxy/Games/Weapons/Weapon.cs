@@ -33,6 +33,8 @@ namespace MCGalaxy.Games {
         
         protected Player p;
         AimBox aimer;
+
+        public int Health;
         
         /// <summary> Applies this weapon to the given player, and sets up necessary state. </summary>
         public virtual void Enable(Player p) {
