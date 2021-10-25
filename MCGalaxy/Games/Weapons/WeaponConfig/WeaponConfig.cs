@@ -146,10 +146,19 @@ namespace MCGalaxy.Games
 
         #region Methods
 
-        public void Load()
+        public void Load(string FileName = null)
         {
             if (Config == null) Config = ConfigElement.GetAll(typeof(WeaponConfig));
-            PropertiesFile.Read(WeaponInfo.GetPropertiesPath(Name), ProcessPropertyLine);
+
+            if (FileName == null)
+            {
+                PropertiesFile.Read(WeaponInfo.GetPropertiesPath(Name), ProcessPropertyLine);
+            }
+            else
+            {
+                PropertiesFile.Read(WeaponInfo.GetPropertiesPath(FileName), ProcessPropertyLine);
+            }
+           
         }
 
         private void ProcessPropertyLine(string Key, string Value) => ConfigElement.Parse(Config, this, Key, Value);

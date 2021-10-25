@@ -138,6 +138,7 @@ namespace MCGalaxy {
         static void EnsureFilesExist()
         {
             EnsureDirectoryExists("properties");
+            EnsureDirectoryExists("properties/weapons");
             EnsureDirectoryExists("properties/TownyCC"); // the easiest way of doing things
             EnsureDirectoryExists("levels");
             EnsureDirectoryExists("bots");
@@ -195,6 +196,7 @@ namespace MCGalaxy {
             WarpList.Global.Filename = "extra/warps.save";
             WarpList.Global.Load();
             CommandExtraPerms.Load();
+            WeaponManager.Load(); 
             ProfanityFilter.Init();
             Team.LoadList();
             ChatTokens.LoadCustom();

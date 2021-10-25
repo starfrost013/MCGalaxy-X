@@ -18,6 +18,7 @@
 using System;
 using System.Collections.Generic;
 using MCGalaxy.Commands;
+using MCGalaxy.Eco;
 using MCGalaxy.Events.PlayerEvents;
 using MCGalaxy.Maths;
 using MCGalaxy.Tasks;
@@ -26,18 +27,31 @@ using BlockID = System.UInt16;
 namespace MCGalaxy.Games {
 
     /// <summary> Represents a weapon which can interact with blocks or players until it dies. </summary>
-    public abstract class Weapon {
+    public class Weapon //: Item
+    {
 
-        public abstract string Name { get; }
+        public virtual string Name { get; }
+
         static bool hookedEvents;
         
         protected Player p;
         AimBox aimer;
 
-        public int Health;
-        
+        public WeaponConfig Config; // perhaps make a property?
+
+        /// <summary>
+        /// The filename of this weapon.
+        /// </summary>
+        public string FileName { get; set; }
+
+        public Weapon()
+        {
+            Config = new WeaponConfig();
+        }
+
         /// <summary> Applies this weapon to the given player, and sets up necessary state. </summary>
-        public virtual void Enable(Player p) {
+        public virtual void Enable(Player p)
+        {
             if (!hookedEvents) {
                 OnPlayerClickEvent.Register(PlayerClickCallback, Priority.Low);
                 OnBlockChangingEvent.Register(BlockChangingCallback, Priority.Low);
@@ -66,7 +80,10 @@ namespace MCGalaxy.Games {
         
         /// <summary> Called when the player fires this weapon. </summary>
         /// <remarks> Activated by clicking through either PlayerClick or on a glass box around the player. </remarks>
-        protected abstract void OnActivated(Vec3F32 dir, BlockID block);
+        protected virtual void OnActivated(Vec3F32 dir, BlockID block)
+        {
+            throw new NotImplementedException();
+        }
 
         
         static void BlockChangingCallback(Player p, ushort x, ushort y, ushort z, BlockID block, bool placing, ref bool cancel) {
@@ -128,6 +145,14 @@ namespace MCGalaxy.Games {
             if (type.CaselessEq("melee")) return WeaponType.Melee;
             if (type.CaselessEq("ranged")) return WeaponType.Ranged;
             return WeaponType.Invalid;
+        }
+
+        /// <summary>
+        /// Loads this weapon.
+        /// </summary>
+        public void Load(string FileName = null)
+        {
+            Config.Load(FileName);
         }
     }
     
@@ -224,5 +249,6 @@ namespace MCGalaxy.Games {
             pos.Y++;
             if (lvl.IsAirAt(pos.X, pos.Y, pos.Z)) curGlass.Add(pos);
         }
+
     }
 }

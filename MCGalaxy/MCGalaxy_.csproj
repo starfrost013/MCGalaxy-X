@@ -523,6 +523,7 @@
     <Compile Include="Games\Weapons\WeaponDef\Guns.cs" />
     <Compile Include="Games\Weapons\WeaponConfig\WeaponConfig.cs" />
     <Compile Include="Games\Weapons\WeaponInfo.cs" />
+    <Compile Include="Games\Weapons\WeaponManager.cs" />
     <Compile Include="Games\ZombieSurvival\ZSGame.DB.cs" />
     <Compile Include="Games\ZombieSurvival\ZSGame.Round.cs" />
     <Compile Include="Games\ZombieSurvival\ZSGame.cs" />
