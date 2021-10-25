@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MCGalaxy.Config;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,6 @@ namespace MCGalaxy.Games
     /// </summary>
     public partial class TownyCCConfig : NoRoundsGameConfig
     {
-
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
@@ -28,7 +28,8 @@ namespace MCGalaxy.Games
         /// 
         /// temp: until tccxml
         /// </summary>
-        protected override string PropsPath { get { return "properties/TownyCC/main.properties"; } }
+        protected override string PropsPath { get { return "properties/TownyCC/core.properties"; } }
+
 
     }
 }

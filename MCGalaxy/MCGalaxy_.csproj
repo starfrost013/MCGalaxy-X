@@ -513,6 +513,8 @@
     <Compile Include="Games\TntWars\TWGame.Round.cs" />
     <Compile Include="Games\TntWars\TWGame.cs" />
     <Compile Include="Games\TntWars\TWConfig.cs" />
+    <Compile Include="Games\TownyCC\Game\Faction\TCCFaction.cs" />
+    <Compile Include="Games\TownyCC\Game\Settlement\TCCSettlement.cs" />
     <Compile Include="Games\TownyCC\TownyCC.cs" />
     <Compile Include="Games\TownyCC\TownyCC.Config.cs" />
     <Compile Include="Games\TownyCC\TownyCC.MapConfig.cs" />
@@ -740,7 +742,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Games\TownyCC\Game\Player\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

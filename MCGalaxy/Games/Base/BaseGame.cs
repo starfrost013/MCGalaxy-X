@@ -93,7 +93,7 @@ namespace MCGalaxy.Games
        {
             while (Running)
             {
-
+                
             }
 
             End(); 

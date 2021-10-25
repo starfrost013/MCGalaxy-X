@@ -31,7 +31,8 @@ namespace MCGalaxy.Commands.Maintenance {
 
         public override void Use(Player p, string message, CommandData data) {
             string[] args = message.SplitSpaces();
-            switch (args[0].ToLower()) {
+            switch (args[0].ToLower())
+            {
                     case "public": SetPublic(p, args); break;
                     case "private": SetPrivate(p, args); break;
                     case "reload": DoReload(p, args); break;
@@ -39,6 +40,9 @@ namespace MCGalaxy.Commands.Maintenance {
                     case "restore": DoRestore(p); break;
                     case "import": DoImport(p, args); break;
                     case "update" : DoUpdate(p); break;
+                    #if DEBUG 
+                    case "reset": DoReset(p, args); break; 
+                    #endif
                     case "upgradeblockdb": DoBlockDBUpgrade(p, args); break;
                     default: Help(p); break;
             }
@@ -145,10 +149,39 @@ namespace MCGalaxy.Commands.Maintenance {
             }
         }
         
+        #if DEBUG // allow on release?
+        private void DoReset(Player p, string[] Args)
+        {
+            if (!CheckPerms(p))
+            {
+                p.Message($"Only the console or the server owner can reset the server!");
+            }
+            else
+            {
+                bool ConfirmationAcquired = (Args.Length > 1 && Args.CaselessContains("confirm"));
 
+                if (!ConfirmationAcquired)
+                {
+                    // messagelines?
+                    p.Message("&4You are on the road to destruction.&f");
+                    p.Message("This command resets the server to default state, and is only intended for debugging purposes.");
+                    p.Message("ALL configuration, levels, aliases, and game settings will be erased. All players and statistics will be removed from the database.");
+                    p.Message("Levels will be backed up, but the rest of this process is IRREVERSIBLE!");
+                    p.Message("Please run /server backup if you have any data that needs to be saved. BlockDB cannot be saved currently.");
+                    p.Message($"If you wish to continue, type /server reset confirm.");
+                }
+                else
+                {
+                    p.Message("Resetting server...");
+                    Server.Reset(); 
+                }
+
+            }
+        }
+        #endif
         static bool CheckPerms(Player p) {
             if (p.IsConsole) return true;
-            if (Server.Config.OwnerName.CaselessEq("Notch")) return false;
+            if (Server.Config.OwnerName.CaselessEq("Notch")) return false; // lol
             return p.name.CaselessEq(Server.Config.OwnerName);
         }
         
@@ -174,6 +207,7 @@ namespace MCGalaxy.Commands.Maintenance {
             p.Message("&T/Server backup &H- Make a backup. See &T/help server backup");
             p.Message("&T/Server backup table [name] &H- Backups that database table");
             p.Message("&T/Server import [name] &H- Imports a backed up database table");
+            p.Message("&T/Server reset &H- Resets the server to default settings");
             p.Message("&T/Server upgradeblockdb &H- Dumps BlockDB tables from database");
             p.Message("&HOnly useful when upgrading from a very old {0} version", Server.SoftwareName);
         }
