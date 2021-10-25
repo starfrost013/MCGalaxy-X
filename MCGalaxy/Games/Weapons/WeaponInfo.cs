@@ -11,6 +11,6 @@ namespace MCGalaxy.Games
     public static class WeaponInfo
     {
         private static string PropertiesDirectory = @"properties\weapons";
-        public static string GetPropertiesPath(Weapon Weapon) => $@"{PropertiesDirectory}\{Weapon.Name}.properties";
+        public static string GetPropertiesPath(string Name) => $@"{PropertiesDirectory}\{Name}.properties"; // probably going to move this
     }
 }

@@ -125,11 +125,11 @@ namespace MCGalaxy.Games {
             if (type.CaselessEq("tp") || type.CaselessEq("teleport")) return WeaponType.Teleport;
             if (type.CaselessEq("explode")) return WeaponType.Explode;
             if (type.CaselessEq("laser"))   return WeaponType.Laser;
+            if (type.CaselessEq("melee")) return WeaponType.Melee;
+            if (type.CaselessEq("ranged")) return WeaponType.Ranged;
             return WeaponType.Invalid;
         }
     }
-    
-    public enum WeaponType { Invalid, Normal, Destroy, Teleport, Explode, Laser };
     
     public class AmmunitionData {
         public BlockID block;

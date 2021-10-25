@@ -744,6 +744,7 @@
     <Content Include="..\sqlite3_x64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Compile Include="Games\Weapons\WeaponType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Games\TownyCC\Game\Player\" />
