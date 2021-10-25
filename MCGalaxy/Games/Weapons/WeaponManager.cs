@@ -13,12 +13,24 @@ namespace MCGalaxy.Games
     /// </summary>
     public static class WeaponManager
     {
-        public static VolatileArray<Weapon> Weapons { get; set; }
+        public static VolatileArray<Weapon> Weapons = new VolatileArray<Weapon>(); 
         
         public static void Load()
         {
+            SaveDefault(); 
+            DoLoad(); 
+            
+        }
+
+        private static void SaveDefault()
+        {
+            AddWeapon(new Weapon { Config = new WeaponConfig { Name = "TestWeapon" } });
+
+        }
+
+        private static void DoLoad()
+        {
             Logger.Log(LogType.SystemActivity, "Loading weapons...");
-            Weapons = new VolatileArray<Weapon>();
 
             // Recursively load every weapon from a file
 
@@ -28,33 +40,55 @@ namespace MCGalaxy.Games
             foreach (string FileName in FileNames)
             {
                 Weapon Weapon = new Weapon();
-                
+
                 try
                 {
                     if (!Weapons.Add(Weapon))
                     {
                         Logger.Log(LogType.Error, "Weapon loading aborted - error adding weapon");
-                        return; 
+                        return;
                     }
-                    
+
                     else
                     {
-                        Weapon.FileName = FileName; 
+                        Weapon.FileName = FileName;
                         Weapon.Load(FileName);
                         Logger.Log(LogType.SystemActivity, $"Weapon {Weapon.Config.Name} loaded");
                     }
-                    
+
                 }
                 catch
                 {
                     Logger.Log(LogType.Error, "Weapon loading aborted - error adding weapon");
-                    return; 
+                    return;
                 }
 
             }
 
             Logger.Log(LogType.SystemActivity, $"Loaded {Weapons.Count} weapons");
-            
+        }
+
+        /// <summary>
+        /// Adds the weapon <paramref name="Weapon"/>
+        /// </summary>
+        /// <param name="Weapon"></param>
+        /// <param name="Save"></param>
+        public static void AddWeapon(Weapon Weapon, bool Save = true)
+        {
+            Weapons.Add(Weapon);
+
+            if (Save)
+            {
+                if (Weapon.FileName != null)
+                {
+                    Weapon.Save(Weapon.FileName);
+                }
+                else
+                {
+                    Weapon.Save();
+                }
+            }
+
         }
     }
 }

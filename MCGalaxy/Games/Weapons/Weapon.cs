@@ -152,7 +152,27 @@ namespace MCGalaxy.Games {
         /// </summary>
         public void Load(string FileName = null)
         {
-            Config.Load(FileName);
+            if (FileName == null)
+            {
+                Config.Load(Config.Name);
+            }
+            else
+            {
+                Config.Load(FileName);
+            }
+            
+        }
+
+        public void Save(string FileName = null)
+        {
+            if (FileName == null)
+            {
+                Config.Save(Config.Name);
+            }
+            else
+            {
+                Config.Save(FileName);
+            }
         }
     }
     
