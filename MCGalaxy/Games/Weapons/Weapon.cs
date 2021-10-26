@@ -18,6 +18,7 @@
 using System;
 using System.Collections.Generic;
 using MCGalaxy.Commands;
+using MCGalaxy.Config;
 using MCGalaxy.Eco;
 using MCGalaxy.Events.PlayerEvents;
 using MCGalaxy.Maths;
@@ -30,8 +31,8 @@ namespace MCGalaxy.Games {
     public class Weapon //: Item
     {
 
+        [Obsolete("Use Config.Name instead")]
         public virtual string Name { get; }
-
         static bool hookedEvents;
         
         protected Player p;
@@ -49,6 +50,7 @@ namespace MCGalaxy.Games {
             Config = new WeaponConfig();
         }
 
+        public WeaponConfig GetConfig() => Config; 
         /// <summary> Applies this weapon to the given player, and sets up necessary state. </summary>
         public virtual void Enable(Player p)
         {
@@ -62,10 +64,27 @@ namespace MCGalaxy.Games {
             p.ClearBlockchange();
             p.weapon = this;
             
-            if (p.Supports(CpeExt.PlayerClick)) {
-                p.Message(Name + " engaged, click to fire at will");
-            } else {                
-                p.Message(Name + " engaged, fire at will");
+            if (p.Supports(CpeExt.PlayerClick))
+            {
+                if (Config.Name == null)
+                {
+                    p.Message(Name + " engaged, click to fire at will");
+                }
+                else
+                {
+                    p.Message(Config.Name + " engaged, click to fire at will");
+                }
+            }
+            else
+            {             
+                if (Config.Name == null)
+                {
+                    p.Message(Name + " engaged, fire at will");
+                }
+                else
+                {
+                    p.Message(Config.Name + " engaged, fire at will");
+                }
                 p.aiming = true;
                 aimer = new AimBox();
                 aimer.Hook(p);
@@ -82,7 +101,7 @@ namespace MCGalaxy.Games {
         /// <remarks> Activated by clicking through either PlayerClick or on a glass box around the player. </remarks>
         protected virtual void OnActivated(Vec3F32 dir, BlockID block)
         {
-            throw new NotImplementedException();
+            return; 
         }
 
         
