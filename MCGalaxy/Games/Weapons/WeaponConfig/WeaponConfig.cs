@@ -142,11 +142,18 @@ namespace MCGalaxy.Games
         [ConfigDouble("FailureChance", "Fun", 0.1)]
         public double FailureChance = 0.1;
 
+        [ConfigBool("Explodes", "Fun", false)]
+        public bool Explodes = false;
+
+        [ConfigDouble("ExplosionRadius", "Fun", 5)]
+        public double ExplosionRadius = 5;
+
         /// <summary>
         /// If <see cref="CanFail"/> is true, this weapon will never work. If it is false, this will act like a suicide weapon.
         /// </summary>
         [ConfigBool("SuicideWeapon", "Fun?", false)]
         public bool SuicideWeapon = false;
+
 
         // more to come!
 

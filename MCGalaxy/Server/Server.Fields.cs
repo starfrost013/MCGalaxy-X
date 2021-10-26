@@ -42,7 +42,7 @@ namespace MCGalaxy {
         public const string InternalVersion = "1.9.3.7";
 
 #if DEBUG
-        public const string TestVersion = "-test3"; 
+        public const string TestVersion = "-test4"; 
         #else
 
         #endif

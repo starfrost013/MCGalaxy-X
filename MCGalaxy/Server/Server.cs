@@ -138,7 +138,7 @@ namespace MCGalaxy {
         static void EnsureFilesExist()
         {
             EnsureDirectoryExists("properties");
-            EnsureDirectoryExists("properties/weapons");
+            EnsureDirectoryExists("properties\\weapons");
             EnsureDirectoryExists("properties/TownyCC"); // the easiest way of doing things
             EnsureDirectoryExists("levels");
             EnsureDirectoryExists("bots");

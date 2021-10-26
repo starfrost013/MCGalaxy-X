@@ -36,7 +36,8 @@ namespace MCGalaxy.Config {
             return value;
         }
         
-        public override string Serialise(object value) {
+        public override string Serialise(object value)
+        {
             bool boolValue = (bool)value;
             return boolValue ? "true" : "false";
         }

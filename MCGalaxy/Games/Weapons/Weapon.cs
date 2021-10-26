@@ -120,7 +120,8 @@ namespace MCGalaxy.Games {
             weapon.OnActivated(dir, held);
         }
         
-        protected static Player PlayerAt(Player p, Vec3U16 pos, bool skipSelf) {
+        protected static Player PlayerAt(Player p, Vec3U16 pos, bool skipSelf)
+        {
             Player[] players = PlayerInfo.Online.Items;
             foreach (Player pl in players) {
                 if (pl.level != p.level) continue;
@@ -144,6 +145,7 @@ namespace MCGalaxy.Games {
             if (type.CaselessEq("laser"))   return WeaponType.Laser;
             if (type.CaselessEq("melee")) return WeaponType.Melee;
             if (type.CaselessEq("ranged")) return WeaponType.Ranged;
+            if (type.CaselessEq("normal")) return WeaponType.Normal; // temporary hack for the new weapons system
             return WeaponType.Invalid;
         }
 

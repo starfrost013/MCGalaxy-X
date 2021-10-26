@@ -90,5 +90,22 @@ namespace MCGalaxy.Games
             }
 
         }
+
+        #region temp stuff until WeaponCollection
+
+        public static Weapon GetWeaponWithName(string Name)
+        {
+            foreach (Weapon Weapon in Weapons.Items) // todo: getenumerator
+            {
+                if (Weapon.Name == Name)
+                {
+                    return Weapon; 
+                }
+            }
+
+            return null; 
+        }
+
+        #endregion
     }
 }

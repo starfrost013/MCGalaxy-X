@@ -20,36 +20,59 @@ using MCGalaxy.Games;
 
 namespace MCGalaxy.Commands.Fun {
     public sealed class CmdGun : Command2 {
-        public override string name { get { return "Gun"; } }
+        public override string name { get { return "GiveWeapon"; } }
+
+        public override string shortcut { get { return "Gun";  } }
         public override string type { get { return CommandTypes.Other; } }
         public override LevelPermission defaultRank { get { return LevelPermission.AdvBuilder; } }
         public override bool SuperUseable { get { return false; } }
-        
-        public override void Use(Player p, string message, CommandData data) {
-            if (!p.level.Config.Guns) {
-                p.Message("Guns cannot be used on this map!"); return;
+
+        public override void Use(Player p, string message, CommandData data)
+        {
+            if (!p.level.Config.Guns)
+            {
+                p.Message("Weapons cannot be used on this map!"); return;
             }
-            if (p.weapon != null && message.Length == 0) {
+
+            if (p.weapon != null && message.Length == 0)
+            {
                 p.weapon.Disable(); return;
             }
-                    
-            WeaponType type = Weapon.ParseType(message);
-            if (type == WeaponType.Invalid) { Help(p); return; }
-            GetGun(type).Enable(p);
+
+            Weapon TheWeapon = GetGun(message);
+
+            if (TheWeapon != null)
+            {
+                TheWeapon.Enable(p);
+            }
+            else
+            {
+                Help(p);
+                return; 
+            }
+        }
+        static Weapon GetGun(string MessageType)
+        {
+            WeaponType type = Weapon.ParseType(MessageType);
+
+            if (type == WeaponType.Destroy) return new PenetrativeGun();
+            else if (type == WeaponType.Teleport) return new TeleportGun();
+            else if (type == WeaponType.Explode) return new ExplosiveGun();
+            else if (type == WeaponType.Laser) return new LaserGun();
+            else if (type == WeaponType.Normal) return new Gun(); 
+            else
+            {
+                // Gets an MCGalaxy-X custom gun. 
+                return WeaponManager.GetWeaponWithName(MessageType);
+            }
         }
         
-        static Gun GetGun(WeaponType type) {
-            if (type == WeaponType.Destroy)  return new PenetrativeGun();
-            if (type == WeaponType.Teleport) return new TeleportGun();
-            if (type == WeaponType.Explode)  return new ExplosiveGun();
-            if (type == WeaponType.Laser)    return new LaserGun();
-            return new Gun();
-        }
-        
-        public override void Help(Player p) {
-            p.Message("&T/Gun [at end]");
-            p.Message("&HAllows you to fire bullets at people");
-            p.Message("&HAvailable [at end] types: &Sexplode, destroy, laser, tp");
+        public override void Help(Player p)
+        {
+            p.Message("&T/GiveWeapon [at end] (alias: /gun)");
+            p.Message("&HGives you a weapon.");
+            p.Message("&HYou can type any weapon available on this server.");
+            p.Message("&HAvailable [at end] types: &Sexplode, destroy, laser, tp, normal [TEMP]");
         }
     }
 }
