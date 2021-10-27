@@ -82,26 +82,11 @@ namespace MCGalaxy.Commands.World {
             }
             
             try {
-                JoinMuseum(p, formattedMuseumName, mapArg, path);
+                Level lvl = LevelActions.LoadMuseum(p, formattedMuseumName, mapArg, path);
+                PlayerActions.ChangeMap(p, lvl);
             } finally {
                 Interlocked.Exchange(ref p.LoadingMuseum, 0);
             }
-        }
-        
-        static void JoinMuseum(Player p, string formattedMuseumName, string mapName, string path) {
-            Level lvl   = IMapImporter.GetFor(path).Read(path, formattedMuseumName, false);
-            lvl.MapName = mapName;
-            
-            SetLevelProps(lvl);
-            Level.LoadMetadata(lvl);
-            lvl.Config.Physics = 0;
-            PlayerActions.ChangeMap(p, lvl);
-        }
-        
-        static void SetLevelProps(Level lvl) {
-            lvl.backedup = true;
-            lvl.BuildAccess.Min = LevelPermission.Nobody;
-            lvl.IsMuseum = true;
         }
         
         public override void Help(Player p) {

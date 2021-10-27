@@ -369,6 +369,17 @@ namespace MCGalaxy {
             return lvl;
         }
         
+        public static Level LoadMuseum(Player p, string name, string mapName, string path) {
+            Level lvl    = IMapImporter.GetFor(path).Read(path, name, false);
+            lvl.MapName  = mapName;
+            lvl.IsMuseum = true;
+            
+            Level.LoadMetadata(lvl);
+            lvl.BuildAccess.Min = LevelPermission.Nobody;
+            lvl.Config.Physics = 0;
+            return lvl;
+        }
+        
         
         public static void Resize(ref Level lvl, int width, int height, int length) {
             Level res = new Level(lvl.name, (ushort)width, (ushort)height, (ushort)length);
@@ -419,7 +430,7 @@ namespace MCGalaxy {
                 lvl.SaveChanges = false;
             }
             
-            res.backedup = true;
+            res.ChangedSinceBackup = false;
             Level.LoadMetadata(res);
             BotsFile.Load(res);
             
