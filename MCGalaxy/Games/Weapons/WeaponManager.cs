@@ -97,7 +97,7 @@ namespace MCGalaxy.Games
         {
             foreach (Weapon Weapon in Weapons.Items) // todo: getenumerator
             {
-                if (Weapon.Config.Name == Name)
+                if (Weapon.Config.Name.CaselessEq(Name))
                 {
                     return Weapon; 
                 }

@@ -80,7 +80,8 @@ namespace MCGalaxy.Games {
         public void UpdateAllStatus3() { UpdateAllStatus(CpeMessageType.Status3); }
         
         /// <summary> Sends CPE Status1, Status2, and Status3 messages to all players in this game's current level </summary>
-        public void UpdateAllStatus() {
+        public void UpdateAllStatus()
+        {
             UpdateAllStatus1();
             UpdateAllStatus2();
             UpdateAllStatus3();
@@ -117,14 +118,8 @@ namespace MCGalaxy.Games {
             p.SendCpeMessage(CpeMessageType.Status3, FormatStatus3(p));
         }
         
-        /// <summary> Resets all CPE Status messages to blank for the given player </summary>
-        protected void ResetStatus(Player p) {
-            p.SendCpeMessage(CpeMessageType.Status1, "");
-            p.SendCpeMessage(CpeMessageType.Status2, "");
-            p.SendCpeMessage(CpeMessageType.Status3, "");
-        }
-        
-        
+
+              
         public static bool InRange(Player a, Player b, int dist) {
             int dx = Math.Abs(a.Pos.X - b.Pos.X);
             int dy = Math.Abs(a.Pos.Y - b.Pos.Y);
