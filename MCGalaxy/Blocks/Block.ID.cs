@@ -153,7 +153,9 @@ namespace MCGalaxy
 
         public const byte C4 = 74;
         public const byte C4Detonator = 75;
-        // 76, 77, 78, 79 free
+        // 76, 77, 78, 79 free;
+
+        public const byte Bullet = 76;
 
         public const byte Door_Cobblestone = 80;
         //public const byte Door_Cobblestone_air = 81;// unused in core

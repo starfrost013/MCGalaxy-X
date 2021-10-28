@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection; 
 using System.Text;
 
 namespace MCGalaxy.Games
@@ -69,7 +70,7 @@ namespace MCGalaxy.Games
         }
 
         /// <summary>
-        /// Adds the weapon <paramref name="Weapon"/>
+        /// Adds the weapon <paramref name="Weapon"/> and saves it. (used for /weapon add) 
         /// </summary>
         /// <param name="Weapon"></param>
         /// <param name="Save"></param>
@@ -89,6 +90,15 @@ namespace MCGalaxy.Games
                 }
             }
 
+        }
+
+        private Weapon GetWeaponOfType(string Type, WeaponConfig Config)
+        {
+            // nonsense
+            // when we go to xml this will be a lot better.
+
+            if (Type.CaselessEq(""))
+            
         }
 
         #region temp stuff until WeaponCollection

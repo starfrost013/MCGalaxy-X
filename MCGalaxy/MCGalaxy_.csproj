@@ -518,6 +518,8 @@
     <Compile Include="Games\TownyCC\TownyCC.cs" />
     <Compile Include="Games\TownyCC\TownyCC.Config.cs" />
     <Compile Include="Games\TownyCC\TownyCC.MapConfig.cs" />
+    <Compile Include="Games\Weapons\Ammunition\AimBox.cs" />
+    <Compile Include="Games\Weapons\Ammunition\AmmunitionData.cs" />
     <Compile Include="Games\Weapons\WeaponDef\Missile.cs" />
     <Compile Include="Games\Weapons\Weapon.cs" />
     <Compile Include="Games\Weapons\WeaponDef\Guns.cs" />

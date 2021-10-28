@@ -264,7 +264,7 @@ namespace MCGalaxy {
                 return zn.Access;
             }
             
-        checkRank:
+        checkRank: // WHAT THE FUCK
             if (p.level == this) {
                 return p.AllowBuild ? null : BuildAccess;
             } else {

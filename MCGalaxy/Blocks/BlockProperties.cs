@@ -73,8 +73,12 @@ namespace MCGalaxy.Blocks {
         
         /// <summary> Block ID this is changed into when no longer exposed to sunlight. </summary>
         public BlockID DirtBlock;
-        
-        
+
+        /// <summary>
+        /// The strength of this block. Blocks with a <see cref="Resistance"/> lower than the <see cref="Resistance"/> value will be destroyed on contact or explosion
+        /// </summary>
+        public int Resistance;
+
         /// <summary> Whether the properties for this block have been modified and hence require saving. </summary>
         /// <remarks> bit 0 set means modified at global scope, bit 1 set means modified at level scope</remarks>
         public byte ChangedScope;
@@ -82,7 +86,8 @@ namespace MCGalaxy.Blocks {
         public const byte SCOPE_GLOBAL = 0x01;
         public const byte SCOPE_LEVEL  = 0x02;
         
-        public static BlockProps MakeEmpty() {
+        public static BlockProps MakeEmpty()
+        {
             BlockProps props = default(BlockProps);
             props.oDoorBlock = Block.Invalid;
             props.GrassBlock = Block.Invalid;

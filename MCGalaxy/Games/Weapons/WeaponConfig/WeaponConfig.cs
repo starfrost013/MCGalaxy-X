@@ -125,10 +125,22 @@ namespace MCGalaxy.Games
         public double RecoilBlocks = 0.5;
 
         /// <summary>
+        /// Time between shots.
+        /// </summary>
+        [ConfigDouble("RecoilTime", "Main", 0, 0)]
+        public double RecoilTime = 0;
+
+        /// <summary>
         /// The number of uses per second.
         /// </summary>
         [ConfigInt("FireSpeed", "Main", 1)]
         public int FireSpeed = 1;
+
+        /// <summary>
+        /// The ammunition block fired by this weapon. 
+        /// </summary>
+        [ConfigString("Ammunition", "Main", "Bullet")]
+        public string Ammunition = "Bullet";
 
         /// <summary>
         /// Can this weapon fail and blow up in your face, killing you immediately?
@@ -141,10 +153,10 @@ namespace MCGalaxy.Games
         /// </summary>
         [ConfigDouble("FailureChance", "Fun", 0.1)]
         public double FailureChance = 0.1;
-
-        [ConfigBool("Explodes", "Fun", false)]
-        public bool Explodes = false;
-
+   
+        /// <summary>
+        /// Explosion radius - ignored if <see cref="Type"/> is not <see cref="WeaponType.Explode"/>.
+        /// </summary>
         [ConfigDouble("ExplosionRadius", "Fun", 5)]
         public double ExplosionRadius = 5;
 
