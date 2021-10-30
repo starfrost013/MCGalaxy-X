@@ -32,6 +32,8 @@ namespace MCGalaxy.Games
 
         /// <summary>
         /// The maximum damage of this weapon.
+        /// 
+        /// Health is shared across all blocks and entities.
         /// </summary>
         [ConfigInt("MaximumDamage", "Main", 20)]
         public int MaximumDamage = 20;

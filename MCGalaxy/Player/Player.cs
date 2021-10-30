@@ -55,7 +55,8 @@ namespace MCGalaxy {
 
         //This is so that plugin devs can declare a player without needing a socket..
         //They would still have to do p.Dispose()..
-        public Player(string playername) { 
+        public Player(string playername)
+        { 
             name        = playername;
             truename    = playername;
             DisplayName = playername;
@@ -63,18 +64,22 @@ namespace MCGalaxy {
             SetIP(IPAddress.Loopback);
             SessionID = Interlocked.Increment(ref sessionCounter) & SessionIDMask;
             IsSuper   = true;
+            TCCData   = new PlayerTCCData();
         }
 
-        internal Player(INetSocket socket) {
+        internal Player(INetSocket socket)
+        {
             Socket = socket;
             SetIP(Socket.IP);
             
             spamChecker = new SpamChecker(this);
             SessionID   = Interlocked.Increment(ref sessionCounter) & SessionIDMask;
             
-            for (int b = 0; b < BlockBindings.Length; b++) {
+            for (int b = 0; b < BlockBindings.Length; b++)
+            {
                 BlockBindings[b] = (BlockID)b;
             }
+            TCCData = new PlayerTCCData();
         }
         
         public override byte EntityID { get { return id; } }

@@ -524,6 +524,7 @@
     <Compile Include="Games\Weapons\Weapon.cs" />
     <Compile Include="Games\Weapons\WeaponDef\Guns.cs" />
     <Compile Include="Games\Weapons\WeaponConfig\WeaponConfig.cs" />
+    <Compile Include="Games\Weapons\WeaponDef\PenetrativeGun.cs" />
     <Compile Include="Games\Weapons\WeaponInfo.cs" />
     <Compile Include="Games\Weapons\WeaponManager.cs" />
     <Compile Include="Games\ZombieSurvival\ZSGame.DB.cs" />

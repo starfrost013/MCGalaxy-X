@@ -44,6 +44,8 @@ namespace MCGalaxy.Games
 
                 try
                 {
+
+
                     if (!Weapons.Add(Weapon))
                     {
                         Logger.Log(LogType.Error, "Weapon loading aborted - error adding weapon");
@@ -52,6 +54,9 @@ namespace MCGalaxy.Games
 
                     else
                     {
+                        // dumb hack
+                        Weapon = GetWeaponOfType(Weapon.Config.Type, Weapon.Config);
+                        // end dumb hack
                         Weapon.FileName = FileName;
                         Weapon.Load(FileName);
                         Logger.Log(LogType.SystemActivity, $"Weapon {Weapon.Config.Name} loaded");
@@ -92,13 +97,28 @@ namespace MCGalaxy.Games
 
         }
 
-        private Weapon GetWeaponOfType(string Type, WeaponConfig Config)
+        private static Weapon GetWeaponOfType(WeaponType Type, WeaponConfig Cfg)
         {
             // nonsense
             // when we go to xml this will be a lot better.
 
-            if (Type.CaselessEq(""))
-            
+            switch (Type)
+            {
+                case WeaponType.Normal: // temp, will be removed
+                    return new Weapon { Config = Cfg };
+                case WeaponType.Gun:
+                    return new Gun { Config = Cfg };
+                case WeaponType.Explode:
+                    return new ExplosiveGun { Config = Cfg };
+                case WeaponType.Laser:
+                    return new LaserGun { Config = Cfg };
+                case WeaponType.Destroy:
+                    return new PenetrativeGun { Config = Cfg };
+                default:
+                    return null; 
+            }
+
+
         }
 
         #region temp stuff until WeaponCollection

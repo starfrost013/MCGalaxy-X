@@ -11,7 +11,8 @@ namespace MCGalaxy.Games
     /// 
     /// Defines the weapon types
     /// </summary>
-    public enum WeaponType { 
+    public enum WeaponType
+    { 
     
     /// <summary>
     /// Invalid weapon type
@@ -23,6 +24,11 @@ namespace MCGalaxy.Games
     /// </summary>
     Normal, 
     
+    /// <summary>
+    /// Gun weapon type
+    /// </summary>
+    Gun,
+
     /// <summary>
     /// Destroy weapon type
     /// </summary>

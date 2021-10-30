@@ -205,8 +205,19 @@ namespace MCGalaxy.Games {
                 Config.Save(FileName);
             }
         }
+
+        protected AmmunitionData MakeArgs(Vec3F32 dir, BlockID block)
+        {
+            AmmunitionData args = new AmmunitionData();
+            args.block = block;
+
+            args.start = (Vec3U16)p.Pos.BlockCoords;
+            args.dir = dir;
+            args.iterations = 4;
+            return args;
+        }
+
     }
-    
-   
+
     
 }

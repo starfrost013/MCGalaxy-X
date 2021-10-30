@@ -61,6 +61,13 @@ namespace MCGalaxy {
         
         [ConfigInt(null, null, -1, -1)]
         public int InventoryOrder = -1;
+
+        // MCGalaxy-X
+        [ConfigInt(null, null, -1, -1)]
+        public int MaximumHealth = 50;
+
+        [ConfigBool()]
+        public bool Destructable;
         
         public BlockID GetBlock() { return Block.FromRaw(RawID); }
         public void SetBlock(BlockID b) { RawID = Block.ToRaw(b); }
@@ -69,7 +76,9 @@ namespace MCGalaxy {
         
         public static BlockDefinition[] GlobalDefs;
         
-        public BlockDefinition Copy() {
+        public BlockDefinition Copy()
+        {
+            // this is dumb
             BlockDefinition def = new BlockDefinition();
             def.RawID = RawID; def.Name = Name;
             def.Speed = Speed; def.CollideType = CollideType;
@@ -87,6 +96,9 @@ namespace MCGalaxy {
             def.LeftTex = LeftTex; def.RightTex = RightTex;
             def.FrontTex = FrontTex; def.BackTex = BackTex;
             def.InventoryOrder = InventoryOrder;
+            def.Destructable = Destructable;
+            def.MaximumHealth = MaximumHealth;
+
             return def;
         }
         
