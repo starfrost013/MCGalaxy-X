@@ -51,20 +51,27 @@ namespace MCGalaxy.Commands.Fun {
                 return; 
             }
         }
+
         static Weapon GetGun(string MessageType)
         {
             WeaponType type = Weapon.ParseType(MessageType);
 
-            if (type == WeaponType.Destroy) return new PenetrativeGun();
-            else if (type == WeaponType.Teleport) return new TeleportGun();
-            else if (type == WeaponType.Explode) return new ExplosiveGun();
-            else if (type == WeaponType.Laser) return new LaserGun();
-            else if (type == WeaponType.Normal) return new Gun(); 
-            else
+            switch (type)
             {
-                // Gets an MCGalaxy-X custom gun. 
-                return WeaponManager.GetWeaponWithName(MessageType);
+                case WeaponType.Destroy:
+                    return new PenetrativeGun();
+                case WeaponType.Teleport:
+                    return new TeleportGun();
+                case WeaponType.Explode:
+                    return new ExplosiveGun();
+                case WeaponType.Laser:
+                    return new LaserGun();
+                case WeaponType.Normal:
+                    return new Gun();
+                default:
+                    return WeaponManager.GetWeaponWithName(MessageType);
             }
+
         }
         
         public override void Help(Player p)

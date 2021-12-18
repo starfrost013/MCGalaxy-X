@@ -62,7 +62,7 @@ namespace MCGalaxy {
         [ConfigInt(null, null, -1, -1)]
         public int InventoryOrder = -1;
 
-        // MCGalaxy-X
+        // MCGalaxy-X (stored in db)
         [ConfigInt(null, null, -1, -1)]
         public int MaximumHealth = 50;
 

@@ -48,7 +48,7 @@ namespace MCGalaxy.Commands.Info {
             p.RevertBlock(x, y, z);
             Dictionary<int, string> names = new Dictionary<int, string>();
 
-            p.Message("Retrieving block change records..");
+            p.Message("Retrieving block change records...");
 
             bool foundAny = false;
             ListFromDatabase(p, ref foundAny, x, y, z);
@@ -57,7 +57,7 @@ namespace MCGalaxy.Commands.Info {
                     p.level.BlockDB.FindChangesAt(x, y, z,
                                                   entry => OutputEntry(p, ref foundAny, names, entry));
                 } else {
-                    p.Message("&WUnable to accquire read lock on BlockDB after 30 seconds, aborting.");
+                    p.Message("&WUnable to acquire read lock on BlockDB after 30 seconds, aborting.");
                     return false;
                 }
             }
